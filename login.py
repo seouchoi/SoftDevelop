@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, redirect, url_for, render_template, flash
+from flask import Blueprint, jsonify, request, redirect, url_for, render_template, flash, session
 from pymongo import MongoClient
 from werkzeug.security import check_password_hash
 
@@ -21,6 +21,7 @@ def login():
             return redirect(url_for("로그인 페이지"))
         else: #id가 존재한다면 
             if check_password_hash(user['password'], password): #입력받은 password를 해싱시켜 받아온 정보(비밀번호)와 비교
+                session['logged_in'] = True
                 return redirect(url_for("홈페이지(로그인)")) #일치한다면 홈페이지(로그인)으로 이동
             else: #password가 다르다면
                 flash('아이디 또는 비밀번호가 일치하지 않습니다.', 'error') 

@@ -4,6 +4,8 @@ from gpt import gpt_bp  # AI 메시지 블루프린트 불러오기
 from homepage import homepage_bp
 
 app = Flask(__name__)
+app.secret_key = '12345'
+
 
 app.register_blueprint(register_bp, url_prefix = '/api')
 app.register_blueprint(gpt_bp, url_prefix = '/api')
