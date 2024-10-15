@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input {
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form id="registration-form">
+        <label for="user_id">사용자 이름:</label>
+        <input type="text" id="user_id" name="user_id" required>
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">가입하기</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // 기본 제출 동작 방지
+
+            const user_id = document.getElementById("user_id").value;
+            const password = document.getElementById("password").value;
+
+            // POST 요청 보내기
+            fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ user_id: user_id, password: password }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("message").textContent = data.message;
+                // 입력 필드 초기화
+                document.getElementById("registration-form").reset();
+            })
+            .catch(error => {
+                document.getElementById("message").textContent = "오류 발생: " + error;
+            });
+        });
+    </script>
+</body>
+</html>
