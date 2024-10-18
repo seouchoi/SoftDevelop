@@ -37,6 +37,13 @@
                 display: flex;
                 gap: 20px;
             }
+
+            .move-to-question {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
     
             .nav-links a {
                 text-decoration: none;
@@ -117,9 +124,9 @@
             
 
             <div class="nav-links">
-                <a href="signup.html">회원가입</a>
-                <a href="login.html">로그인</a>
-                <a href="profile.html">내정보</a>
+                <a href="/join">회원가입</a>
+                <a href="/login">로그인</a>
+                <a href="/profile">내정보</a>
             </div>
         </header>
     
@@ -137,9 +144,14 @@
             </div>
         </section>
 
-        <a href="/question">
-            <button>질문 페이지로 이동</button>
-        </a>
+        <section class="move-to-question">
+            <div class="button-container">
+                <a href="/question_page">
+                    <button>질문 페이지로 이동</button>
+                </a>
+            </div>
+        </section>
+        
     
         <section class="section">
             <strong><h3>추천 공모 분야</h3></strong> 
