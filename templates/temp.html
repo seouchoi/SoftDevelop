@@ -1,222 +1,247 @@
 <!DOCTYPE html>
-
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>공모전 페이지</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                padding: 20px;
-            }
-    
-            header {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 20px;
-            }
-    
-            header div {
-                display: flex;
-                gap: 40px;
-            }
-    
-            .logo-search-container {
-                display: flex;
-                justify-content: flex-start; /* 로고와 검색창을 왼쪽으로 정렬 */
-                align-items: center;
-                margin-bottom: 50px;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공모전 페이지</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
 
-            .logo {
-                margin-right: 300px; /* 로고와 검색툴 사이 간격 조정 */
-            }
-    
-            .nav-links {
-                display: flex;
-                gap: 20px;
-            }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
 
-            .move-to-question {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 10px;
-                margin-right: 300px;
-            }
-    
-            .nav-links a {
-                text-decoration: none;
-                color: black;
-                font-weight: bold;
-            }
-    
-            .section {
-                margin-bottom: 20px;
-            }
-    
-            .grid-container {
-                display: grid;
-                grid-template-columns: 2fr 2fr 1fr;
-                gap: 20px;
-            }
-    
-            .section-box {
-                border: 1px solid black;
-                padding: 20px;
-            }
-    
-            .calendar-section {
-                border: 1px solid black;
-                padding: 10px;
-                text-align: center;
-            }
-    
-            .alert-section {
-                border: 1px solid black;
-                padding: 10px;
-                text-align: center;
-            }
+        .header img {
+            height: 50px;
+        }
 
-            .search-bar form input[type="text"] {
-                width: 400px; /* 검색창 너비 조정 */
-                padding: 10px; /* 검색창 안쪽 여백 추가 */
-                font-size: 16px; /* 글자 크기 조정 */
-            }
-    
-            .search-bar form input[type="submit"] {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
+        .container {
+            display: flex;
+            width: 90%;
+            height: calc(100vh - 70px);
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
 
-            .button-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 10px;
-            }
-    
-            .category-button {
-                background-color: #A4A4A4; /* 버튼 배경색 */
-                color: white; /* 글자색 */
-                border: none;
-                padding: 10px 20px;
-                cursor: pointer;
-                border-radius: 5px; /* 버튼 모서리 둥글게 */
-                font-size: 16px;
-            }
-    
-            .category-button:hover {
-                background-color: #6E6E6E; /* 버튼에 마우스 올렸을 때 색상 변경 */
-            }
-    
-            .category-button:focus {
-                outline: none; /* 클릭 시 생기는 테두리 제거 */
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <div>
-              <span><strong><h1>공모전 팀원 모집 사이트</h1></strong></span>
-            </div>
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex: 3;
+            gap: 20px;
+            margin-top: 20px;
+        }
 
-            
+        .image-container img {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+        }
 
-            <div class="nav-links">
-                <a href="join.html">회원가입</a>
-                <a href="login.html">로그인</a>
-                <a href="profile.html">내정보</a>
-            </div>
-        </header>
-    
-        <section class="logo-search-container">
-            <div class="logo">
-                <img src="pictures/logo.png" alt="로고 이미지" width="300">
-            </div>
-    
-            <div class="search-bar">
-                <form>
-                    <h1>공모전 분야를 검색하세요!</h1>
-                    <input type="text" name="search" placeholder="검색어를 입력하세요">
-                    <input type="submit" value="검색">
-                </form>
-            </div>
-        </section>
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
 
-        <section class="move-to-question">
-            <div class="button-container">
-                <a href="/question_page">
-                    <button>질문 페이지로 이동</button>
-                </a>
-            </div>
-        </section>
-        
-    
-        <section class="section">
-            <strong><h3>추천 공모 분야</h3></strong> 
-            <div class="button-container">
-                <button class="category-button" onclick="loadItems('기계/제조 선택됨')">기계/제조</button>
-                <button class="category-button" onclick="loadItems('전기/전자 선택됨')">전기/전자</button>
-                <button class="category-button" onclick="loadItems('재료/나노 선택됨')">재료/나노</button>
-                <button class="category-button" onclick="loadItems('생명과학/생명공학 선택됨')">생명과학/생명공학</button>
-                <button class="category-button" onclick="loadItems('에너지/환경 선택됨')">에너지/환경</button>
-                <button class="category-button" onclick="loadItems('건축/토목 선택됨')">건축/토목</button>
-                <button class="category-button" onclick="loadItems('항공/우주 선택됨')">항공/우주</button>
-                <button class="category-button" onclick="loadItems('로봇공학/자동화 선택됨')">로봇공학/자동화</button>
-                <button class="category-button" onclick="loadItems('화학공학 선택됨')">화학공학</button>
-                <button class="category-button" onclick="loadItems('자연과학 선택됨')">자연과학</button>
-            </div>
-        </section>
-    
-        <div class="grid-container">
-            <div class="section-box">
-                <img src="pictures/pic1.jpg" alt="공모전 정보 1" width="300">
-                <!--<strong>공모전 정보 1</strong>
-                <p>(링커리어처럼 넘어가게 또는 하나 사진)</p>-->
-            </div>
-    
-            <div class="section-box">
-                <img src="pictures/pic3.png" alt="공보전 정보 2" width="300">
-                <!--<strong>공모전 정보 2</strong>
-                <p>(링커리어처럼 넘어가게 또는 하나 사진)</p>-->
-            </div>
-    
-            <div class="alert-section">
-                <strong>알림</strong>
-                <p>내가 관심있는 분야의 새 공모전 정보<br>관심 공모전의 참가자 모집 공고<br>내가 친구 모으고 있는 공모전 신청 알림</p>
-            </div>
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .logo-search-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            margin-right: 50px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .search-bar input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .move-to-question {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .move-to-question-button {
+            font-size: 24px;
+            padding: 15px 30px;
+            background-color: #A4A4A4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .move-to-question-button:hover {
+            background-color: #6E6E6E;
+        }
+
+        .alert-box {
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .alert-box h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .alert-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .alert-box ul li::before {
+            content: "• ";
+            color: #0078D7;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .category-button {
+            background-color: #A4A4A4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .category-button:hover {
+            background-color: #6E6E6E;
+        }
+
+        .calendar-section {
+            margin-top: 20px;
+        }
+
+        .calendar-section img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <div class="nav-links">
+            <a href="join.html">회원가입</a>
+            <a href="login.html">로그인</a>
+            <a href="profile.html">내정보</a>
         </div>
-    
-        <section class="calendar-section">
-            <strong>관심 공모전의 일정을 확인해보세요!</strong><br> 예시(이런 느낌으로 / 2주? 4주?)
-            <div>
-                <img src="calendar.png" alt="공모전 일정 예시">
-            </div>
+    </header>
+
+    <section class="logo-search-container">
+        <div class="logo">
+            <img src="pictures/logo.png" alt="로고 이미지" width="300">
+        </div>
+
+        <div class="search-bar">
+            <form>
+                <!--<h2>공모전 분야를 검색하세요!</h2>-->
+                <input type="text" name="search" placeholder="관심있는 공모전 분야를 검색하세요!">
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </section>
+
+    <div class="move-to-question">
+        <a href="/question_page">
+            <button class="move-to-question-button">질문 페이지로 이동</button>
+        </a>
+    </div>
+
+    <section class="section">
+        <h3><strong>추천 공모 분야</strong></h3>
+        <div class="button-container">
+            <button class="category-button" onclick="loadItems('기계/제조')">기계/제조</button>
+            <button class="category-button" onclick="loadItems('전기/전자')">전기/전자</button>
+            <button class="category-button" onclick="loadItems('재료/나노')">재료/나노</button>
+            <button class="category-button" onclick="loadItems('생명과학/생명공학')">생명과학/생명공학</button>
+            <button class="category-button" onclick="loadItems('에너지/환경')">에너지/환경</button>
+            <button class="category-button" onclick="loadItems('건축/토목 선택됨')">건축/토목</button>
+            <button class="category-button" onclick="loadItems('항공/우주 선택됨')">항공/우주</button>
+            <button class="category-button" onclick="loadItems('로봇공학/자동화 선택됨')">로봇공학/자동화</button>
+            <button class="category-button" onclick="loadItems('화학공학 선택됨')">화학공학</button>
+            <button class="category-button" onclick="loadItems('자연과학 선택됨')">자연과학</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="image-container">
+            <a href="https://www.youtube.com" target="_blank">
+                <img src="pictures/pic1.jpg" alt="공모전 정보 1">
+            </a>
+            <a href="https://www.google.com" target="_blank">
+                <img src="pictures/pic3.png" alt="공모전 정보 2">
+            </a>
         </section>
 
-        <!-- 목록이 표시될 부분 -->
-        <ul id="item-list">
-            <li>분야를 선택해주세요.</li>
-        </ul>
+        <aside class="alert-box">
+            <h2>알림</h2>
+            <ul>
+                <li>내가 관심있는 분야의 새 공모전 정보</li>
+                <li>관심 공모전의 참가자 모집 공고</li>
+                <li>내가 친구 모으고 있는 공모전 신청 알림</li>
+            </ul>
+        </aside>
+    </div>
 
-        <script>
-            // 선택된 분야에 따른 목록을 로드하는 함수
-            function loadItems(category) {
-                fetch(`/get_items/${category}`)
+    <section class="calendar-section">
+        <h3>관심 공모전의 일정을 확인해보세요!</h3>
+        <img src="calendar.png" alt="공모전 일정 예시">
+    </section>
+
+    <script>
+        function loadItems(category) {
+            fetch(`/get_items/${category}`)
                 .then(response => response.json())
                 .then(data => {
                     const itemList = document.getElementById('item-list');
-                    itemList.innerHTML = '';  // 기존 목록 초기화
+                    itemList.innerHTML = '';
                     data.forEach(item => {
                         const li = document.createElement('li');
-                        li.textContent = item.name;  // 항목 이름 표시
+                        li.textContent = item.name;
                         itemList.appendChild(li);
                     });
                 });
-            }
-        </script>
-    
-    </body>
+        }
+    </script>
+</body>
 </html>
