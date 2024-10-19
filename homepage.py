@@ -27,6 +27,10 @@ def register_page():
 @homepage_bp.route("/question") 
 def question_page():
     return render_template("question_page.html") #질문 페이지
+
+@homepage_bp.route("/login")
+def login_page():
+    return render_template("login_page.html") #로그인 페이지
 ################################################
 
 

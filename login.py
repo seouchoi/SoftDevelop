@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash
 
 login_bp = Blueprint('login', __name__)
 
-@login_bp.route("login", methods = ['GET', 'POST'])
+@login_bp.route("/login", methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST': #로그인 요청을 받았다면 해당 코드를 실행
         data = request.get_json()
@@ -27,5 +27,5 @@ def login():
                 flash('아이디 또는 비밀번호가 일치하지 않습니다.', 'error') 
                 return redirect(url_for('login.login', user_id = user_id)) #작성한 아이디가 남아있는 로그인 페이지로 이동
     #처음 로그인 페이지에 접속할 경우(GET), 아무것도 적혀있지 않는 로그인 페이지 로드
-    return render_template()
+    return render_template("login_page.html")
                    
