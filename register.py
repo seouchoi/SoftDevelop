@@ -29,5 +29,6 @@ def register():
         "key_id": key_id,  # 사용자 고유 키
         **user_data  # 나머지 사용자 데이터
     }
-    users.append(new_user_data) #u사용자 리스트에 추가
+    users.append(new_user_data) #사용자 리스트에 추가
+    print(users)
     return jsonify({"message": "User registered successfully!"}), 201
