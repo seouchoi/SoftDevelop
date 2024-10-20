@@ -158,88 +158,89 @@
 </script>
 </head>
 <body>
-<form onsubmit="return validateForm()">
-    <table>
-    <tr>
-        <td><h2>회원가입</h2></td>
-    </tr>
-    <tr><td>아이디</td></tr>
-    <tr><td><input type="text" class="text"></td></tr>
-    <tr><td>비밀번호</td></tr>
-    <tr><td><input type="password" class="text"></td></tr>
-    <tr><td>비밀번호 확인</td></tr>
-    <tr><td><input type="password" class="text"></td></tr>
-    <tr><td>이름</td></tr>
-    <tr><td><input type="text" class="text"></td></tr>
-    <tr><td>전화번호</td></tr>
-    <tr>
-        <td>
-            <div class="tel-container">
-                <input type="text" class="tel-text" maxlength="3"> -
-                <input type="text" class="tel-text" maxlength="4"> -
-                <input type="text" class="tel-text" maxlength="4">
-            </div>
-        </td>
-    </tr>
-    <tr><td>이메일</td></tr>
-    <tr>
-        <td><input type="text" class="email"> @ 
-            <select>
-                <option value="">선택</option>
-                <option>naver.com</option>
-                <option>gmail.com</option>
-                <option>daum.net</option>
-                <option>nate.com</option>
-            </select>
-        </td>
-    </tr>
-    <tr><td>사는 지역</td></tr>
-    <tr>
-        <td>
-            <select class="region">
-                <option value="">선택</option>
-                <option>서울</option>
-                <option>경기도</option>
-                <option>강원도</option>
-                <option>충청북도</option>
-                <option>충청남도</option>
-                <option>전라북도</option>
-                <option>전라남도</option>
-                <option>경상북도</option>
-                <option>경상남도</option>
-                <option>제주도</option>
-            </select>
-        </td>
-    </tr>
-    <tr><td>관심분야</td></tr>
-    <tr>
-        <td>
-            <select class="category" onchange="updateTasks()">
-                <option value="">선택</option>
-                <option>AI</option>
-                <option>IT</option>
-                <option>기계/제조</option>
-                <option>전기/전자</option>
-                <option>재료/나노</option>
-                <option>생명과학/생명공학</option>
-                <option>에너지/환경</option>
-                <option>건축/토목</option>
-                <option>항공/우주</option>
-                <option>로봇공학/자동화</option>
-                <option>화학공학</option>
-                <option>자연과학</option>
-            </select>
-        </td>
-    </tr>
-    <tr><td>직무</td></tr>
-    <tr>
-        <td>
-            <select class="task">
-                <option value="">선택</option>
-            </select>
-        </td>
-    <tr><td><input type="submit" value="가입하기" class="btn"></td></tr>
-    </table>
-</form>
+    <from name="register_page" action="/register" method="POST">
+    <!--<form onsubmit="return validateForm()">-->
+        <table>
+        <tr>
+            <td><h2>회원가입</h2></td>
+        </tr>
+        <tr><td>아이디</td></tr>
+        <tr><td><input type="text" class="text"></td></tr>
+        <tr><td>비밀번호</td></tr>
+        <tr><td><input type="password" class="text"></td></tr>
+        <tr><td>비밀번호 확인</td></tr>
+        <tr><td><input type="password" class="text"></td></tr>
+        <tr><td>이름</td></tr>
+        <tr><td><input type="text" class="text"></td></tr>
+        <tr><td>전화번호</td></tr>
+        <tr>
+            <td>
+                <div class="tel-container">
+                    <input type="text" class="tel-text" maxlength="3"> -
+                    <input type="text" class="tel-text" maxlength="4"> -
+                    <input type="text" class="tel-text" maxlength="4">
+                </div>
+            </td>
+        </tr>
+        <tr><td>이메일</td></tr>
+        <tr>
+            <td><input type="text" class="email"> @ 
+                <select>
+                    <option value="">선택</option>
+                    <option>naver.com</option>
+                    <option>gmail.com</option>
+                    <option>daum.net</option>
+                    <option>nate.com</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td>사는 지역</td></tr>
+        <tr>
+            <td>
+                <select class="region">
+                    <option value="">선택</option>
+                    <option>서울</option>
+                    <option>경기도</option>
+                    <option>강원도</option>
+                    <option>충청북도</option>
+                    <option>충청남도</option>
+                    <option>전라북도</option>
+                    <option>전라남도</option>
+                    <option>경상북도</option>
+                    <option>경상남도</option>
+                    <option>제주도</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td>관심분야</td></tr>
+        <tr>
+            <td>
+                <select class="category" onchange="updateTasks()">
+                    <option value="">선택</option>
+                    <option>AI</option>
+                    <option>IT</option>
+                    <option>기계/제조</option>
+                    <option>전기/전자</option>
+                    <option>재료/나노</option>
+                    <option>생명과학/생명공학</option>
+                    <option>에너지/환경</option>
+                    <option>건축/토목</option>
+                    <option>항공/우주</option>
+                    <option>로봇공학/자동화</option>
+                    <option>화학공학</option>
+                    <option>자연과학</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td>직무</td></tr>
+        <tr>
+            <td>
+                <select class="task">
+                    <option value="">선택</option>
+                </select>
+            </td>
+        <tr><td><input type="submit" value="가입하기" class="btn"></td></tr>
+        </table>
+    </form>
 </body>
 </html>
