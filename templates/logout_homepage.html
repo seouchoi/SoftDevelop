@@ -102,7 +102,24 @@
             /*align-self: flex-start;*/
             position: relative; 
             max-height: 300px;
+
+            gap: 10px; /*메모지 간격*/
         }
+
+        .memo {
+            background-color: #ffffff; 
+            padding: 30px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            
+            width: 90%; /* 가로로 긴 메모지 */
+            height: 20px; /* 메모지의 높이 */
+        }
+
+        .memo p {
+            margin: 0;
+            font-size: 14px;
+        }   
 
         .alert-box h2 {
             font-size: 18px;
@@ -110,12 +127,13 @@
             /*margin-bottom: 10px;*/
         }
 
+        /*나중에 지울 부분*/
         .alert-box ul {
             list-style-type: none;
             padding: 0;
         }
         
-        /*나중에 지울 부분*/
+        
         .alert-box ul li::before {
             content: " # ";
             /*color: #0078D7;*/
@@ -132,8 +150,9 @@
             border: 1px solid #ccc;
             border-radius: 15px;
             padding: 50px;
-            margin-right: 20px; /* Space between calendar and images */
-            
+            margin-right: 20px; /* 양쪽으로 거리 */
+            margin-left: 50px;
+
             position: absolute;
             top: 350px; left:20px;
         }
@@ -156,6 +175,7 @@
             flex-wrap: wrap;
             gap: 20px;
             margin-top: 15px;
+            margin-right: 50px;
         }
 
         .category-button {
@@ -228,11 +248,15 @@
         <!-- Moved alert box -->
         <aside class="alert-box">
             <h2>알림</h2>
-            <ul>
-                <li>내가 관심있는 분야의 새 공모전 정보</li>
-                <li>관심 공모전의 참가자 모집 공고</li>
-                <li>내가 친구 모으고 있는 공모전 신청 알림</li>
-            </ul>
+            <div class="memo">
+                <p>알림 1</p>
+            </div>
+            <div class="memo">
+                <p>알림 2</p>
+            </div>
+            <div class="memo">
+                <p>알림 3</p>
+            </div>
         </aside>
     </div>
 
