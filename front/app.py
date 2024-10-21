@@ -50,14 +50,6 @@ def register():
     else:
         return jsonify({"message": "가입 실패: " + response.json().get('message')}), response.status_code
 
-    # Send registration data to server
-    response = requests.post(signup_url, json=user_data)
-
-    if response.status_code == 200:
-        return jsonify({"message": "가입 성공"}), 200
-    else:
-        return jsonify({"message": "가입 실패: " + response.json().get('message')}), response.status_code
-
 @app.route('/profile')
 def show_profile():
     return render_template('profile.html')
