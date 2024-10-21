@@ -30,21 +30,25 @@ def login():
 
 @app.route('/login/signup', methods=['GET'])
 def show_register():
-    return render_template('register_page.html')
+    return render_template('signup_page.html')
 
 @app.route('/login/signup', methods=['POST'])
 def register():
-    # Retrieve form data from the HTML
     user_data = {
-        'user_id': request.json['user_id'],
-        'password': request.json['password'],
-        'name': request.json['name'],
-        'phone': request.json['phone'],
-        'email': request.json['email'],
-        'region': request.json['region'],
-        'category': request.json['category'],
-        'task': request.json['task']
+        'user_id': request.form['id'],  # 'request.form'으로 변경
+        'password': request.form['password'],
+        'name': request.form['name'],
+        'phone': request.form['phone'],
+        'email': request.form['email'],
+        'region': request.form['region'],
+        'category': request.form['category'],
+        'task': request.form['task']
     }
+    response = requests.post(signup_url, json=user_data)
+    if response.status_code == 200:
+        return jsonify({"message": "가입 성공"}), 200
+    else:
+        return jsonify({"message": "가입 실패: " + response.json().get('message')}), response.status_code
 
     # Send registration data to server
     response = requests.post(signup_url, json=user_data)

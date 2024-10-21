@@ -84,17 +84,17 @@
         }
 
         function validateForm() {
-            const id = document.querySelector('input[type="text"]').value;
-            const password = document.querySelector('input[type="password"]').value;
+            const id = document.querySelector('input[name="id"]').value;
+            const password = document.querySelector('input[name="password"]').value;
             const passwordConfirm = document.querySelectorAll('input[type="password"]')[1].value;
-            const name = document.querySelectorAll('input[type="text"]')[1].value;
+            const name = document.querySelector('input[name="name"]').value;
 
-            const telPart1 = document.querySelector('.tel-text').value;
-            const telPart2 = document.querySelectorAll('.tel-text')[1].value;
-            const telPart3 = document.querySelectorAll('.tel-text')[2].value;
+            const telPart1 = document.querySelector('input[name="phone_part1"]').value;
+            const telPart2 = document.querySelector('input[name="phone_part2"]').value;
+            const telPart3 = document.querySelector('input[name="phone_part3"]').value;
             const phone = `${telPart1}-${telPart2}-${telPart3}`;
 
-            const emailLocal = document.querySelector('.email').value;
+            const emailLocal = document.querySelector('input[name="email_local"]').value;
             const emailDomain = document.querySelector('select[name="email_domain"]').value;
             const region = document.querySelector('.region').value;
             const email = `${emailLocal}@${emailDomain}`;
@@ -129,7 +129,7 @@
                     task : task
                 };
                 
-                fetch('/auth/signup', 
+                fetch('/login/signup', 
                     {
                         method : 'POST',
                         headers : {
@@ -157,7 +157,7 @@
     </script>
 </head>
 <body>
-    <form name="register_page" action="/login/signup" method="POST" onsubmit="return validateForm()">
+    <form name="signup_page" action="/login/signup" method="POST" onsubmit="return validateForm()">
         <table>
             <tr>
                 <td><h2>회원가입</h2></td>
@@ -174,9 +174,9 @@
             <tr>
                 <td>
                     <div class="tel-container">
-                        <input type="text" class="tel-text" maxlength="3"> -
-                        <input type="text" class="tel-text" maxlength="4"> -
-                        <input type="text" class="tel-text" maxlength="4">
+                        <input type="text" class="tel-text" maxlength="3" name="phone_part1"> -
+                        <input type="text" class="tel-text" maxlength="4" name="phone_part2"> -
+                        <input type="text" class="tel-text" maxlength="4" name="phone_part3">
                     </div>
                 </td>
             </tr>
@@ -215,18 +215,18 @@
                 <td>
                     <select class="category" name="category" onchange="updateTasks()">
                         <option value="">선택</option>
-                        <option value="AI">AI</option>
-                        <option value="IT">IT</option>
-                        <option value="기계/제조">기계/제조</option>
-                        <option value="전기/전자">전기/전자</option>
-                        <option value="재료/나노">재료/나노</option>
-                        <option value="생명과학/생명공학">생명과학/생명공학</option>
-                        <option value="에너지/환경">에너지/환경</option>
-                        <option value="건축/토목">건축/토목</option>
-                        <option value="항공/우주">항공/우주</option>
-                        <option value="로봇공학/자동화">로봇공학/자동화</option>
-                        <option value="화학공학">화학공학</option>
-                        <option value="자연과학">자연과학</option>
+                        <option>AI</option>
+                        <option>IT</option>
+                        <option>기계/제조</option>
+                        <option>전기/전자</option>
+                        <option>재료/나노</option>
+                        <option>생명과학/생명공학</option>
+                        <option>에너지/환경</option>
+                        <option>건축/토목</option>
+                        <option>항공/우주</option>
+                        <option>로봇공학/자동화</option>
+                        <option>화학공학</option>
+                        <option>자연과학</option>
                     </select>
                 </td>
             </tr>
@@ -238,9 +238,7 @@
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td><input type="submit" class="btn" value="가입하기"></td>
-            </tr>
+            <tr><td><input type="submit" class="btn" value="가입하기"></td></tr>
         </table>
     </form>
 </body>
