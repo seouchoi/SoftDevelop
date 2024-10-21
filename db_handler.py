@@ -18,13 +18,14 @@ class DBHandler:
             # 중복된 사용자 (예: member_id가 이미 존재할 경우)
             return False
 
-    def check_user_credentials(self, user_id, password):
+    def check_user_credentials(self, id, password):
         # 로그인 정보 확인 (DB에서 사용자 ID와 비밀번호 확인)
         member = self.members_collection.find_one({"member_id": user_id, "member_password": password})
         if member is None: #로그인 실패시 0을 반환하도록 함.
             return 0
         else:
             return member['key_id'] #로그인 성공시 해당 멤버의 key_id를 돌려줌
+
     def close_connection(self):
         # MongoDB 연결 닫기
         self.client.close()
