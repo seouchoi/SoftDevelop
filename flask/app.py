@@ -30,5 +30,9 @@ def register():
 def profile():
     return render_template('profile.html')
 
+@app.route('/question')
+def profile():
+    return render_template('question_page.html')
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=80, debug=True)
