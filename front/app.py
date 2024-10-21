@@ -31,7 +31,7 @@ def profile():
     return render_template('profile.html')
 
 @app.route('/question')
-def profile():
+def question():
     return render_template('question_page.html')
 
 if __name__ == '__main__':
