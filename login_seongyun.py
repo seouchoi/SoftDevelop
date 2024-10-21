@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, Namespace
-from SoftDevelop.db_handler import DBHandler  # 데이터베이스와의 상호작용을 위한 모듈 import
+from db_handler import DBHandler  # 데이터베이스와의 상호작용을 위한 모듈 import
 
 # 로그인 및 회원가입 네임스페이스 생성
 auth_namespace = Namespace('auth', description='User authentication related operations')
@@ -14,11 +14,11 @@ class Login(Resource):
     def post(self):
         # 프론트엔드로부터 로그인 데이터 받아오기
         data = request.json
-        user_id = data.get('user_id')
+        id = data.get('id')
         password = data.get('password')
         
         # 데이터베이스에서 사용자 확인
-        if db_handler.check_user_credentials(user_id, password):
+        if db_handler.check_user_credentials(id, password):
             return {"message": "로그인 성공"}, 200  # 상태 코드 200: OK
         else:
             return {"message": "아이디 또는 비밀번호가 잘못되었습니다."}, 401  # 상태 코드 401: Unauthorized
