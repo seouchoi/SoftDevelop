@@ -5,12 +5,12 @@ from db_handler import DBHandler
 
 db_handler = DBHandler()
 
-register_bp = Blueprint('register', __name__)
+signup_bp = Blueprint('signup', __name__)
 
 #아래는 데이터베이스 연동 코드
 
-@register_bp.route("/register", methods = ["POST"])
-def register():
+@signup_bp.route("/signup", methods = ["POST"])
+def signup():
     user_data = request.get_json() #회원가입 사용자 정보를 json으로 받아옴
     print("Received user data:", user_data) 
     key_id = db_handler.collection.count_documents({}) + 1   #사용자 수에 맞춰서 key를 생성
