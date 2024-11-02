@@ -4,7 +4,7 @@ from gpt import gpt_bp  # AI 메시지 블루프린트 불러오기
 from homepage import homepage_bp
 from login import login_bp
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='front/templates')
 app.secret_key = '12345'
 
 app.register_blueprint(login_bp, url_prefix = '/api')
