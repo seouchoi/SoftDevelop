@@ -9,7 +9,7 @@ data = {
     'IT': [{'name': 'AI 프로젝트'}, {'name': '웹 개발'}, {'name': '데이터 분석'}],
     'Marketing': [{'name': '디지털 마케팅'}, {'name': '브랜드 전략'}, {'name': '광고 캠페인'}]
 }
-##################
+##########
 #처음 켰을 때 보여지는 홈페이지
 @homepage_bp.route("/")
 def homepage():
