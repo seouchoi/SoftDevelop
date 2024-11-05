@@ -18,6 +18,10 @@ class DBHandler:
             self.members_collection.insert_one(member_data)
             return True       
 
+    def get_member_data(self, key_id): #key_id를 이용해 로그인된 사람의 정보 DB로부터 들고오기
+        member = self.members_collection.find_one({"key_id": key_id})
+        return member
+    
     def check_member_credentials(self, member_id, password):
         # 로그인 정보 확인 (DB에서 사용자 ID와 비밀번호 확인)
         member = self.members_collection.find_one({"member_id": member_id})  # 사용자 ID로 회원 정보 가져오기
