@@ -1,16 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 질문하기</title>
+    <style>
+        table {
+            width: 300px;
+            margin: auto;
+            border-spacing: 10px;
+        }
+        textarea {
+            width: 100%;
+            font-size: 15px;
+            border: 0;
+            border-radius: 15px;
+            outline: none;
+            padding: 10px;
+            background-color: rgb(233, 233, 233);
+        }
+        .btn {
+            width: 100%;
+            height: 32px;
+            font-size: 15px;
+            border: 0;
+            border-radius: 15px;
+            background-color: rgb(164, 199, 255);
+            cursor: pointer;
+        }
+        .btn:active {
+            background-color: rgb(61, 135, 255);
+        }
+        #response {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 15px;
+            color: rgb(90, 90, 90);
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>AI 질문하기</h1>
     <form id="question-form">
-        <label for="prompt">질문을 입력하세요:</label>
-        <textarea id="prompt" name="prompt" rows="4" required></textarea>
-        <button type="submit">질문 보내기</button>
+        <table>
+            <tr>
+                <td><label for="prompt">질문을 입력하세요:</label></td>
+            </tr>
+            <tr>
+                <td><textarea id="prompt" name="prompt" rows="4" required></textarea></td>
+            </tr>
+            <tr>
+                <td><button type="submit" class="btn">질문 보내기</button></td>
+            </tr>
+        </table>
     </form>
 
     <div id="response"></div>

@@ -20,13 +20,17 @@ def homepage():
 
 
 #홈페이지 안에서 다른 페이지로 이동하는 코드들#####
-@homepage_bp.route("/register") 
-def register_page():
-    return render_template("register_page.html") #회원가입 페이지
+@homepage_bp.route("/signup") 
+def signup_page():
+    return render_template("signup_page.html") #회원가입 페이지
 
 @homepage_bp.route("/question") 
 def question_page():
     return render_template("question_page.html") #질문 페이지
+
+@homepage_bp.route("/login")
+def login_page():
+    return render_template("login_page.html") #로그인 페이지
 ################################################
 
 
