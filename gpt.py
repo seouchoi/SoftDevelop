@@ -42,4 +42,5 @@ def gpt():
 
   gpt_response = response['choices'][0]['message']['content']
 
+  
   return jsonify({"message": gpt_response}), 200

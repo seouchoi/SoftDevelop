@@ -2,7 +2,7 @@ import pymongo
 from pymongo import MongoClient
 from werkzeug.security import check_password_hash
 
-class DBHandler:
+class member_DBHandler:
     def __init__(self, collection_name ='members'):
         # MongoDB 연결
         self.client = MongoClient('mongodb://localhost:27017/')  # 로컬 MongoDB 서버 연결

@@ -1,8 +1,8 @@
 from flask import Blueprint, redirect, url_for, render_template, session, flash
-from db_handler import DBHandler
+from member_db_handler import member_DBHandler
 
 #아래는 데이터 베이스와 연동 코드 작성
-db_handler = DBHandler()
+member_db_handler = member_DBHandler()
 
 profil_bp = Blueprint('profil', __name__)
 
@@ -14,7 +14,7 @@ def profil():
         return redirect(url_for('login.login'))  # 로그인되지 않았으면 로그인 페이지로 리디렉션
 
     # key_id로 유저의 전체 데이터를 데이터베이스에서 조회
-    user = db_handler.get_member_data(key_id)  # 전체 데이터를 가져오는 함수 호출
+    user = member_db_handler.get_member_data(key_id)  # 전체 데이터를 가져오는 함수 호출
     
     if user:
         return render_template("profil_page.html", user=user) #수정 예정 -> 프로필 페이지에서 로그인된 홈페이지로 수정

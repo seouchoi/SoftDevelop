@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request, redirect, url_for, render_template, session
-from db_handler import DBHandler
+from member_db_handler import member_DBHandler
 
 #아래는 데이터 베이스와 연동 코드 작성
-db_handler = DBHandler()
+db_handler = member_DBHandler()
 
 login_bp = Blueprint('login', __name__)
 

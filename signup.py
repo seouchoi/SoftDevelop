@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, request, Response
 from werkzeug.security import generate_password_hash
-from db_handler import DBHandler
+from member_db_handler import member_DBHandler
 
 
-db_handler = DBHandler()
+member_db_handler = member_DBHandler()
 
 signup_bp = Blueprint('signup', __name__)
 
@@ -13,7 +13,7 @@ signup_bp = Blueprint('signup', __name__)
 def signup():
     member_data = request.get_json() #회원가입 사용자 정보를 json으로 받아옴
     print("Received member data:", member_data) 
-    key_id = db_handler.members_collection.count_documents({}) + 1   #사용자 수에 맞춰서 key를 생성
+    key_id = member_db_handler.members_collection.count_documents({}) + 1   #사용자 수에 맞춰서 key를 생성
     password = member_data['password']
     
     #비밀번호 해싱
@@ -26,7 +26,7 @@ def signup():
         **member_data  # 나머지 사용자 데이터
     }
 
-    if db_handler.create_member(new_member_data):
+    if member_db_handler.create_member(new_member_data):
         return Response(status=201) #성공했다는 값
     else:
         return jsonify({"message" : "이미 존재하는 아이디입니다."}), 400 
