@@ -18,10 +18,14 @@ class member_DBHandler:
             self.members_collection.insert_one(member_data)
             return True       
 
-    def get_member_data(self, key_id): #key_id를 이용해 로그인된 사람의 정보 DB로부터 들고오기
+    def get_member_data_for_key(self, key_id): #key_id를 이용해 로그인된 사람의 정보 DB로부터 들고오기
         member = self.members_collection.find_one({"key_id": key_id})
         return member
     
+    def get_member_data_catgory_and_task(self, query): #gpt에서 쿼리문을 받아와 멤버를 찾고, 그 멤버들의 정보를 넘겨줌
+        member = list(self.members_collection.find(query)) #리스트 안에 딕셔너리 형태로 반환
+        return member
+
     def check_member_credentials(self, member_id, password):
         # 로그인 정보 확인 (DB에서 사용자 ID와 비밀번호 확인)
         member = self.members_collection.find_one({"member_id": member_id})  # 사용자 ID로 회원 정보 가져오기

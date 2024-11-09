@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, redirect, url_for, render_templat
 from member_db_handler import member_DBHandler
 
 #아래는 데이터 베이스와 연동 코드 작성
-db_handler = member_DBHandler()
+member_db_handler = member_DBHandler()
 
 login_bp = Blueprint('login', __name__)
 
@@ -14,7 +14,7 @@ def login():
         member_id = data['member_id']
         password = data['password']
 
-        key_id = db_handler.check_member_credentials(member_id, password)        
+        key_id = member_db_handler.check_member_credentials(member_id, password)        
         if (key_id == 0): #로그인 실패시 0을 반환           
             return jsonify({"message": "사용자 ID 또는 비밀번호가 올바르지 않습니다."}), 400
         else:

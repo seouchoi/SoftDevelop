@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 import os
 import openai 
+from member_db_handler import member_DBHandler
 
 #openai.api_key
 
@@ -28,6 +29,8 @@ If you determind fields and task, you must response following example:
 
 gpt_bp = Blueprint('gpt', __name__)
 
+member_db_handler = member_DBHandler()
+
 @gpt_bp.route("/gpt", methods = ["GET", "POST"])
 def gpt():
   receive_prompt_json = request.get_json()
@@ -39,8 +42,27 @@ def gpt():
         {"role": "user", "content": f"{prompt}"}],
     temperature=0,
   )
-
+  #gpt 답변
   gpt_response = response['choices'][0]['message']['content']
 
-  
-  return jsonify({"message": gpt_response}), 200
+  #아래 코드는 모두 형식에 맞게 바꿔야함
+  #DB로부터 분야, 업무에 알맞은 사람들 찾아오는 코드
+  sliced_list = gpt_response.split(...) #gpt답변을 DB로 보낼 수 있게 슬라이싱
+  searched_member_list = [] #검색된 회원들 정보를 담을 리스트
+  for i in range(0, len(sliced_list), 2): #분야 - 업무, 분야 - 업무 ...로 나올것이기 때문에 i를 2씩 건너뛰면서 for문
+    query = {'category' : sliced_list[i], 'task' : sliced_list[i + 1]} #쿼리문 작성 
+    searched_member = member_db_handler.get_member_data_catgory_and_task(query)
+    searched_member_list.extend(searched_member)
+
+  #아래 코드는 받아온 정보를 통해 팀장에게 보여줄 회원들 정보만 보여줄 코드
+  filtered_member_list = [] #회원들 정보만 보여줄 리스트
+  for member_data in searched_member_list:
+    filtered_info = {
+        'name': member_data['name'],
+        'region': member_data['region'],
+        'category': member_data['category'],
+        'task': member_data['task']
+    }
+    filtered_member_list.append(filtered_info)
+
+  return jsonify(filtered_member_list), 200

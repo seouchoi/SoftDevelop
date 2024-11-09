@@ -15,7 +15,6 @@ build_team_bp = Blueprint('bulid_team', __name__)
 def build_team():
     key_id = session.get('key_id')  # 세션에서 key_id 가져오기
     if not key_id:
-        flash("로그인 후 이용 가능합니다")
         return redirect(url_for('login.login'))
     team_data = request.get_json()
     #팀 키, 팀이름, 주장(팀빌딩한 사람의 키), 공모전, 팀 인원(멤버 키), 인원 수 
@@ -35,4 +34,5 @@ def build_team():
     }
 
     #아래는 데이터베이스로 가져다 주는 코드
+    
     
