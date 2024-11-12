@@ -10,14 +10,14 @@ class member_DBHandler:
         self.members_collection = self.db[collection_name]  # 'members'라는 컬렉션 선택(테이블)
 
     def create_member(self, member_data):
-        #기존 member_id가 존재한다면 오류(아래 코드는 존재하는지 검사하는 코드)
-        existing_member = self.members_collection.find_one({"member_id": member_data['member_id']})
-        if existing_member:
-            return False
-        else:#만약 존재하지않는다면 회원가입시켜줌
+        # 새로운 회원을 DB에 추가
+        try:
             self.members_collection.insert_one(member_data)
-            return True       
-
+            return True
+        except Exception as e:
+            print(f"회원가입 실패: {e}")
+            return False
+        
     def get_member_data_for_key(self, key_id): #key_id를 이용해 로그인된 사람의 정보 DB로부터 들고오기
         member = self.members_collection.find_one({"key_id": key_id})
         return member
@@ -26,14 +26,25 @@ class member_DBHandler:
         member = list(self.members_collection.find(query)) #리스트 안에 딕셔너리 형태로 반환
         return member
 
-    def check_member_credentials(self, member_id, password):
+    def check_member_credentials(self, member_id, member_password):
         # 로그인 정보 확인 (DB에서 사용자 ID와 비밀번호 확인)
         member = self.members_collection.find_one({"member_id": member_id})  # 사용자 ID로 회원 정보 가져오기
 
-        if member and check_password_hash(member['password'], password):  # 비밀번호 비교
+        if member and check_password_hash(member['member_password'], member_password):  # 비밀번호 비교
             return member['key_id']  # 로그인 성공 시 해당 멤버의 key_id 반환
         else:
             return 0  # 로그인 실패 시 0 반환
+        
+    #회원가입시 db에 동일한 정보 있는지 확인하는 부분 
+    def check_existing_member(self, member_id):
+        # member_id로 기존 회원을 확인
+        existing_member = self.members_collection.find_one({"member_id": member_id})
+        return existing_member
+
+    #key_id 증가하는 부분 
+    def generate_key_id(self):
+        # key_id 값 생성: 현재 DB에서 문서 수에 맞춰서 증가시킴
+        return self.members_collection.count_documents({}) + 1
 
     def close_connection(self):
         # MongoDB 연결 닫기

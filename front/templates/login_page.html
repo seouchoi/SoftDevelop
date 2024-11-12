@@ -87,7 +87,7 @@ function validateLogin() {      //로그인 유효성 검사
         //로그인 데이터 백엔드로 전달
         const login_data = { 
             member_id : id,
-            password : password
+            member_password : password
         };
         fetch('/api/login',
             {

@@ -120,13 +120,13 @@
             } else {
                 const data = {
                     member_id : id,
-                    password : password,
-                    name : name,
-                    phone : phone,
-                    email : email,
+                    member_password : password,
+                    member_name : name,
+                    member_phone_number : phone,
+                    member_email : email,
                     region : region,
                     category : category,
-                    task : task
+                    task_name : task
                 };
                 
                 fetch('/api/signup', 

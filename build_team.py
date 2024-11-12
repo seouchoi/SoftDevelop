@@ -21,7 +21,7 @@ def build_team():
     #입력받는 데이터 : 팀이름
     team_key_id = team_db_handler.teams_collection.count_documents({}) + 1
     user_data = member_db_handler.get_member_data(key_id)
-    competition_data = com_db_handler. #알맞는 코드
+    competition_data = com_db_handler. #알맞는 코드     #competition key_id 넣기 
 
 
     new_team_data = {

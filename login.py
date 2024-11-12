@@ -12,9 +12,9 @@ def login():
         data = request.get_json()
         print("Received member data:", data)
         member_id = data['member_id']
-        password = data['password']
+        member_password = data['member_password']
 
-        key_id = member_db_handler.check_member_credentials(member_id, password)        
+        key_id = member_db_handler.check_member_credentials(member_id, member_password)        
         if (key_id == 0): #로그인 실패시 0을 반환           
             return jsonify({"message": "사용자 ID 또는 비밀번호가 올바르지 않습니다."}), 400
         else:
