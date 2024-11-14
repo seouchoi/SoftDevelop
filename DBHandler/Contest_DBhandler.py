@@ -46,3 +46,9 @@ class Contest_DBHandler:
         except Exception as e:
             print(f"공모전 추가 실패: {e}")
             return False
+
+    #DB에서 id로 contest 정보 가져오기 
+    def get_contest_by_id(self, contest_id):
+        # 주어진 contest_id로 공모전 데이터를 찾기
+        contest = self.contest_collection.find_one({"contest_id": contest_id})  # contest_id로 해당 공모전 정보 찾기
+        return contest

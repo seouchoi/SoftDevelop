@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from werkzeug.security import generate_password_hash
-from member_db_handler import member_DBHandler
+from DBHandler.member_DBHandler import member_DBHandler
 
 # member_db_handler 객체 생성
 member_db_handler = member_DBHandler()

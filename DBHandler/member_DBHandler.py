@@ -49,3 +49,10 @@ class member_DBHandler:
     def close_connection(self):
         # MongoDB 연결 닫기
         self.client.close()
+        
+        
+    #DB에서 member data 받아오는 함수 
+    def get_member_data_for_key(self, key_id):  
+        # 주어진 key_id로 회원 데이터를 찾기
+        member = self.members_collection.find_one({"key_id": key_id})  # key_id를 사용하여 해당 회원 정보 찾기
+        return member
