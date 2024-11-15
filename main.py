@@ -1,10 +1,10 @@
 from flask import Flask, render_template, jsonify
-from signup import signup_bp  # 회원가입 블루프린트 불러오기
+from Function.signup import signup_bp  # 회원가입 블루프린트 불러오기
 #from gpt import gpt_bp  # AI 메시지 블루프린트 불러오기
-from homepage import homepage_bp
-from login import login_bp
-from profil import profil_bp
-from logout import logout_bp
+from Function.homepage import homepage_bp
+from Function.login import login_bp
+from Function.profil import profil_bp
+from Function.logout import logout_bp
 #from build_team import build_team_bp 
 import os
 
