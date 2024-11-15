@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 import os
 import openai 
-from member_db_handler import member_DBHandler
+from DBHandler.member_DBHandler import member_DBHandler
 
 #openai.api_key
 

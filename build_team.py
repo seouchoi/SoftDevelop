@@ -1,13 +1,15 @@
 #호환되게 바꿔야함.(전체 수정)
+#팀만드는 시나리오 : 팀 빌딩하는 사람의 정보와 팀 이름 적고 결정 
+#competition_db_handler = Contest_DBHandler 
 
 from flask import Blueprint, request, Response, session, redirect, url_for
-from team_db_handler import team_DBHandler #만들어야함
-from competition_db_handler import com_DBHandler #만들어야함
-from member_db_handler import member_DBHandler
+from DBHandler.team_DBHandler import Team_DBHandler #만들어야함
+from DBHandler.Contest_DBhandler import Contest_DBHandler #만들어야함
+from DBHandler.member_DBHandler import member_DBHandler
 
 team_db_handler = team_DBHandler()
 member_db_handler = member_DBHandler()
-com_db_handler = com_DBHandler()
+Contest_db_handler = Contest_DBHandler()
 
 build_team_bp = Blueprint('bulid_team', __name__)
 

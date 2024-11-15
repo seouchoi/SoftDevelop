@@ -1,4 +1,4 @@
-from Contest_DBhandler import Contest_DBHandler
+from DBHandler.Contest_DBhandler import Contest_DBHandler
 from datetime import datetime
 
 # Contest_DBHandler 인스턴스 생성

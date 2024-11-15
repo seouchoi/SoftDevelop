@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, url_for, render_template, session, flash
-from member_db_handler import member_DBHandler
+from DBHandler.member_DBHandler import member_DBHandler
 
 #아래는 데이터 베이스와 연동 코드 작성
 member_db_handler = member_DBHandler()

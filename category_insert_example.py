@@ -1,4 +1,4 @@
-from category_DBhandler import Category_DBHandler
+from DBHandler.category_DBhandler import Category_DBHandler
 
 # Category_DBHandler 클래스 인스턴스 생성
 category_db_handler = Category_DBHandler()
