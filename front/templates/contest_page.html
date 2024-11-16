@@ -91,17 +91,14 @@
         </div>             
         <div class="content">
             <div class="poster">
-                <img src="poster_image_url.jpg" alt="공모전 포스터">    <!--공모전에 알맞는 이미지 맟 날짜 불러와서 추가해야함-->
+                <img src="contestImage" src="" alt="공모전 포스터">    <!--공모전에 알맞는 이미지 맟 날짜 불러와서 추가해야함-->
             </div>
             <div class="info">
-                <p><strong>공모전 이름:</strong> 창의적인 아이디어 공모전</p>
-                <p><strong>기간:</strong> 2024년 12월 1일 ~ 2024년 12월 31일</p>
-                <p><strong>장소:</strong> 온라인 및 오프라인 (서울)</p>
-                <p><strong>주최:</strong> ABC 조직</p>
-                <p><strong>내용:</strong> 혁신적인 아이디어를 통해 세상을 바꾸는 공모전입니다. 다양한 부문에서 참가할 수 있으며, 우승자에게는 푸짐한 상품과 기회가 제공됩니다.</p>
-            </div>
-            <div class="button-group">
-                <button class="btn" onclick="goToQuestionPage()">채팅하기</button>
+                <p><strong>공모전 이름:</strong> <span id="contet_name"></span></p>
+                <p><strong>신청 기간:</strong> <span id="application_start"><strong> ~ </strong><span id="application_end"></span></p>
+                <p><strong>장소:</strong> <span id="contestLocation"></span></p>
+                <p><strong>참여 인원:</strong> <span id="max_participants"></span></p>
+                <p><strong>공모전 일시:</strong> <span id="contest_start"><strong> ~ </strong><span id="contest_end"></span></p>
             </div>
         </div>
     </div>
@@ -114,6 +111,11 @@
             window.location.href = "question_page.html"; 
         }
         document.getElementById("backButton").onclick = goBack;
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
     </script>    
 </body>
 </html>
