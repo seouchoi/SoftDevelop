@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 import os
 import openai 
 from DBHandler.member_DBHandler import member_DBHandler
@@ -31,7 +31,11 @@ gpt_bp = Blueprint('gpt', __name__)
 
 member_db_handler = member_DBHandler()
 
-@gpt_bp.route("/gpt", methods = ["GET", "POST"])
+@gpt_bp.route("/gpt")
+def show_gpt_page():
+  return render_template("question_page.html")
+
+@gpt_bp.route("/api/gpt", methods = ["GET", "POST"])
 def gpt():
   receive_prompt_json = request.get_json()
   prompt = receive_prompt_json["prompt"]

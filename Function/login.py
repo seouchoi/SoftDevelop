@@ -6,8 +6,13 @@ member_db_handler = member_DBHandler()
 
 login_bp = Blueprint('login', __name__)
 
-@login_bp.route("/login", methods = ['GET', 'POST'])
-def login():
+@login_bp.route("/login")
+def show_login_page():
+    #처음 로그인 페이지에 접속할 경우(GET), 아무것도 적혀있지 않는 로그인 페이지 로드
+    return render_template("login_page.html")
+
+@login_bp.route("/api/login", methods = ['GET', 'POST'])
+def login_activate():
     if request.method == 'POST': #로그인 요청을 받았다면 해당 코드를 실행
         data = request.get_json()
         print("Received member data:", data)
@@ -20,7 +25,5 @@ def login():
         else:
             session['key_id'] = key_id
             return jsonify({"redirect_url": url_for('profil.profil')}), 200 #수정 예정
-        
-    #처음 로그인 페이지에 접속할 경우(GET), 아무것도 적혀있지 않는 로그인 페이지 로드
-    return render_template("login_page.html")
+          
                    

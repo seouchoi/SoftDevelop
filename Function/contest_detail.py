@@ -9,4 +9,4 @@ contest_detail_bp = Blueprint('contest_detail', __name__)
 @contest_detail_bp.route('/contests/<contest_id>', methods = ["GET"]) #<contest_id>를 <contest_name>으로 사용할 수 있는 방법 생각해보기
 def contest_detail(contest_id):
     contest_data = contest_db_handler.get_contest_by_id(contest_id)
-    return render_template('contest_detail.html', contest_data = contest_data)
+    return render_template('contest_detail_page.html', contest_data = contest_data)
