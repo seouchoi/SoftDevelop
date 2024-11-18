@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from Function.signup import signup_bp  # 회원가입 블루프린트 불러오기
-#from gpt import gpt_bp  # AI 메시지 블루프린트 불러오기
+from Function.gpt import gpt_bp  # AI 메시지 블루프린트 불러오기
 from Function.homepage import homepage_bp
 from Function.login import login_bp
 from Function.profil import profil_bp
@@ -14,7 +14,7 @@ app.secret_key = os.urandom(24) #서버를 재시작할때마다 키를 바꿔�
 
 app.register_blueprint(login_bp)
 app.register_blueprint(signup_bp)
-#app.register_blueprint(gpt_bp)
+app.register_blueprint(gpt_bp)
 app.register_blueprint(logout_bp)
 #app.register_blueprint(build_team_bp)
 app.register_blueprint(contest_detail_bp)
