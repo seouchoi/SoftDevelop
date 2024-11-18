@@ -10,13 +10,12 @@ profil_bp = Blueprint('profil', __name__)
 def profil():
     key_id = session.get('key_id')  # 세션에서 key_id 가져오기
     if not key_id:
-        flash("로그인 후 이용 가능합니다")
-        return redirect(url_for('login.login'))  # 로그인되지 않았으면 로그인 페이지로 리디렉션
+        return redirect(url_for('login.show_login_page'))  # 로그인되지 않았으면 로그인 페이지로 리디렉션
 
     # key_id로 유저의 전체 데이터를 데이터베이스에서 조회
-    user = member_db_handler.get_member_data(key_id)  # 전체 데이터를 가져오는 함수 호출
+    user = member_db_handler.get_member_data_for_key(key_id)  # 전체 데이터를 가져오는 함수 호출
     
     if user:
         return render_template("profil_page.html", user=user) #수정 예정 -> 프로필 페이지에서 로그인된 홈페이지로 수정
     else:
-        return redirect(url_for('login.login'))  # 유저 데이터가 없으면 로그인 페이지로 리디렉션
+        return redirect(url_for('login.show_login_page'))  # 유저 데이터가 없으면 로그인 페이지로 리디렉션

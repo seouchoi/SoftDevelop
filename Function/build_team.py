@@ -23,9 +23,7 @@ def build_team():
     #입력받는 데이터 : 팀이름
     
 
-    team_db_handler.create_team(team_data['team_name'], key_id, contest_id, team_subject)
+    team_db_handler.create_team(team_data['team_name'], key_id, team_data['contest_id'], team_subject) #team_name과 contest_id는 웹으로부터 받아온 team_data를 가지고 사용
+                                                                                                       #contest_detail.html 파일에서 fetch로 contest_id도 넘겨줄 수 있도록 해야함.
 
-
-    #아래는 데이터베이스로 가져다 주는 코드
-    
     
