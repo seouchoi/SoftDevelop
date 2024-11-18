@@ -3,7 +3,7 @@ import os
 import openai 
 from DBHandler.member_DBHandler import member_DBHandler
 
-#openai.api_key
+##openai.api_key
 
 INSTRUCTIONS = ["1. Extract the competition topic and required number of participants from the provided message.",
                  "2. Ensure the recommended roles match the required number of participants."]
