@@ -3,7 +3,7 @@ import os
 import openai 
 from DBHandler.member_DBHandler import member_DBHandler
 
-##openai.api_key
+#openai.api_key
 
 INSTRUCTIONS = ["1. Extract the competition topic and required number of participants from the provided message.",
                  "2. Ensure the recommended roles match the required number of participants."]
@@ -24,7 +24,8 @@ IT -  기획자, 개발자, UI/UX 디자이너
 자연과학 - 기획자, 연구원, 자료 분석가]
                                                                
 If you determind fields and task, you must response following example:
-                                "1. category - task, 2. category - task, 3. category - task"                                                        
+                                "1. category - task 2. category - task 3. category - task"  
+                                Provide an answer tailored to the number of people.                                              
                                  """, *INSTRUCTIONS])
 
 gpt_bp = Blueprint('gpt', __name__)
@@ -48,15 +49,22 @@ def gpt():
   )
   #gpt 답변
   gpt_response = response['choices'][0]['message']['content']
-
+  print(gpt_response)
   #아래 코드는 모두 형식에 맞게 바꿔야함
   #DB로부터 분야, 업무에 알맞은 사람들 찾아오는 코드
-  sliced_list = gpt_response.split(...) #gpt답변을 DB로 보낼 수 있게 슬라이싱
+  sliced_list = [] #gpt답변을 DB로 보낼 수 있게 슬라이싱
+  lines = gpt_response.strip().split("\n") 
+  for line in lines:
+    _, content = line.split(". ", 1)
+    category, task = content.split(" - ")
+    sliced_list.extend([category.strip(), task.strip()])  #슬라이싱 된 정보들 삽입
+  print(sliced_list)
   searched_member_list = [] #검색된 회원들 정보를 담을 리스트
   for i in range(0, len(sliced_list), 2): #분야 - 업무, 분야 - 업무 ...로 나올것이기 때문에 i를 2씩 건너뛰면서 for문
     query = {'category' : sliced_list[i], 'task' : sliced_list[i + 1]} #쿼리문 작성 
-    searched_member = member_db_handler.get_member_data_catgory_and_task(query)
-    searched_member_list.extend(searched_member)
+    print(query)
+    searched_member = member_db_handler.get_member_data_catgory_and_task(query) #DB로부터 해당 category와 task에 부합하는 회원들 가져옴
+    searched_member_list.extend(searched_member) #해당 회원들을 리스트에 추가
 
   #아래 코드는 받아온 정보를 통해 팀장에게 보여줄 회원들 정보만 보여줄 코드
   filtered_member_list = [] #회원들 정보만 보여줄 리스트
@@ -68,5 +76,5 @@ def gpt():
         'task': member_data['task']
     }
     filtered_member_list.append(filtered_info)
-
+  #아래는 필터링된 회원들을 어떻게 웹으로 보여줄 것인지 고민해봐야함.(수정)
   return jsonify(filtered_member_list), 200
