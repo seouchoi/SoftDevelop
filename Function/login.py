@@ -24,6 +24,6 @@ def login_activate():
             return jsonify({"message": "사용자 ID 또는 비밀번호가 올바르지 않습니다."}), 400
         else:
             session['key_id'] = key_id
-            return jsonify({"redirect_url": url_for('profil.profil')}), 200 #수정 예정
-          
+            redirect_url = session.pop('next', url_for("homepage.homepage")) #로그인 기능이 필요했던 페이지로 이동
+            return jsonify({"redirect_url": redirect_url}), 200 
                    

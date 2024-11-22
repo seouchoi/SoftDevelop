@@ -64,7 +64,7 @@ def gpt():
     query = {'category' : sliced_list[i], 'task' : sliced_list[i + 1]} #쿼리문 작성 
     print(query)
     searched_member = member_db_handler.get_member_data_catgory_and_task(query) #DB로부터 해당 category와 task에 부합하는 회원들 가져옴
-    searched_member_list.extend(searched_member) #해당 회원들을 리스트에 추가
+    searched_member_list.extend(searched_member) #해당 회원들을 리스트에 추가 (searched_member도 리스트이므로 리스트끼리 합치는것)
 
   #아래 코드는 받아온 정보를 통해 팀장에게 보여줄 회원들 정보만 보여줄 코드
   filtered_member_list = [] #회원들 정보만 보여줄 리스트
@@ -75,6 +75,6 @@ def gpt():
         'category': member_data['category'],
         'task': member_data['task']
     }
-    filtered_member_list.append(filtered_info)
+    filtered_member_list.append(filtered_info) #append는 하나의 요소만 삽입하는 것
   #아래는 필터링된 회원들을 어떻게 웹으로 보여줄 것인지 고민해봐야함.(수정)
   return jsonify(filtered_member_list), 200

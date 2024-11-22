@@ -1,6 +1,6 @@
 #선택된 공모전의 정보를 넘겨주는 코드
 from flask import Blueprint, render_template, request
-from DBHandler.Contest_DBhandler import Contest_DBHandler
+from DBHandler.contest_DBhandler import Contest_DBHandler
 
 contest_db_handler = Contest_DBHandler()
 
