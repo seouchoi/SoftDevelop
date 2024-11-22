@@ -55,5 +55,9 @@ class Contest_DBHandler:
     
     #category_id를 통해 부합하는 공모전 모두 가져오기(공모전 나열 용)
     def get_contest_by_category_id(self, category_id):
-        contests = self.contest_collection.find({"category_id": category_id})
+        contests = list(self.contest_collection.find({"category_id": category_id}))
         return contests
+    
+    #모든 contest가져오기 -> list로 반환
+    def get_all_contest(self):
+        return list(self.contest_collection.find())

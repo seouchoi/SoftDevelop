@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, Response
+from flask import Blueprint, jsonify, request, Response, render_template
 from werkzeug.security import generate_password_hash
 from DBHandler.member_DBHandler import member_DBHandler
 
@@ -7,8 +7,12 @@ member_db_handler = member_DBHandler()
 
 signup_bp = Blueprint('signup', __name__)
 
-@signup_bp.route("/signup", methods=["POST"])
-def signup():
+@signup_bp.route("/signup")
+def show_signup_page():
+    return render_template("signup_page.html")
+
+@signup_bp.route("/api/signup", methods=["POST"])
+def signup_activate():
     # 회원가입 사용자 정보를 JSON으로 받아옴
     member_data = request.get_json()
     print("Received member data:", member_data)

@@ -6,9 +6,9 @@
     <title>프로필 페이지</title>
 </head>
 <body>
-    <h1>{{ user.name }}님의 프로필</h1>
-    <p><strong>이메일:</strong> {{ user.email }}</p>
-    <p><strong>전화번호:</strong> {{ user.phone }}</p>
+    <h1>{{ user.member_name }}님의 프로필</h1>
+    <p><strong>이메일:</strong> {{ user.member_email }}</p>
+    <p><strong>전화번호:</strong> {{ user.member_phone_number }}</p>
 
     <a href="{{ url_for('logout.logout') }}">로그아웃</a>
 </body>

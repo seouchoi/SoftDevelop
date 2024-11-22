@@ -1,6 +1,6 @@
 from DBHandler.team_DBHandler import Team_DBHandler  # Team_DBHandler import
 from DBHandler.member_DBHandler import member_DBHandler  # member_DBHandler import
-from DBHandler.Contest_DBhandler import Contest_DBHandler  # Contest_DBHandler import
+from DBHandler.contest_DBhandler import Contest_DBHandler  # Contest_DBHandler import
 from datetime import datetime
 
 # DBHandler 인스턴스 생성
