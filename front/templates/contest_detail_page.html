@@ -91,15 +91,27 @@
         </div>             
         <div class="content">
             <div class="poster">
-                <img src="contestImage" src="" alt="공모전 포스터">    <!--공모전에 알맞는 이미지 맟 날짜 불러와서 추가해야함-->
+                <img src="contestImage" alt="공모전 포스터"> <!-- 공모전에 알맞는 이미지 및 날짜 불러와서 추가 -->
             </div>
             <div class="info">
-                <p><strong>공모전 이름:</strong><span id="contest_name"> {{ contest_data.contest_name }} </span></p>
+                <p><strong>공모전 이름:</strong> <span id="contest_name">{{ contest_data.contest_name }}</span></p>
                 <p><strong>신청 기간:</strong> <span id="application_start">{{ contest_data.application_start }}</span> <strong>~</strong> <span id="application_end">{{ contest_data.application_end }}</span></p>
-                <p><strong>장소:</strong> <span id="contestLocation"> {{contest_data.contestLocation}}</span></p>
-                <p><strong>참여 인원:</strong> <span id="max_participants">{{contest_data.max_participants}}</span></p>
+                <p><strong>장소:</strong> <span id="contestLocation">{{ contest_data.contestLocation }}</span></p>
+                <p><strong>참여 인원:</strong> <span id="max_participants">{{ contest_data.max_participants }}</span></p>
                 <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
             </div>
+        </div>
+        <div class="button-group" style="margin-bottom: 20px;">
+            <input 
+                type="text" 
+                id="teamNameInput" 
+                placeholder="팀 이름을 입력하세요" 
+                style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;"
+            />
+            <br />
+            <button id="createTeamButton" class="btn">
+                팀 생성하기
+            </button>
         </div>
     </div>
     <script>
