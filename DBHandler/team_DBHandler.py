@@ -18,9 +18,10 @@ class Team_DBHandler:
         # team 컬렉션의 문서 수에 맞춰서 team_id 값 증가
         return self.team_collection.count_documents({}) + 1
 
-    def create_team(self, team_name, team_leader_id, contest_id, team_subject):
+    def create_team(self, team_name, team_leader_id, contest_id):
         # team_id 생성
         team_id = self.generate_team_id()
+        contest_id = int(contest_id)
 
         # 팀장 정보 가져오기 (전체 멤버 정보 포함)
         team_leader = self.member_db_handler.get_member_data_for_key(team_leader_id)
@@ -43,7 +44,6 @@ class Team_DBHandler:
             "team_leader_id": team_leader_id,
             "team_leader": team_leader,  # 팀장의 전체 member 정보
             "contest_id": contest_id,
-            "team_subject": team_subject,  # 팀 주제
             "contest_name": contest["contest_name"],  # 공모전 이름
             "team_members": [team_leader],  # 팀원들을 비어있지 않도록 팀장만 임베디드로 저장
             "creation_date": datetime.now(),  # 팀 생성 날짜
