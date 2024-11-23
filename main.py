@@ -5,7 +5,7 @@ from Function.homepage import homepage_bp
 from Function.login import login_bp
 from Function.profil import profil_bp
 from Function.logout import logout_bp
-#from build_team import build_team_bp
+from Function.build_team import build_team_bp
 from Function.contest_detail import contest_detail_bp 
 import os
 
@@ -16,7 +16,7 @@ app.register_blueprint(login_bp)
 app.register_blueprint(signup_bp)
 app.register_blueprint(gpt_bp)
 app.register_blueprint(logout_bp)
-##app.register_blueprint(build_team_bp)
+app.register_blueprint(build_team_bp)
 app.register_blueprint(contest_detail_bp)
 app.register_blueprint(profil_bp)
 app.register_blueprint(homepage_bp)

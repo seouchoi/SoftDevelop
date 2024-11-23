@@ -15,7 +15,7 @@ contests = [
         "contest_end": datetime(2025, 12, 3),
         "category_id": 3,  # 예시: 3번 카테고리
         "organization_website": "http://www.kosda.org/bbs/board.php?bo_table=v4_01&wr_id=80",
-        "image_path":r"C:\Users\hi034\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
+        "image_path":r"C:\Users\tjdn1\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
     },
     {
         "contest_name": "2024년도 건설기계안전 콘텐츠 공모전",
@@ -26,7 +26,7 @@ contests = [
         "contest_end": datetime(2025,  12, 15),
         "category_id": 3,  # 예시: 2번 카테고리
         "organization_website": "https://www.osan.go.kr/portal/saeol/gosi/view.do?notAncmtMgtNo=45958&mId=0302010000",
-        "image_path" : r"C:\Users\hi034\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
+        "image_path" : r"C:\Users\tjdn1\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
     },
     {
         "contest_name": "공공주택_설계개선_업무노하우_공모전",
@@ -37,7 +37,7 @@ contests = [
         "contest_end": datetime(2025, 4, 10),
         "category_id": 3,  # 예시: 4번 카테고리
         "organization_website": "https://www.lh.or.kr/board.es?mid=a10601020000&bid=0034&list_no=721497&act=view",
-        "image_path": r"C:\Users\hi034\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
+        "image_path": r"C:\Users\tjdn1\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
     }
 ]
 

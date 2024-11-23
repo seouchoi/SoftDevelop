@@ -101,18 +101,20 @@
                 <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
             </div>
         </div>
-        <div class="button-group" style="margin-bottom: 20px;">
-            <input 
-                type="text" 
-                id="teamNameInput" 
-                placeholder="팀 이름을 입력하세요" 
-                style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;"
-            />
-            <br />
-            <button id="createTeamButton" class="btn">
-                팀 생성하기
-            </button>
-        </div>
+        <form onsubmit="create_team(event)">
+            <div class="button-group" style="margin-bottom: 20px;">
+                <input 
+                    type="text" 
+                    id="teamNameInput" 
+                    placeholder="팀 이름을 입력하세요" 
+                    style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;"
+                />
+                <div>
+                    <input type="submit" value="팀 생성하기" class="btn">
+                </div>
+            </div>
+        </form>
+        
     </div>
     <script>
         function goBack() {
@@ -128,6 +130,47 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
+
+        function create_team(event) {
+            event.preventDefault();  // 폼 제출의 기본 동작을 막음
+
+            const team_name = document.getElementById("teamNameInput").value;
+            const contest_id = "{{ contest_data.contest_id }}";
+
+            if (team_name.trim() === "") {
+                alert("팀 이름을 적어주세요.");
+                return; // fetch 요청을 보내지 않고 함수 종료
+            }
+
+            const data = {
+                team_name : team_name,
+                contest_id : contest_id
+            };
+
+            fetch('/api/build_team', {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('서버 응답이 실패했습니다.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('팀이 성공적으로 생성되었습니다!');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("팀 생성 오류:", error);
+                alert('로그인 후 이용해주세요.');
+                window.location.href = 'login'  //내일 수정
+            });
+}
+
     </script>    
 </body>
 </html>
