@@ -80,6 +80,25 @@
         .btn:active {
             background-color: rgb(61, 135, 255);
         }
+        .chatButton {
+            position: fixed;
+            bottom: 70px;
+            right: 70px;
+            background: none; /* 배경 제거 */
+            border: none; /* 테두리 제거 */
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .chatButton img {
+            width: 170px; /* 버튼 크기 조정 */
+            height: auto; /* 이미지 비율 유지 */
+            display: block; /* 이미지를 버튼 내부에 정확히 표시 */
+        }
+
+        .chatButton:active img {
+            transform: scale(0.95); /* 클릭 시 이미지 살짝 줄어드는 효과 */
+        }
     </style>
 </head>
 <body>
@@ -100,9 +119,6 @@
                 <p><strong>참여 인원:</strong> <span id="max_participants">{{ contest_data.max_participants }}</span></p>
                 <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
             </div>
-            <div class="button-group">
-                <button class="btn" onclick="goToQuestionPage()">채팅하기</button>
-            </div>
         </div>
         <div class="button-group" style="margin-bottom: 20px;">
             <input 
@@ -116,16 +132,20 @@
                 팀 생성하기
             </button>
         </div>
+        <button class="chatButton" onclick="goToQuestionPage()">
+            <img src="pictures/chat_image.png" alt="Chat Icon">
+        </button>
     </div>
+
     <script>
         function goBack() {
             window.location.href = "logout_homepage.html"; 
         }
-    
+        document.getElementById("backButton").onclick = goBack;
+        
         function goToQuestionPage() {
             window.location.href = "question_page.html"; 
         }
-        document.getElementById("backButton").onclick = goBack;
 
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
