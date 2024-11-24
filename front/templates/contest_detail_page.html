@@ -110,7 +110,7 @@
         </div>             
         <div class="content">
             <div class="poster">
-                <img src="contestImage" alt="공모전 포스터"> <!-- 공모전에 알맞는 이미지 및 날짜 불러와서 추가 -->
+                <img src="C:\Users\tjdn1\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png" alt="공모전 포스터"> <!-- 공모전에 알맞는 이미지 및 날짜 불러와서 추가 -->
             </div>
             <div class="info">
                 <p><strong>공모전 이름:</strong> <span id="contest_name">{{ contest_data.contest_name }}</span></p>
@@ -120,6 +120,7 @@
                 <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
             </div>
         </div>
+        <form onsubmit = create_team(event)>  
         <div class="button-group" style="margin-bottom: 20px;">
             <input 
                 type="text" 
@@ -127,13 +128,13 @@
                 placeholder="팀 이름을 입력하세요" 
                 style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;"
             />
-            <br />
-            <button id="createTeamButton" class="btn">
-                팀 생성하기
-            </button>
+            <div>
+                <input type = "submit" value = "팀 생성하기" class = btn>
+            </div>
         </div>
+        </form>
         <button class="chatButton" onclick="goToQuestionPage()">
-            <img src="pictures/chat_image.png" alt="Chat Icon">
+            <img src="C:\Users\tjdn1\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\chat_image.png" alt="Chat Icon">
         </button>
     <script>
         function goBack() {
@@ -186,7 +187,7 @@
             .catch(error => {
                 console.error("팀 생성 오류:", error);
                 alert('로그인 후 이용해주세요.');
-                window.location.href = 'login'  //내일 수정
+                window.location.href = '/login'  //내일 수정
             });
 }
 
