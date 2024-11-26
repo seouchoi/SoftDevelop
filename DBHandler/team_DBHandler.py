@@ -25,7 +25,7 @@ class Team_DBHandler:
 
         # 팀장 정보 가져오기 (전체 멤버 정보 포함)
         team_leader = self.member_db_handler.get_member_data_for_key(team_leader_id)
-
+#영차
         if not team_leader:
             print("팀장을 찾을 수 없습니다.")
             return False
