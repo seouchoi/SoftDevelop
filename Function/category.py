@@ -1,6 +1,6 @@
 #contests 페이지에 공모전들 나열함
 from flask import Blueprint, render_template, request
-from DBHandler.Contest_DBhandler import Contest_DBHandler
+from DBHandler.contest_DBhandler import Contest_DBHandler
 
 contest_db_handler = Contest_DBHandler()
 
