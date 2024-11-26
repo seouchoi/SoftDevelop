@@ -56,3 +56,13 @@ class member_DBHandler:
         # 주어진 key_id로 회원 데이터를 찾기
         member = self.members_collection.find_one({"key_id": key_id})  # key_id를 사용하여 해당 회원 정보 찾기
         return member
+
+    def get_members_by_category_and_task(self, category, task):
+        # 주어진 카테고리와 태스크를 가진 회원들을 검색하여 리스트로 반환
+        try:
+            query = {'category': category, 'task': task}
+            members_cursor = self.members_collection.find(query, {'_id': 0, 'name': 1, 'region': 1, 'category': 1, 'task': 1})
+            return list(members_cursor)
+        except Exception as e:
+            print(f"회원 검색 실패: {e}")
+            return []
