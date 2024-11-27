@@ -207,6 +207,9 @@
             <form action="/profil">
                 <button type="submit">내정보</button>
             </form>
+            <form action = "api/logout">
+                <button type = "submit">로그아웃</button>
+            </form>
         </div>
         
     </header>
@@ -224,41 +227,45 @@
     <section class="section">
         <h3>추천 공모 분야</h3>
         <div class="button-container">
+            
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="기계/제조">
+                <button type="submit" class="category-button" >기계/제조</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="전기/전자">
+                <input type="hidden" name="category_name" value="전기/전자">
                 <button type="submit" class="category-button" >전기/전자</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="재료/나노">
+                <input type="hidden" name="category_name" value="재료/나노">
                 <button type="submit" class="category-button" >재료/나노</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="생명과학/생명공학">
+                <input type="hidden" name="category_name" value="생명과학/생명공학">
                 <button type="submit" class="category-button" >생명과학/생명공학</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="에너지/환경">
+                <input type="hidden" name="category_name" value="에너지/환경">
                 <button type="submit" class="category-button" >에너지/환경</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="건축/토목">
+                <input type="hidden" name="category_name" value="건축/토목">
                 <button type="submit" class="category-button" >건축/토목</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="항공/우주">
+                <input type="hidden" name="category_name" value="항공/우주">
                 <button type="submit" class="category-button" >항공/우주</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="로봇공학/자동화">
+                <input type="hidden" name="category_name" value="로봇공학/자동화">
                 <button type="submit" class="category-button" >로봇공학/자동화</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="화학공학">
+                <input type="hidden" name="category_name" value="화학공학">
                 <button type="submit" class="category-button" >화학공학</button> 
             </form>
             <form action="/category" method="POST">
-                <input type="hidden" name="category_id" value="자연과학">
+                <input type="hidden" name="category_name" value="자연과학">
                 <button type="submit" class="category-button" >자연과학</button> 
             </form>
         </div>

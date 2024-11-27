@@ -28,3 +28,6 @@ class Category_DBHandler:
         except Exception as e:
             print(f"카테고리 추가 실패: {e}")
             return False
+        
+    def get_category_id_by_name(self, category_name):
+        return self.category_collection.find_one({"category_name" : category_name})

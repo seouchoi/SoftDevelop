@@ -39,16 +39,24 @@
             margin: 0;
             font-size: 24px;
         }
-
+        .contest-container{
+            display: flex;
+            grid-template-columns: repeat(4, 1fr);
+            flex-wrap: wrap;
+            gap: 20px;        
+        }
         /* Class name is fixed to match HTML */
         .contest-list {
-            display: grid;
+            display: flex;
             grid-template-columns: repeat(4, 1fr);
+            flex-wrap: wrap;
             gap: 20px;
             margin-top: 20px;
+            justify-content: flex-start;
         }
 
         .contest-item {
+            width: 285px; /* 고정된 너비 */
             background-color: white; /* 배경을 흰색으로 변경 */
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -91,35 +99,24 @@
         </div>
         <div class="contest-list">
             <!--여기에 공모전 목록을 불러와 나열을 할 수 있어야함.-->
-            <div class="contest-item">
-                <a href="contest_detail_page.html" target="_blank">
-                    <img src="https://via.placeholder.com/300x200" alt="Contest Poster">
-                    <div class="name">Contest Name 1</div>
-                </a>
-            </div>
-            <div class="contest-item">
-                <a href="contest_detail_page.html" target="_blank">
-                    <img src="https://via.placeholder.com/300x200" alt="Contest Poster">
-                    <div class="name">Contest Name 2</div>
-                </a>
-            </div>
-            <div class="contest-item">
-                <a href="contest_detail_page.html" target="_blank">
-                    <img src="https://via.placeholder.com/200x300" alt="Contest Poster">
-                    <div class="name">Contest Name 3</div>
-                </a>
-            </div>
-            <div class="contest-item">
-                <a href="contest_detail_page.html" target="_blank">
-                    <img src="https://via.placeholder.com/300x200" alt="Contest Poster">
-                    <div class="name">Contest Name 4</div>
-                </a>
-            </div>
+            {% if contests_data %}
+        <div class="contest-container">
+            {% for contest in contests_data %}
+                <div class="contest-item">
+                    <a href="/category/{{ contest.contest_id }}">
+                        <img src="https://via.placeholder.com/300x200" alt="Contest Poster">
+                        <div class="name">{{ contest.contest_name }}</div>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
-    </div>
+    {% else %}
+        <p>등록된 공모전이 없습니다.</p>
+    {% endif %}
+        
     <script>
         function goBack() {
-            window.location.href = "logout_homepage.html"; 
+            window.location.href = "/"; 
         }
         document.getElementById("backButton").onclick = goBack;
     </script>
