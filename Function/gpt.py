@@ -4,7 +4,6 @@ import openai
 from DBHandler.member_DBHandler import member_DBHandler
 
 # OpenAI API 키 설정 (필요한 경우)
-# openai.api_key = 'YOUR_API_KEY'
 
 INSTRUCTIONS = [
     "1. Extract the competition topic and required number of participants from the provided message.",
