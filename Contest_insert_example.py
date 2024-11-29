@@ -13,20 +13,9 @@ contests = [
         "application_end": datetime(2025, 11, 22),
         "contest_start": datetime(2025, 12, 3),
         "contest_end": datetime(2025, 12, 3),
-        "category_id": 3,  # 예시: 3번 카테고리
+        "category_id": 8,  # 건축
         "organization_website": "http://www.kosda.org/bbs/board.php?bo_table=v4_01&wr_id=80",
-        "image_path":r"C:\Users\hi034\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\chat_image.png"
-    },
-    {
-        "contest_name": "2024년도 건설기계안전 콘텐츠 공모전",
-        "max_participate": 3,
-        "application_start": datetime(2024, 10, 21),
-        "application_end": datetime(2025, 11, 15),
-        "contest_start": datetime(2025, 11, 25),
-        "contest_end": datetime(2025,  12, 15),
-        "category_id": 3,  # 예시: 2번 카테고리
-        "organization_website": "https://www.osan.go.kr/portal/saeol/gosi/view.do?notAncmtMgtNo=45958&mId=0302010000",
-        "image_path" : r"C:\Users\hi034\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
+        "image_path":"poster/poster1.png"
     },
     {
         "contest_name": "공공주택_설계개선_업무노하우_공모전",
@@ -35,9 +24,42 @@ contests = [
         "application_end": datetime(2025, 11, 15),
         "contest_start": datetime(2025, 3, 10),
         "contest_end": datetime(2025, 4, 10),
-        "category_id": 3,  # 예시: 4번 카테고리
+        "category_id": 8,  # 건축
         "organization_website": "https://www.lh.or.kr/board.es?mid=a10601020000&bid=0034&list_no=721497&act=view",
-        "image_path": r"C:\Users\hi034\OneDrive\바탕 화면\SoftDevelop\front\templates\pictures\logo.png"
+        "image_path": "poster/poster2.jpg"
+    },
+    {
+        "contest_name": "증권박물관_이전_건립_설계공모",
+        "max_participate": 2,
+        "application_start": datetime(2024, 11, 25),
+        "application_end": datetime(2024, 12, 11),
+        "contest_start": datetime(2025, 1, 14),
+        "contest_end": datetime(2025, 1, 27),
+        "category_id": 8,  # 건축
+        "organization_website": "https://ksdmuseum-design.kr/bbs/board.php?bo_table=notice&wr_id=15",
+        "image_path": "poster/poster3.jpeg"
+    },
+    {
+        "contest_name": "비홈_네이밍_공모전",
+        "max_participate": 1,
+        "application_start": datetime(2024, 11, 14),
+        "application_end": datetime(2024, 11, 30),
+        "contest_start": datetime(2024, 11, 30),
+        "contest_end": datetime(2024, 11, 30),
+        "category_id": 8,  # 건축
+        "organization_website": "https://linkareer.com/activity/209422",
+        "image_path": "poster/poster4.png"
+    },
+    {
+        "contest_name": "2025_정림학생건축상(고고학자와_발명가)",
+        "max_participate": 3,
+        "application_start": datetime(2024, 11, 4),
+        "application_end": datetime(2025, 1, 9),
+        "contest_start": datetime(2025, 1, 13),
+        "contest_end": datetime(2025, 1, 16),
+        "category_id": 8,  # 건축
+        "organization_website": "https://www.junglimaward.com/",
+        "image_path": "poster/poster5.png"
     }
 ]
 
