@@ -5,107 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 질문하기</title>
     <style>
-        table {
-            width: 300px;
-            margin: auto;
-            border-spacing: 10px;
-        }
-        textarea {
-            width: 100%;
-            font-size: 15px;
-            border: 0;
-            border-radius: 15px;
-            outline: none;
-            padding: 10px;
-            background-color: rgb(233, 233, 233);
-        }
-        .btn {
-            width: 100%;
-            height: 32px;
-            font-size: 15px;
-            border: 0;
-            border-radius: 15px;
-            background-color: rgb(164, 199, 255);
-            cursor: pointer;
-        }
-        .btn:active {
-            background-color: rgb(61, 135, 255);
-        }
-        #response {
-            width: 100%;
-            margin-top: 20px;
-            text-align: center;
-            font-size: 15px;
-            color: rgb(90, 90, 90);
-        }
-        #result-container {
-            display: flex;
-            flex-direction: column; /* 세로로 나열 */
-            gap: 20px; /* 각 사람 정보 사이의 간격 */
-            margin-top: 20px;
-            max-height: 500px; /* 최대 높이 설정 (필요에 따라 조정) */
-            overflow-y: auto; /* 스크롤 가능 */
-            padding-right: 10px; /* 스크롤바를 고려한 여백 */
-            border: 2px solid rgb(200, 200, 200); /* 테두리 추가 */
-            border-radius: 10px; /* 테두리 둥글게 */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 테두리 그림자 추가 */
-            max-width: 800px;
-            margin: auto;
-        }
-        .result-card {
-            display: flex;
-            justify-content: space-between;
-            border: 1px solid rgb(200, 200, 200); /* 테두리 */
-            border-radius: 10px; /* 둥근 모서리 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
             padding: 20px;
-            background-color: #f9f9f9;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 */
-            font-size: 14px;
-            width: 100%; /* 전체 너비 사용 */
-            max-width: 600px; /* 최대 너비 설정 */
-            margin: auto; /* 가운데 정렬 */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .result-card strong {
-            color: rgb(50, 50, 200); /* 강조 텍스트 색상 */
         }
 
-        .result-card p {
-            margin: 0; /* 항목 간의 기본 마진 제거 */
-            font-size: 14px;
-            color: rgb(90, 90, 90);
-        }
         h1 {
             text-align: center;
+            color: #333;
+        }
+
+        #chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto; /* 스크롤 가능 */
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .user {
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .user .bubble {
+            background-color: #daf5cb; /* 사용자 말풍선 색상 */
+            margin-left: auto;
+        }
+
+        .ai .bubble {
+            background-color: #e0e7ff; /* AI 말풍선 색상 */
+            margin-right: auto;
+        }
+
+        .bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bubble p {
+            margin: 0;
+        }
+
+        #question-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            max-width: 600px; /* 최대 너비를 줄여서 중앙 정렬 */
+            margin: 20px auto 0; /* 중앙 정렬 */
+        }
+
+        textarea {
+            flex: 1;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            outline: none;
+            resize: none;
+            height: 40px;
+            max-width: 500px; /* 입력 칸 너비 제한 */
+        }
+
+        .btn {
+            width: 100px;
+            height: 40px;
+            font-size: 14px;
+            border: none;
+            border-radius: 10px;
+            background-color: #002fff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            background-color: #6cb1ff;
+        }
+
+        .btn-small {
+            display: block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn-small:active {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <h1>AI 질문하기</h1>
+    <div id="chat-container"></div>
     <form id="question-form">
-        <table>
-            <tr>
-                <td><label for="prompt">질문을 입력하세요:</label></td>
-            </tr>
-            <tr>
-                <td><textarea id="prompt" name="prompt" rows="4" required></textarea></td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn">질문 보내기</button></td>
-            </tr>
-        </table>
+        <textarea id="prompt" placeholder="질문을 입력하세요..." required></textarea>
+        <button type="submit" class="btn">보내기</button>
     </form>
 
-    <div id="response">
-        <h2>검색 결과:</h2>
-        <div id="result-container"></div>
-    </div>
-
     <script>
+        const chatContainer = document.getElementById("chat-container");
+
         document.getElementById("question-form").addEventListener("submit", function(event) {
             event.preventDefault(); // 기본 제출 동작 방지
 
             const prompt = document.getElementById("prompt").value;
+            addMessage("user", prompt); // 사용자 메시지 추가
 
             // 서버로 질문을 POST 요청으로 보내기
             fetch("/api/gpt", {
@@ -117,30 +144,54 @@
             })
             .then(response => response.json())
             .then(data => {
-                const resultContainer = document.getElementById("result-container");
-                resultContainer.innerHTML = ""; // 기존 결과 초기화
                 if (data.length === 0) {
-                    resultContainer.innerHTML = "<li>결과가 없습니다.</li>";
+                    addMessage("ai", "결과가 없습니다.");
                 } else {
                     data.forEach(member => {
-                        const card = document.createElement("div");
-                        card.classList.add("result-card");
-                        card.innerHTML = `
-                            <p><strong>이름:</strong> ${member.name}</p>
-                            <p><strong>지역:</strong> ${member.region}</p>
-                            <p><strong>카테고리:</strong> ${member.category}</p>
-                            <p><strong>업무:</strong> ${member.task}</p>
+                        const message = `
+                            이름: ${member.name}<br>
+                            지역: ${member.region}<br>
+                            카테고리: ${member.category}<br>
+                            업무: ${member.task}
+                            <button class="btn-small" onclick="handleInvite('${member.name}')">초대하기</button>
+                            <button class="btn-small" onclick="handleDetails('${member.name}')">자세히 보기</button>
                         `;
-                        resultContainer.appendChild(card);
+                        addMessage("ai", message);
                     });
                 }
-                // 입력 필드 초기화
-                document.getElementById("question-form").reset();
             })
             .catch(error => {
-                document.getElementById("response").textContent = "오류 발생: " + error;
+                addMessage("ai", `오류 발생: ${error}`);
             });
+
+            // 입력 필드 초기화
+            document.getElementById("question-form").reset();
         });
+
+        function addMessage(sender, content) {
+            const messageWrapper = document.createElement("div");
+            messageWrapper.classList.add("chat-message", sender);
+
+            const bubble = document.createElement("div");
+            bubble.classList.add("bubble");
+            bubble.innerHTML = `<p>${content}</p>`;
+
+            messageWrapper.appendChild(bubble);
+            chatContainer.appendChild(messageWrapper);
+
+            // 자동 스크롤
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function handleInvite(name) {
+            alert(`${name}님을 초대했습니다!`);
+            // 초대 관련 추가 로직 구현 가능
+        }
+
+        function handleDetails(name) {
+            alert(`${name}님의 자세한 정보를 확인합니다.`);
+            // 자세히 보기 관련 추가 로직 구현 가능
+        }
     </script>
 </body>
 </html>
