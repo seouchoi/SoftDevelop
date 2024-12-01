@@ -163,9 +163,7 @@
             .catch(error => {
                 addMessage("ai", `오류 발생: ${error}`);
             });
-
-            // 입력 필드 초기화
-            document.getElementById("question-form").reset();
+            document.getElementById("question-form").reset(); //입력 필드 초기화
         });
 
         function addMessage(sender, content) {
@@ -179,18 +177,11 @@
             messageWrapper.appendChild(bubble);
             chatContainer.appendChild(messageWrapper);
 
-            // 자동 스크롤
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
         function handleInvite(name) {
             alert(`${name}님을 초대했습니다!`);
-            // 초대 관련 추가 로직 구현 가능
-        }
-
-        function handleDetails(name) {
-            alert(`${name}님의 자세한 정보를 확인합니다.`);
-            // 자세히 보기 관련 추가 로직 구현 가능
         }
     </script>
 </body>
