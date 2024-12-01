@@ -16,4 +16,4 @@ def arrange_contests():
     category_id = int(category_data['key_id'])
 
     contests_data = contest_db_handler.get_contest_by_category_id(category_id) #해당 카테고리 공모전 모두 가져옴)
-    return render_template('category_page.html', contests_data = contests_data) #공모전 정보들을 contests.html에 모두 넘겨줌(마무리는 웹에서 나열)
+    return render_template('category_page.html', contests_data = contests_data, category_name = category_name) #공모전 정보들을 contests.html에 모두 넘겨줌(마무리는 웹에서 나열)

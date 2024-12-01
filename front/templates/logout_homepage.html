@@ -285,15 +285,13 @@
 
     <div class="container">
         <section class="image-container">
-            <a href="contest_detail_page.html" target="_blank">
-                <img src="pictures/pic1.jpg" alt="공모전 1">
-            </a>
-            <a href="contest_detail_page.html" target="_blank">
-                <img src="pictures/pic2.png" alt="공모전 2">
-            </a>
-            <a href="contest_detail_page.html" target="_blank">
-                <img src="pictures/pic3.png" alt="공모전 3">
-            </a>
+            {% for contest in contest_data %}
+                <div class="contest-item">
+                    <a href="/category/{{ contest.contest_id }}">
+                        <img src="contest.image_id" alt="Contest Poster">
+                    </a>
+                </div>
+            {% endfor %}
         </section>
 
         <aside class="notification">
@@ -309,20 +307,6 @@
     </div>
 
     <script>
-
-        function loadItems(category) {
-            fetch(`/get_items/${category}`)
-                .then(response => response.json())
-                .then(data => {
-                    const itemList = document.getElementById('item-list');
-                    itemList.innerHTML = '';
-                    data.forEach(item => {
-                        const li = document.createElement('li');
-                        li.textContent = item.name;
-                        itemList.appendChild(li);
-                    });
-                });
-        }
 
         const sentences = {
             1: "삶이 있는 한 희망은 있다 -키케로",

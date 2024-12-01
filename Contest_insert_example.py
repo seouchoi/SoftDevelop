@@ -13,7 +13,7 @@ contests = [
         "application_end": datetime(2025, 11, 22),
         "contest_start": datetime(2025, 12, 3),
         "contest_end": datetime(2025, 12, 3),
-        "category_id": 8,  # 건축
+        "category_id": 6,  # 건축
         "organization_website": "http://www.kosda.org/bbs/board.php?bo_table=v4_01&wr_id=80",
         "image_path":"poster/poster1.png"
     },
@@ -24,7 +24,7 @@ contests = [
         "application_end": datetime(2025, 11, 15),
         "contest_start": datetime(2025, 3, 10),
         "contest_end": datetime(2025, 4, 10),
-        "category_id": 8,  # 건축
+        "category_id": 6,  # 건축
         "organization_website": "https://www.lh.or.kr/board.es?mid=a10601020000&bid=0034&list_no=721497&act=view",
         "image_path": "poster/poster2.jpg"
     },
@@ -35,7 +35,7 @@ contests = [
         "application_end": datetime(2024, 12, 11),
         "contest_start": datetime(2025, 1, 14),
         "contest_end": datetime(2025, 1, 27),
-        "category_id": 8,  # 건축
+        "category_id": 6,  # 건축
         "organization_website": "https://ksdmuseum-design.kr/bbs/board.php?bo_table=notice&wr_id=15",
         "image_path": "poster/poster3.jpeg"
     },
@@ -46,7 +46,7 @@ contests = [
         "application_end": datetime(2024, 11, 30),
         "contest_start": datetime(2024, 11, 30),
         "contest_end": datetime(2024, 11, 30),
-        "category_id": 8,  # 건축
+        "category_id": 6,  # 건축
         "organization_website": "https://linkareer.com/activity/209422",
         "image_path": "poster/poster4.png"
     },
@@ -57,7 +57,7 @@ contests = [
         "application_end": datetime(2025, 1, 9),
         "contest_start": datetime(2025, 1, 13),
         "contest_end": datetime(2025, 1, 16),
-        "category_id": 8,  # 건축
+        "category_id": 6,  # 건축
         "organization_website": "https://www.junglimaward.com/",
         "image_path": "poster/poster5.png"
     },
@@ -68,7 +68,7 @@ contests = [
         "application_end": datetime(2025, 9, 30),
         "contest_start": datetime(2025, 11, 1),
         "contest_end": datetime(2025, 11, 8),
-        "category_id": 7,  # 에너지
+        "category_id": 5,  # 에너지
         "organization_website": "https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=99835&bcIdx=27191&parentSeq=27191",
         "image_path": "poster/contest1.png"
     },
@@ -79,7 +79,7 @@ contests = [
         "application_end": datetime(2024, 8, 31),
         "contest_start": datetime(2024, 10, 10),
         "contest_end": datetime(2024, 10, 11),
-        "category_id": 10,  # 로봇공학 자동화
+        "category_id": 8,  # 로봇공학 자동화
         "organization_website": "https://www.seoul.go.kr/news/news_notice.do#view/415895",
         "image_path": "poster/contest2.png"
     },
@@ -89,8 +89,8 @@ contests = [
         "application_start": datetime(2024, 7, 25),
         "application_end": datetime(2024, 9, 23),
         "contest_start": datetime(2024, 7, 25),
-        "contest_end": datetime(2024, 9, 2.23),
-        "category_id": 10,  # 로봇공학 자동화
+        "contest_end": datetime(2024, 9, 23),
+        "category_id": 8,  # 로봇공학 자동화
         "organization_website": "https://www.msit.go.kr/bbs/view.do?sCode=user&mId=129&mPid=224&pageIndex=&bbsSeqNo=100&nttSeqNo=3179039&searchOpt=ALL&searchTxt=",
         "image_path": "poster/contest3.png"
     },
@@ -101,7 +101,7 @@ contests = [
         "application_end": datetime(2024, 9, 6),
         "contest_start": datetime(2024, 8, 19),
         "contest_end": datetime(2024, 9, 6),
-        "category_id": 10,  #로봇공학 자동화 
+        "category_id": 8,  #로봇공학 자동화 
         "organization_website": "http://k-digitalhackathon.kr/",
         "image_path": "poster/contest5.png"
     },
@@ -112,7 +112,7 @@ contests = [
         "application_end": datetime(2024, 7, 6),
         "contest_start": datetime(2024, 7, 12),
         "contest_end": datetime(2024, 8, 12),
-        "category_id": 11,  # 화학공학
+        "category_id": 9,  # 화학공학
         "organization_website": "https://www.lgchem.com/main/index",
         "image_path": "poster/contest6.png"
     },
@@ -123,7 +123,7 @@ contests = [
         "application_end": datetime(2024, 4, 10),
         "contest_start": datetime(2024, 6, 1),
         "contest_end": datetime(2024, 9, 23),
-        "category_id": 11,  # 화학공학
+        "category_id": 9,  # 화학공학
         "organization_website": "https://www.kontrs.or.kr/main/main.php",
         "image_path": "poster/contest8.png"
     },
@@ -134,7 +134,7 @@ contests = [
         "application_end":datetime(2024,12,29),
         "contest_start":datetime(2025,1,5),
         "contest_end":datetime(2025,1,17),
-        "category_id":12,
+        "category_id": 8,
         "organization_website":"https://www.blaybus.com/activities/407/landing",
         "image_path":"poster/contest9.png"
     },
@@ -145,7 +145,7 @@ contests = [
         "application_end":datetime(2024,12,6),
         "contest_start":datetime(2025,1,16),
         "contest_end":datetime(2025,1,17),
-        "category_id":4,
+        "category_id":1, 
         "organization_website":"https://www.wevity.com/index_university.php?c=find&s=_university&gbn=viewok&gp=4&ix=93575",
         "image_path":"poster/contest10.jpg"
     },
@@ -156,21 +156,10 @@ contests = [
         "application_end":datetime(2024,12,17),
         "contest_start":datetime(2025,1,13),
         "contest_end":datetime(2025,1,24),
-        "category_id":11,
+        "category_id":5,
         "organization_website":"https://www.konicof.or.kr/neti/html/sub05/0501.html?mode=V&no=2c5658c4e5b49ee04fb7ee30328ebf46",
         "image_path":"poster/contest11.jpg"
-    },
-    {
-        "contest_name":"[알서포트] AI x 원격 솔루션 아이디어 모집",
-        "max_participate":1,
-        "application_start":datetime(2024,11,18),
-        "application_end":datetime(2024,12,17),
-        "contest_start":datetime(2024,11,18),
-        "contest_end":datetime(2024,12,17),
-        "category_id":10,
-        "organization_website":"https://content.rview.com/ko/blog/promotion-airchallenge/?utm_source=linkareer&utm_medium=referral&utm_campaign=rsko_2411_prm_airchallenge&utm_content=cta1_brandsite",
-        "image_path":"poster/contest12.png"
-    },
+    }, 
     {
         "contest_name":"화성시 동부권 공공정원화 설계공모",
         "max_participate":1,
@@ -178,7 +167,7 @@ contests = [
         "application_end":datetime(2024,12,5),
         "contest_start":datetime(2025,1,14),
         "contest_end":datetime(2025,1,14),
-        "category_id":8,
+        "category_id":5,
         "organization_website":"https://www.c3ka.com/design-contest-for-public-garden-in-the-eastern-district-of-hwaseong-city/",
         "image_path":"poster/contest13.png"
     },
@@ -194,24 +183,13 @@ contests = [
         "image_path":""
     },
     {
-        "contest_name":"[데이콘] 이미지 색상화 및 손실 부분 복원 AI 경진대회 : 월간 데이콘(~12/9)",
-        "max_participate":1,
-        "application_start":datetime(2024,11,12),
-        "application_end":datetime(2024,12,9),
-        "contest_start":datetime(2024,11,12),
-        "contest_end":datetime(2024,12,9),
-        "category_id":10,
-        "organization_website":"https://dacon.io/competitions/official/236420/overview/description",
-        "image_path":""
-    },
-    {
         "contest_name":"글로벌 청년 임팩트 해커톤",
         "max_participate":1,
         "application_start":datetime(2024,11,18),
         "application_end":datetime(2024,12,8),
         "contest_start":datetime(2024,12,27),
         "contest_end":datetime(2024,12,28),
-        "category_id":12,
+        "category_id":10,
         "organization_website":"https://wfuna.or.kr/program_global_impact_hackathon_2024",
         "image_path":"poster/contest14.png"
     },
@@ -222,7 +200,7 @@ contests = [
         "application_end":datetime(2024,11,30),
         "contest_start":datetime(2024,11,1),
         "contest_end":datetime(2024,11,30),
-        "category_id":12,
+        "category_id":2,
         "organization_website":"https://docs.google.com/forms/d/e/1FAIpQLSc_NE3tbZXwgwAtJ2vETeIi1kvGqDeysLXeoA__NAXHFuFYIg/viewform",
         "image_path":""
     },
