@@ -135,7 +135,7 @@
         <div class="header" style="display: flex; align-items: center; justify-content: space-between;">
             <button id="backButton" style="background-color: transparent; border: none; cursor: pointer; font-size: 16px; color: white;">← 돌아가기</button>
             <h1 style="flex-grow: 1; text-align: center; margin: 0;">공모전 정보</h1>
-            <button id="extraButton" style="background-color: #3D87FF; border: none; color: white; cursor: pointer; font-size: 16px; padding: 5px 10px; border-radius: 5px;">추가 버튼</button>
+            <button id="heartButton" style="background-color: rgb(164, 199, 255); border: none; color: white; cursor: pointer; font-size: 16px; padding: 5px 10px; border-radius: 5px;" onclick="toggleButtonColor()"> 관심 </button>
         </div>
         <div class="logoWithText">
             <a href="/" class="logo-link">
@@ -180,6 +180,18 @@
         }
         document.getElementById("backButton").onclick = goBack;
         
+        function toggleButtonColor() {
+            const heartButton = document.getElementById("heartButton");
+
+            if (heartButton.style.backgroundColor === "rgb(61, 135, 255)") {
+                heartButton.style.backgroundColor = "rgb(164, 199, 255)";
+                localStorage.setItem("heartButtonState", "inactive");
+            } else {
+                heartButton.style.backgroundColor = "rgb(61, 135, 255)";
+                localStorage.setItem("heartButtonState", "active");
+            }
+        }
+
         function goToQuestionPage() {
             window.location.href = "/gpt"; 
         }
@@ -227,7 +239,16 @@
                 alert('로그인 후 이용해주세요.');
                 window.location.href = '/login'  //내일 수정
             });
-}
+        }
+        window.onload = function() {
+            const heartButtonState = localStorage.getItem("heartButtonState");
+
+            if (heartButtonState === "active") {
+                document.getElementById("heartButton").style.backgroundColor = "rgb(61, 135, 255)";
+            } else {
+                document.getElementById("heartButton").style.backgroundColor = "rgb(164, 199, 255)";
+            }
+        }
 
     </script>    
 </body>
