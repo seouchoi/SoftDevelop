@@ -123,6 +123,9 @@
         font-weight: bold; /* 글자 두껍게 */
         color: #3D87FF;    /* 글자 색상 */
         }
+        .contest_website{
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -150,6 +153,7 @@
                 <p><strong>장소:</strong> <span id="contestLocation">{{ contest_data.contestLocation }}</span></p>
                 <p><strong>참여 인원:</strong> <span id="max_participants">{{ contest_data.max_participants }}</span></p>
                 <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
+                <p><strong>공모전 웹사이트:</strong> <a href="{{ contest_data.organization_website }}" target="_blank" class="contest_website">이동하기</a></p>
             </div>
         </div>
         <form onsubmit = create_team(event)>  
