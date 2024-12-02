@@ -17,7 +17,7 @@
             height: 100vh;
         }
         .profile-container {
-            width: 300px;
+            width: 400px;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
@@ -36,9 +36,53 @@
             margin: 10px 0;
             color: #555;
         }
-        .profile-container strong {
-            font-weight: bold;
-            color: #333;
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        .award-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .award-group textarea, .award-group select {
+            font-size: 14px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            box-sizing: border-box;
+        }
+        .award-group textarea {
+            flex: 2;
+            resize: none;
+        }
+        .award-group select {
+            flex: 1;
+        }
+        .award-group button {
+            font-size: 14px;
+            padding: 8px 12px;
+            background-color: rgb(164, 199, 255);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .award-group button:hover {
+            background-color: rgb(61, 135, 255);
+        }
+        .add-btn {
+            font-size: 14px;
+            padding: 8px 12px;
+            background-color: rgb(164, 199, 255);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .add-btn:hover {
+            background-color: rgb(61, 135, 255);
         }
         .logout-btn {
             display: block;
@@ -65,9 +109,112 @@
         <p><strong>이메일:</strong> {{ user.member_email }}</p>
         <p><strong>전화번호:</strong> {{ user.member_phone_number }}</p>
         <p><strong>관심분야:</strong> {{ user.category }}</p>
+
+        <div id="award-section">
+            <div class="form-group">
+                <label>수상이력 추가:</label>
+                <div class="award-group">
+                    <textarea name="award" rows="1" placeholder="수상 내용을 입력하세요"></textarea>
+                    <select name="award-result">
+                        <option value="1등">1등</option>
+                        <option value="2등">2등</option>
+                        <option value="3등">3등</option>
+                        <option value="수상없음">수상없음</option>
+                    </select>
+                    <button onclick="submitAward(this)">확인</button>
+                </div>
+            </div>
+        </div>
+        <button class="add-btn" onclick="addAward()">+ 추가</button>
+
         <a href="{{ url_for('logout.logout') }}" class="logout-btn">로그아웃</a>
     </div>
+
+    <script>
+        // 공통 데이터 전송 함수
+        function sendData(apiUrl, data) {
+            return fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        const errorMessage = err.message || '오류가 발생했습니다.';
+                        throw new Error(errorMessage);
+                    });
+                }
+                return response.json(); // 성공적으로 응답 데이터를 반환
+            })
+            .catch(error => {
+                console.error('데이터 전송 실패:', error);
+                throw error; // 호출한 함수에서 이 에러를 처리
+            });
+        }
+        
+        // 수상이력 제출 함수
+        function submitAward(button) {
+            const awardGroup = button.parentElement;
+            const awardText = awardGroup.querySelector('textarea').value.trim();
+            const awardResult = awardGroup.querySelector('select').value;
+        
+            // 수상 내용이 비어있는지 확인
+            if (!awardText) {
+                alert('수상 내용을 입력하세요.');
+                return;
+            }
+        
+            // 서버로 전송할 데이터
+            const award_data = {
+                user_id: "{{ user.id }}", // 서버에서 로그인 시 할당된 사용자 ID
+                award: awardText,
+                result: awardResult
+            };
+        
+            // 데이터를 서버로 전송
+            sendData('/profil', award_data)
+                .then(() => {
+                    alert('수상이력이 저장되었습니다.');
+                })
+                .catch(error => {
+                    alert(error.message);
+                    console.error('Error:', error);
+                });
+        }
+        
+        // 새로운 수상이력 입력 필드 추가 함수
+        function addAward() {
+            const awardSection = document.getElementById('award-section');
+            const newAwardGroup = document.createElement('div');
+            newAwardGroup.classList.add('award-group');
+        
+            const textarea = document.createElement('textarea');
+            textarea.name = "award";
+            textarea.rows = 1;
+            textarea.placeholder = "수상 내용을 입력하세요";
+        
+            const select = document.createElement('select');
+            select.name = "award-result";
+            select.innerHTML = `
+                <option value="1등">1등</option>
+                <option value="2등">2등</option>
+                <option value="3등">3등</option>
+                <option value="수상없음">수상없음</option>
+            `;
+        
+            const button = document.createElement('button');
+            button.textContent = "확인";
+            button.onclick = function () {
+                submitAward(button);
+            };
+        
+            newAwardGroup.appendChild(textarea);
+            newAwardGroup.appendChild(select);
+            newAwardGroup.appendChild(button);
+            awardSection.appendChild(newAwardGroup);
+        }
+        </script>
+        
 </body>
 </html>
-
-

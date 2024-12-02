@@ -2,9 +2,9 @@ from flask import Blueprint, jsonify, request, render_template
 import os
 import openai
 from DBHandler.member_DBHandler import member_DBHandler
-
+from utils.login_required import login_required
 # OpenAI API 키 설정 (필요한 경우)
-#openai.api_key
+#openai.api_key 
 
 INSTRUCTIONS = [
     "1. Extract the competition topic and required number of participants from the provided message.",
@@ -37,11 +37,16 @@ gpt_bp = Blueprint('gpt', __name__)
 member_db_handler = member_DBHandler()
 
 @gpt_bp.route("/gpt")
+@login_required
 def show_gpt_page():
-    return render_template("question_page.html")
+    contest_id = request.args.get('contest_id')  # 쿼리 파라미터에서 contest_id 추출
+    return render_template("question_page.html", contest_id=contest_id)
 
 @gpt_bp.route("/api/gpt", methods=["GET", "POST"])
 def gpt():
+    contest_id = request.args.get('contest_id')
+    print(f"Contest ID: {contest_id}")  # contest_id를 출력해서 확인
+
     receive_prompt_json = request.get_json()
     prompt = receive_prompt_json["prompt"]
 
@@ -78,9 +83,12 @@ def gpt():
         task = item['task']
         print(f"검색 쿼리: category='{category}', task='{task}'")
         members = member_db_handler.get_members_by_category_and_task(category, task)
+        print(members)
         for member_data in members:
+            print(member_data)
             # 필요한 정보만 추출하여 filtered_info에 저장
             filtered_info = {
+                'key_id': member_data['key_id'],
                 'name': member_data['name'],
                 'region': member_data['region'],
                 'category': member_data['category'],

@@ -12,6 +12,8 @@ class member_DBHandler:
     def create_member(self, member_data):
         # 새로운 회원을 DB에 추가
         try:
+            current_member_count = self.members_collection.count_documents({})  # 전체 문서 수
+            member_data['key_id'] = current_member_count + 1  # 새 user_id는 현재 수 + 1
             self.members_collection.insert_one(member_data)
             return True
         except Exception as e:
@@ -61,7 +63,7 @@ class member_DBHandler:
         # 주어진 카테고리와 태스크를 가진 회원들을 검색하여 리스트로 반환
         try:
             query = {'category': category, 'task': task}
-            members_cursor = self.members_collection.find(query, {'_id': 0, 'name': 1, 'region': 1, 'category': 1, 'task': 1})
+            members_cursor = self.members_collection.find(query, {'key_id': 1, 'name': 1, 'region': 1, 'category': 1, 'task': 1})
             return list(members_cursor)
         except Exception as e:
             print(f"회원 검색 실패: {e}")

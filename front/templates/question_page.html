@@ -54,7 +54,7 @@
 
         .bubble {
             display: flex;
-            max-width: 80%;
+            max-width: 90%;
             padding: 10px 15px;
             border-radius: 15px;
             font-size: 14px;
@@ -141,7 +141,7 @@
         }
     </style>
 </head>
-<body>
+<body data-user-id="{{ session['key_id'] }}">
     <h1>AI 질문하기</h1>
     <div id="chat-container"></div>
     <form id="question-form">
@@ -179,8 +179,8 @@
                                 <span class="highlight">분야:</span>${member.category}
                                 <span class="highlight">업무:</span>${member.task}
                                 <div class="button-group">
-                                    <button class="btn-small" onclick="handleInvite('${member.name}')">초대하기</button>
-                                    <button class="btn-small" onclick="handleDetails('${member.name}')">자세히 보기</button>
+                                    <button class="btn-small" data-member='${JSON.stringify(member)}' onclick="handleInvite(this)">초대하기</button>
+                                    <button class="btn-small" onclick="handleDetails('${member}')">자세히 보기</button>
                                 </div>
                             </div>
                         `;
@@ -208,8 +208,38 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
-        function handleInvite(name) {
-            alert(`${name}님을 초대했습니다!`);
+        function handleInvite(buttonElement) {
+            const contestId = "{{ contest_id }}"
+            const senderID = document.body.getAttribute('data-user-id');  // HTML 데이터 속성에서 가져오기
+            const memberData = buttonElement.getAttribute('data-member'); // 버튼의 data-member 속성 읽기
+            const member = JSON.parse(memberData); // JSON 문자열을 객체로 변환
+
+            const receiverName = member.name;  // member 객체에서 이름 가져오기
+            const receiverID = member.key_id;  // member 객체에서 user_id 가져오기
+            const message = `안녕하세요, ${receiverName}님! 저희 팀에 초대합니다.`;  // 초대 메시지 내용
+
+            const data = {
+                'sender_id': senderID,
+                'receiver_id': receiverID,
+                'message': message
+            }
+
+            console.log("보내는 데이터:", data);
+
+            fetch("/api/invite", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`${receiverName}님을 초대했습니다!`);
+            })
+            .catch(error => {
+                alert(`초대 실패: ${error}`);
+            });
         }
     </script>
 </body>
