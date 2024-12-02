@@ -18,7 +18,7 @@
         }
 
         #chat-container {
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -53,7 +53,8 @@
         }
 
         .bubble {
-            max-width: 70%;
+            display: flex;
+            max-width: 80%;
             padding: 10px 15px;
             border-radius: 15px;
             font-size: 14px;
@@ -62,6 +63,29 @@
 
         .bubble p {
             margin: 0;
+        }
+        
+        .member-info {
+            display: inline-block; /* 같은 줄에 배치 */
+            flex-wrap: wrap; /* 화면 크기에 따라 줄바꿈 허용 */
+            align-items: center; /* 버튼 정렬 */
+            gap: 20px; /* 요소 간 간격 */
+            margin-top:-7px;
+        }
+
+        .member-info span {
+            display: inline-block; /* 한 줄에 표시 */
+            margin-left: 20px; /* 오른쪽 간격 */
+        }
+
+        .button-group {
+            display: inline-block; /* 버튼도 같은 줄에 */
+            margin-left: 15px; /* 버튼 그룹 앞 간격 */
+        }
+
+        .highlight {
+            font-weight: bold; /* 강조 표현 */
+            color: #0056b3; /* 강조 색상 */
         }
 
         #question-form {
@@ -101,7 +125,7 @@
         }
 
         .btn-small {
-            display: block;
+            
             margin-top: 10px;
             padding: 5px 10px;
             font-size: 12px;
@@ -148,13 +172,17 @@
                     addMessage("ai", "결과가 없습니다.");
                 } else {
                     data.forEach(member => {
-                        const message = `
-                            이름: ${member.name}<br>
-                            지역: ${member.region}<br>
-                            카테고리: ${member.category}<br>
-                            업무: ${member.task}
-                            <button class="btn-small" onclick="handleInvite('${member.name}')">초대하기</button>
-                            <button class="btn-small" onclick="handleDetails('${member.name}')">자세히 보기</button>
+                            const message = `
+                            <div class="member-info">
+                                <span class="highlight">이름:</span>${member.name}
+                                <span class="highlight">지역:</span>${member.region}
+                                <span class="highlight">분야:</span>${member.category}
+                                <span class="highlight">업무:</span>${member.task}
+                                <div class="button-group">
+                                    <button class="btn-small" onclick="handleInvite('${member.name}')">초대하기</button>
+                                    <button class="btn-small" onclick="handleDetails('${member.name}')">자세히 보기</button>
+                                </div>
+                            </div>
                         `;
                         addMessage("ai", message);
                     });
