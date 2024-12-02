@@ -62,3 +62,11 @@ class Contest_DBHandler:
     #모든 contest가져오기 -> list로 반환
     def get_all_contest(self):
         return list(self.contest_collection.find())
+    
+    #contest_id로 contest의 name 찾아오는 정보(invite_DBHandler에서 사용할 예정)
+    def get_contest_name(self, contest_id):
+        contest_data = self.contest_collection.find_one(
+            {'contest_id': contest_id},
+            {'_id': 0, 'contest_name': 1}
+        )
+        return contest_data['contest_name']
