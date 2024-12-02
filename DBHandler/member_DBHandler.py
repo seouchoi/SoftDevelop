@@ -1,6 +1,8 @@
 import pymongo
 from pymongo import MongoClient
 from werkzeug.security import check_password_hash
+from DBHandler.award_DBHandler import Awards_DBHandler
+from DBHandler.favorite_contest import FavoriteContests_DBHandler
 
 class member_DBHandler:
     def __init__(self, collection_name ='members'):
@@ -9,6 +11,12 @@ class member_DBHandler:
         self.db = self.client['informatrion']  # information이름의 DB 선택
         self.members_collection = self.db[collection_name]  # 'members'라는 컬렉션 선택(테이블)
 
+        # Awards_DBHandler 인스턴스 생성
+        self.award_handler = Awards_DBHandler()
+
+        # FavoriteContests_DBHandler 인스턴스 생성
+        self.favorite_handler = FavoriteContests_DBHandler()
+        
     def create_member(self, member_data):
         # 새로운 회원을 DB에 추가
         try:
@@ -63,8 +71,52 @@ class member_DBHandler:
         # 주어진 카테고리와 태스크를 가진 회원들을 검색하여 리스트로 반환
         try:
             query = {'category': category, 'task': task}
-            members_cursor = self.members_collection.find(query, {'key_id': 1, 'name': 1, 'region': 1, 'category': 1, 'task': 1})
+            members_cursor = self.members_collection.find(query, {'key_id': 1, 'name': 1, 'region': 1, 'category': 1, 'task': 1})   #1은 포함, 0은 제외시킨다는 의미
             return list(members_cursor)
         except Exception as e:
             print(f"회원 검색 실패: {e}")
             return []
+        
+        
+        
+        #필터 최종 결과 
+        #관심 공모전을 표시한 회원들 사이의 total_score기반 순위가 상단에 배치
+        #그 밑에 관심 공모전을 표시하지 않은 회원들 사이의 total_score 기반 순위가 하단에 배치 
+    def recommend_members(self, category, task, contest_id):
+        """
+        카테고리와 태스크에 따라 회원들을 추천 순위로 정렬하여 반환합니다.
+        관심 공모전에 표시한 회원들을 우선으로 배치합니다.
+        """
+        # 1차 필터링: 카테고리와 태스크가 일치하는 회원들 가져오기
+        members = self.get_members_by_category_and_task(category, task)
+
+        # 각 회원에 대해 점수 계산 수행
+        for member in members:
+            user_id = member['key_id']
+
+            # 2차 필터링: 수상 경력 점수 계산
+            award_points = self.awards_handler.calculate_user_award_points(user_id)
+
+            # 3차 필터링: 참여 이력 점수 계산 (참여 횟수 × 1점)
+            participation_points = self.awards_handler.get_user_participation_count(user_id)
+
+            # 총점 계산
+            total_score = award_points + participation_points
+
+            # 4차 필터링: 해당 공모전에 관심을 표시한 경우
+            is_favorite = self.favorite_handler.is_favorite(user_id, contest_id)
+
+            # 회원 정보에 점수 및 관심 여부 추가
+            member['award_points'] = award_points
+            member['participation_points'] = participation_points
+            member['is_favorite'] = is_favorite
+            member['total_score'] = total_score
+
+        # 추천 순위 결정: 먼저 is_favorite으로 정렬하고, 그 다음 total_score로 정렬
+        sorted_members = sorted(
+            members,
+            key=lambda x: (x['is_favorite'], x['total_score']),
+            reverse=True
+        )
+
+        return sorted_members

@@ -1,7 +1,7 @@
 import pymongo
 from pymongo import MongoClient 
 from datetime import datetime
-from DBHandler.Contest_DBhandler import Contest_DBHandler
+from DBHandler.contest_DBhandler import Contest_DBHandler
 
 class invite_DBHandler:
     def __init__(self, collection_name='invite'):
