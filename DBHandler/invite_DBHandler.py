@@ -69,14 +69,24 @@ class invite_DBHandler:
         ).sort('timestamp', -1)
         return list(invites_cursor)
 
-    #초대받은 메시지 중에서 읽지않은 알림만 알림창에 띄우기 위한 부분 
     def get_unread_invites(self, user_id):
         """
         receiver_id가 user_id와 일치하고, read 값이 False인 초대 목록을 반환합니다.
+        만약 읽지 않은 메시지가 없다면, 다른 값을 반환합니다.
         """
         invites_cursor = self.invite_collection.find(
             {'receiver_id': user_id, 'read': False},
             {'_id': 0}
         ).sort('timestamp', -1)
-        return list(invites_cursor)
+        
+        # 커서를 리스트로 변환
+        invites_list = list(invites_cursor)
+        
+        if invites_list:
+            # 읽지 않은 메시지가 있으면 그 목록을 반환
+            return invites_list
+        else:
+            # 읽지 않은 메시지가 없으면 다른 값을 반환
+            return None  # 또는 원하는 다른 값
+
     
