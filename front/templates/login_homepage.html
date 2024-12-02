@@ -216,7 +216,7 @@
 
     <div class="logo-container">
         <div class="logo">
-            <img src="pictures/logo.png" alt="사이트 로고">
+            <img src="static/pictures/logo.png" alt="사이트 로고">
         </div>
         <div class="site-name-container">
             <div class="site-name">LinkerBell</div>
@@ -273,15 +273,13 @@
 
     <div class="container">
         <section class="image-container">
-            <a href="contest_detail_page.html" target="_blank">
-                <img src="pictures/pic1.jpg" alt="공모전 1">
-            </a>
-            <a href="contest_detail_page.html" target="_blank">
-                <img src="pictures/pic2.png" alt="공모전 2">
-            </a>
-            <a href="contest_detail_page.html" target="_blank">
-                <img src="pictures/pic3.png" alt="공모전 3">
-            </a>
+            {% for contest in contest_data %}
+                <div class="contest-item">
+                    <a href="/category/{{ contest.contest_id }}">
+                        <img src="static/pictures/{{contest.image_path}}" alt="Contest Poster">
+                    </a>
+                </div>
+            {% endfor %}
         </section>
 
         <aside class="notification">

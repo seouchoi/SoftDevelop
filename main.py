@@ -10,7 +10,7 @@ from Function.contest_detail import contest_detail_bp
 from Function.category import category_bp 
 import os
 
-app = Flask(__name__, template_folder='front/templates')
+app = Flask(__name__,static_folder='front/static', template_folder='front/templates')
 app.secret_key = os.urandom(24) #서버를 재시작할때마다 키를 바꿔서 세션을 삭제시킴.
 
 app.register_blueprint(login_bp)

@@ -129,12 +129,12 @@
             <div style="width: 50px;"></div> 
         </div>
         <div class="logoWithText">
-            <img src="pictures/logo.png" alt="Logo" class="fixedLogo">
+            <img src="/static/pictures/logo.png" alt="Logo" class="fixedLogo">
             <span class="logoText">LinkerBell</span>
         </div>
         <div class="content">
             <div class="poster">
-                <img src="pictures\logo.png" alt="공모전 포스터"> <!-- 공모전에 알맞는 이미지 및 날짜 불러와서 추가 -->
+                <img src="/static/pictures/{{contest_data.image_path}}" alt="공모전 포스터"> <!-- 공모전에 알맞는 이미지 및 날짜 불러와서 추가 -->
             </div>
             <div class="info">
                 <p><strong>공모전 이름:</strong> <span id="contest_name">{{ contest_data.contest_name }}</span></p>

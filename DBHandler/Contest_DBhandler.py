@@ -28,15 +28,16 @@ class Contest_DBHandler:
             "contest_start": contest_start,
             "contest_end": contest_end,
             "category_id": category_id,
-            "organization_website": organization_website  # 기관의 웹사이트 URL 추가
+            "organization_website": organization_website,  # 기관의 웹사이트 URL 추가
+            "image_path": image_path
         }
 
         # 이미지 처리 (이미지가 있다면 GridFS에 저장)
-        if image_path:
-            with open(image_path, "rb") as image_file:
-                # GridFS에 이미지 저장
-                image_id = self.fs.put(image_file, filename=f"{contest_name}_image")
-                new_contest_data["image_id"] = image_id  # 이미지의 GridFS ID를 데이터에 추가
+        # if image_path:
+        #     with open(image_path, "rb") as image_file:
+        #         # GridFS에 이미지 저장
+        #         image_id = self.fs.put(image_file, filename=f"{contest_name}_image")
+        #         new_contest_data["image_id"] = image_id  # 이미지의 GridFS ID를 데이터에 추가
 
         try:
             # 'contests' 컬렉션에 새로운 공모전 데이터 삽입

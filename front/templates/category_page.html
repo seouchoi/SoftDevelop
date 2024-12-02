@@ -104,7 +104,7 @@
             {% for contest in contests_data %}
                 <div class="contest-item">
                     <a href="/category/{{ contest.contest_id }}">
-                        <img src="https://via.placeholder.com/300x200" alt="Contest Poster">
+                        <img src="static/pictures/{{contest.image_path}}" alt="Contest Poster">
                         <div class="name">{{ contest.contest_name }}</div>
                     </a>
                 </div>
