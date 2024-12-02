@@ -1,7 +1,7 @@
 import pymongo
 from pymongo import MongoClient 
 from datetime import datetime
-from DBHandler.Contest_DBhandler import Contest_DBHandler
+from DBHandler.contest_DBhandler import Contest_DBHandler
 
 class invite_DBHandler:
     def __init__(self, collection_name='invite'):
@@ -17,8 +17,9 @@ class invite_DBHandler:
 
     #invite collection에 알림을 삽입하는 코드 
     def insert_invite(self, sender_id, receiver_id, message, contest_id):
-        invite_id = invite_DBHandler.generate_key_id()
-        contest_name = Contest_DBHandler.get_contest_name(contest_id)
+        invite_id = invite_DBHandler.generate_key_id(self)
+        contest_id = int(contest_id)
+        contest_name = contest_db_handler.get_contest_name(contest_id)
         # 초대 데이터 생성
         invite_data = {
             'invite_id': invite_id,

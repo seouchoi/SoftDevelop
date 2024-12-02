@@ -25,8 +25,12 @@ def login_activate():
         else:
             session['key_id'] = key_id
             redirect_url = session.pop('next', url_for("homepage.homepage")) #로그인 기능이 필요했던 페이지로 이동
+
             if redirect_url == "/api/build_team":
                 redirect_url = session.pop('now')
                 return jsonify({"redirect_url": redirect_url}), 200
+            elif redirect_url == "/gpt":
+                redirect_url = session.pop('now')
+                jsonify({"redirect_url": redirect_url}), 200 
             return jsonify({"redirect_url": redirect_url}), 200 
                    
