@@ -43,10 +43,37 @@
         .join { /*회원가입 페이지 중앙 정렬 스타일*/
             text-align: center; /*텍스트 중앙 정렬*/
         }
+        .logoWithText {
+            position: fixed;   /* 화면에 고정 */
+            top: 10px;         /* 화면 상단에서 10px 떨어짐 */
+            left: 10px;        /* 화면 왼쪽에서 10px 떨어짐 */
+            display: flex;     /* 가로로 정렬 */
+            align-items: center; /* 이미지와 텍스트 세로로 맞춤 */
+            gap: 10px;          /* 이미지와 텍스트 사이 간격 설정 */
+        }
+            
+        .fixedLogo {
+            width: 120px;       /* 로고 크기 */
+            height: auto;
+        }
+            
+        .logoText {
+            font-size: 35px;   /* 글자 크기 */
+            font-weight: bold; /* 글자 두껍게 */
+            color: #3D87FF;    /* 글자 색상 */
+        }
     </style>
 </head>
 
 <body> <!--로그인 폼, 제출 시 validateLogin 함수 실행-->
+    <div class="logoWithText">
+        <a href="/" class="logo-link">
+            <div class="logo-container">
+                <img src="/static/pictures/logo.png" alt="Logo" class="fixedLogo">
+                <span class="logoText">LinkerBell</span>
+            </div>
+        </a>
+    </div>
     <form onsubmit="event.preventDefault(); validateLogin();">
         <table>
             <tr>
