@@ -440,6 +440,7 @@ contests = [
         "contest_start": datetime(2024, 10, 10),
         "contest_end": datetime(2024, 10, 11),
         "category_id": 8,  # 로봇공학 자동화
+        "contest_master":"",
         "organization_website": "https://www.seoul.go.kr/news/news_notice.do#view/415895",
         "image_path": "poster/contest2.png"
     },
@@ -451,6 +452,7 @@ contests = [
         "contest_start": datetime(2024, 7, 25),
         "contest_end": datetime(2024, 9, 23),
         "category_id": 8,  # 로봇공학 자동화
+        "contest_master":"",
         "organization_website": "https://www.msit.go.kr/bbs/view.do?sCode=user&mId=129&mPid=224&pageIndex=&bbsSeqNo=100&nttSeqNo=3179039&searchOpt=ALL&searchTxt=",
         "image_path": "poster/contest3.png"
     },
@@ -462,6 +464,7 @@ contests = [
         "contest_start": datetime(2024, 8, 19),
         "contest_end": datetime(2024, 9, 6),
         "category_id": 8,  #로봇공학 자동화 
+        "contest_master":"",
         "organization_website": "http://k-digitalhackathon.kr/",
         "image_path": "poster/contest5.png"
     },
@@ -473,6 +476,7 @@ contests = [
         "contest_start": datetime(2024, 7, 12),
         "contest_end": datetime(2024, 8, 12),
         "category_id": 9,  # 화학공학
+        "contest_master":"",
         "organization_website": "https://www.lgchem.com/main/index",
         "image_path": "poster/contest6.png"
     },
@@ -484,6 +488,7 @@ contests = [
         "contest_start": datetime(2024, 6, 1),
         "contest_end": datetime(2024, 9, 23),
         "category_id": 9,  # 화학공학
+        "contest_master":"",
         "organization_website": "https://www.kontrs.or.kr/main/main.php",
         "image_path": "poster/contest8.png"
     },
@@ -495,6 +500,7 @@ contests = [
         "contest_start":datetime(2025,1,5),
         "contest_end":datetime(2025,1,17),
         "category_id": 8,
+        "contest_master":"",
         "organization_website":"https://www.blaybus.com/activities/407/landing",
         "image_path":"poster/contest9.png"
     },
@@ -507,6 +513,7 @@ contests = [
         "contest_start":datetime(2024,12,27),
         "contest_end":datetime(2024,12,28),
         "category_id":10,
+        "contest_master":"",
         "organization_website":"https://wfuna.or.kr/program_global_impact_hackathon_2024",
         "image_path":"poster/contest14.png"
     },
@@ -519,6 +526,7 @@ contests = [
         "contest_start":datetime(2024,11,17),
         "contest_end":datetime(2024,11,30),
         "category_id":12,
+        "contest_master":"",
         "organization_website":"https://cafe.naver.com/cospaces/",
         "image_path":"poster/contest15.png"
     },
@@ -530,6 +538,7 @@ contests = [
         "contest_start":datetime(2024,11,19),
         "contest_end":datetime(2024,12,30),
         "category_id":12,
+        "contest_master":"",
         "organization_website":"https://www.com2us.com/gamecontest",
         "image_path":"poster/contest18.png"
     },
@@ -541,6 +550,7 @@ contests = [
         "contest_start":datetime(2024,10,14),
         "contest_end":datetime(2025,1,22),
         "category_id":12,
+        "contest_master":"",
         "organization_website":"https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=243&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12",
         "image_path":"poster/contest19.png"
     }
@@ -558,6 +568,7 @@ for contest in contests:
         contest['contest_start'], 
         contest['contest_end'], 
         contest['category_id'], 
+        contest['contest_master'],
         contest['organization_website'], 
         image_path=contest['image_path']
     )

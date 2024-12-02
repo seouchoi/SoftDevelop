@@ -14,7 +14,7 @@ class Contest_DBHandler:
         # contest 컬렉션의 문서 수에 맞춰서 contest_id 값 증가
         return self.contest_collection.count_documents({}) + 1
 
-    def create_contest(self, contest_name, max_participate, application_start, application_end, contest_start, contest_master, contest_end, category_id, organization_website, image_path=None):
+    def create_contest(self, contest_name, max_participate, application_start, application_end, contest_start, contest_end, category_id, contest_master, organization_website, image_path=None):
         # contest_id 생성
         contest_id = self.generate_contest_id()
 
@@ -22,13 +22,13 @@ class Contest_DBHandler:
         new_contest_data = {
             "contest_id": contest_id,
             "contest_name": contest_name,
-            "contest_master": contest_master,
             "max_participate": max_participate,
             "application_start": application_start,
             "application_end": application_end,
             "contest_start": contest_start,
             "contest_end": contest_end,
             "category_id": category_id,
+            "contest_master": contest_master,
             "organization_website": organization_website,  # 기관의 웹사이트 URL 추가
             "image_path": image_path
         }
