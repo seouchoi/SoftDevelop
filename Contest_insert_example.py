@@ -180,7 +180,7 @@ contests = [
         "contest_end":datetime(2025,2,8),
         "category_id":5,
         "organization_website":"https://wonderchild.co.kr/",
-        "image_path":""
+        "image_path":"poster/contest16.png"
     },
     {
         "contest_name":"글로벌 청년 임팩트 해커톤",
@@ -202,7 +202,7 @@ contests = [
         "contest_end":datetime(2024,11,30),
         "category_id":2,
         "organization_website":"https://docs.google.com/forms/d/e/1FAIpQLSc_NE3tbZXwgwAtJ2vETeIi1kvGqDeysLXeoA__NAXHFuFYIg/viewform",
-        "image_path":""
+        "image_path":"poster/contest17.png"
     },
     {
         "contest_name":"헬로소프트 코스페이시스 작품 공모전",
@@ -224,7 +224,7 @@ contests = [
         "contest_end":datetime(2024,12,30),
         "category_id":12,
         "organization_website":"https://www.com2us.com/gamecontest",
-        "image_path":""
+        "image_path":"poster/contest18.png"
     },
     {
         "contest_name":"2024~2025년 한국석유공사 데이터 분석 공모전",
@@ -235,7 +235,7 @@ contests = [
         "contest_end":datetime(2025,1,22),
         "category_id":12,
         "organization_website":"https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=243&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12",
-        "image_path":""
+        "image_path":"poster/contest19.png"
     }
 
     ]
