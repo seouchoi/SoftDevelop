@@ -81,7 +81,7 @@ def gpt():
         category = item['category']
         task = item['task']
         print(f"검색 쿼리: category='{category}', task='{task}'")
-        members = member_db_handler.get_members_by_category_and_task(category, task)
+        members = member_db_handler.recommend_members(category, task, contest_id)
         print(members)
         for member_data in members:
             print(member_data)

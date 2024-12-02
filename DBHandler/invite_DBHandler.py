@@ -3,6 +3,8 @@ from pymongo import MongoClient
 from datetime import datetime
 from DBHandler.contest_DBhandler import Contest_DBHandler
 
+contest_db_handler = Contest_DBHandler()
+
 class invite_DBHandler:
     def __init__(self, collection_name='invite'):
         # MongoDB 연결 설정
