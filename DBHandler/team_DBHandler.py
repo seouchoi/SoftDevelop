@@ -1,5 +1,5 @@
 from DBHandler.member_DBHandler import member_DBHandler  # member_DBHandler import
-from DBHandler.contest_DBhandler import Contest_DBHandler  # Contest_DBHandler import
+from DBHandler.Contest_DBhandler import Contest_DBHandler  # Contest_DBHandler import
 from pymongo import MongoClient
 from datetime import datetime
 
