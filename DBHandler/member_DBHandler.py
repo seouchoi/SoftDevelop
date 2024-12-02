@@ -78,7 +78,7 @@ class member_DBHandler:
             return []
         
         
-        
+        #sfd
         #필터 최종 결과 
         #관심 공모전을 표시한 회원들 사이의 total_score기반 순위가 상단에 배치
         #그 밑에 관심 공모전을 표시하지 않은 회원들 사이의 total_score 기반 순위가 하단에 배치 
@@ -95,10 +95,10 @@ class member_DBHandler:
             user_id = member['key_id']
 
             # 2차 필터링: 수상 경력 점수 계산
-            award_points = self.awards_handler.calculate_user_award_points(user_id)
+            award_points = self.award_handler.calculate_user_award_points(user_id)
 
             # 3차 필터링: 참여 이력 점수 계산 (참여 횟수 × 1점)
-            participation_points = self.awards_handler.get_user_participation_count(user_id)
+            participation_points = self.award_handler.get_user_participation_count(user_id)
 
             # 총점 계산
             total_score = award_points + participation_points
