@@ -13,7 +13,7 @@ def insert_competition_categories():
         "에너지/환경", #5
         "건축/토목", #6
         "항공/우주", #7
-        "IT/AI", #8
+        "IT / AI", #8
         "화학공학", #9
         "자연과학I" #10
     ]
