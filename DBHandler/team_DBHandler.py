@@ -84,3 +84,36 @@ class Team_DBHandler:
         except Exception as e:
             print(f"팀원 추가 실패: {e}")
             return False
+
+
+    def get_team_info(self, team_id):
+            """
+            특정 team_id에 해당하는 팀의 정보를 조회하여 반환합니다.
+            :return: 팀 정보 딕셔너리 또는 None
+            """
+            try:
+                # team_id로 팀 정보 조회
+                team = self.team_collection.find_one(
+                    {"team_id": team_id},
+                    {
+                        "_id": 0,  # MongoDB의 _id 필드를 제외
+                        "team_id": 1,
+                        "team_name": 1,
+                        "team_leader_id": 1,
+                        "team_leader": 1,
+                        "contest_id": 1,
+                        "contest_name": 1,
+                        "team_members": 1,
+                        "creation_date": 1
+                    }
+                )
+
+                if team:
+                    return team # 딕셔너리 형식으로 반환 
+                else:
+                    print(f"팀 ID {team_id}을(를) 찾을 수 없습니다.")
+                    return None
+
+            except Exception as e:
+                print(f"팀 정보 조회 실패: {e}")
+                return None
