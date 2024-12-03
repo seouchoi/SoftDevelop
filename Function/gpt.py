@@ -1,8 +1,10 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, session
 import os
 import openai
 from DBHandler.member_DBHandler import member_DBHandler
 from utils.login_required import login_required
+from DBHandler.team_DBHandler import Team_DBHandler
+
 # OpenAI API 키 설정 (필요한 경우)
 #openai.api_key
 
@@ -35,12 +37,20 @@ Provide an answer tailored to the number of people.""", *INSTRUCTIONS])
 gpt_bp = Blueprint('gpt', __name__)
 
 member_db_handler = member_DBHandler()
+team_db_handler = Team_DBHandler()
 
-@gpt_bp.route("/gpt")
+@gpt_bp.route("/gpt", methods = ["POST", "GET"])
 @login_required
 def show_gpt_page():
-    contest_id = request.args.get('contest_id')  # 쿼리 파라미터에서 contest_id 추출
-    return render_template("question_page.html", contest_id=contest_id)
+    contest_id = int(request.args.get('contest_id'))  # 쿼리 파라미터에서 contest_id 추출
+    team_leader_id = int(session.get('key_id'))
+    team_data = team_db_handler.get_team_info_by_key_id_and_contest_id(team_leader_id, contest_id)
+    if team_data is None:
+        return jsonify({"message": "현재 팀이 없습니다. 팀 생성 후 다시 시도해주세요."}), 404
+    else:
+        team_id = team_data['team_id']
+        print(team_id)
+        return render_template("question_page.html", contest_id=contest_id, team_id = team_id)
 
 @gpt_bp.route("/api/gpt", methods=["GET", "POST"])
 def gpt():

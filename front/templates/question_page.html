@@ -287,6 +287,7 @@
 
         function handleInvite(buttonElement) {
             const contestID = "{{ contest_id }}"
+            const teamID = "{{ team_id }}"
             const senderID = document.body.getAttribute('data-user-id');  // HTML 데이터 속성에서 가져오기
             const memberData = buttonElement.getAttribute('data-member'); // 버튼의 data-member 속성 읽기
             const member = JSON.parse(memberData); // JSON 문자열을 객체로 변환
@@ -298,6 +299,7 @@
             const data = {
                 'contest_id': contestID,
                 'sender_id': senderID,
+                'team_id': teamID,
                 'receiver_id': receiverID,
                 'message': message
             }
