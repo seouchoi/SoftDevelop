@@ -27,7 +27,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            max-height: 600px;
+            height: 600px; /* 고정된 높이 설정 */
             overflow-y: auto; /* 스크롤 가능 */
         }
 
@@ -139,10 +139,44 @@
         .btn-small:active {
             background-color: #0056b3;
         }
+
+        .logo-link {
+            display: inline-block; /* 클릭 영역을 이미지와 텍스트가 감싸는 박스까지 확장 */
+            text-decoration: none; /* 링크 텍스트의 기본 밑줄 제거 */
+        }
+    
+        .logoWithText {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fixedLogo {
+            width: 100px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .logoText {
+            font-size: 35px;
+            font-weight: bold;
+            color: #3D87FF;
+        }
     </style>
 </head>
 <body data-user-id="{{ session['key_id'] }}">
-    <h1>AI 질문하기</h1>
+    <h1>LinkerBell Chat-Bot</h1>
+    <div class="logoWithText">
+        <a href="/" class="logo-link">
+            <div class="logo-container">
+                <img src="/static/pictures/logo.png" alt="Logo" class="fixedLogo">
+                <span class="logoText">LinkerBell</span>
+            </div>
+        </a>
+    </div>
     <div id="chat-container"></div>
     <form id="question-form">
         <textarea id="prompt" placeholder="질문을 입력하세요..." required></textarea>
@@ -213,6 +247,7 @@
 
         function handleInvite(buttonElement) {
             const contestID = "{{ contest_id }}"
+            const teamID = "{{ team_id }}"
             const senderID = document.body.getAttribute('data-user-id');  // HTML 데이터 속성에서 가져오기
             const memberData = buttonElement.getAttribute('data-member'); // 버튼의 data-member 속성 읽기
             const member = JSON.parse(memberData); // JSON 문자열을 객체로 변환
@@ -224,6 +259,7 @@
             const data = {
                 'contest_id': contestID,
                 'sender_id': senderID,
+                'team_id': teamID,
                 'receiver_id': receiverID,
                 'message': message
             }

@@ -117,3 +117,28 @@ class Team_DBHandler:
             except Exception as e:
                 print(f"팀 정보 조회 실패: {e}")
                 return None
+            
+    def get_team_info_by_key_id_and_contest_id(self, team_leader_id, contest_id):
+                # team_id로 팀 정보 조회
+                team = self.team_collection.find_one(
+                    {"team_leader_id": team_leader_id,
+                     "contest_id": contest_id
+                     },
+                    {
+                        "_id": 0,  # MongoDB의 _id 필드를 제외
+                        "team_id": 1,
+                        "team_name": 1,
+                        "team_leader_id": 1,
+                        "team_leader": 1,
+                        "contest_id": 1,
+                        "contest_name": 1,
+                        "team_members": 1,
+                        "creation_date": 1
+                    }
+                )
+                print(team)
+                if team:
+                    return team # 딕셔너리 형식으로 반환 
+                else:
+                    return None
+                

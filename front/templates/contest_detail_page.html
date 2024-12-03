@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Competition Info</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- Font Awesome 추가 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome 추가 -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -78,13 +76,11 @@
         }
 
         .button-group {
-            text-align: center;
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
-        }
-
-        .logo-link {
-            display: inline-block;
-            text-decoration: none;
+            margin-bottom: 20px;
+            gap: 20px; /* 버튼들 사이 간격 */
         }
 
         .btn {
@@ -123,6 +119,11 @@
             transform: scale(0.95);
         }
 
+        .logo-link {
+            display: inline-block; /* 클릭 영역을 이미지와 텍스트가 감싸는 박스까지 확장 */
+            text-decoration: none; /* 링크 텍스트의 기본 밑줄 제거 */
+        }
+    
         .logoWithText {
             position: fixed;
             top: 10px;
@@ -147,19 +148,66 @@
         .contest_website {
             text-decoration: none;
         }
+
+        .team-list {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 10px;
+            background-color: rgb(240, 240, 240);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        .team-list h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: rgb(61, 135, 255);
+        }
+
+        .team-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .team-list li {
+            display: flex;
+            justify-content: space-between; /* 팀 이름과 버튼을 양옆으로 배치 */
+            align-items: center;
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .applyButton {
+            background-color: rgb(164, 199, 255);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            font-size: 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .applyButton:hover {
+            background-color: rgb(61, 135, 255); /* 마우스 오버 시 배경색 */
+        }
     </style>
 </head>
-
-<body data-user-id="{{ session.get('key_id', '') }}">
+<body>
     <div class="container">
         <div class="header">
-            <button id="backButton"
-                style="background-color: transparent; border: none; cursor: pointer; font-size: 16px; color: white;">←
-                돌아가기</button>
+            <button id="backButton" style="background-color: transparent; border: none; cursor: pointer; font-size: 16px; color: white;">← 돌아가기</button>
             <h1>공모전 정보</h1>
-            <button id="heartButton"
-                style="background-color: transparent; border: none; color: white; cursor: pointer; font-size: 16px;"
-                onclick="toggleHeartIcon()">
+            <button id="heartButton" style="background-color: transparent; border: none; color: white; cursor: pointer; font-size: 16px;" onclick="toggleHeartIcon()">
                 <i id="heartIcon" class="fa-regular fa-heart fa-2x"></i>
             </button>
         </div>
@@ -178,60 +226,51 @@
             <div class="info">
                 <p><strong>공모전 이름:</strong> <span id="contest_name">{{ contest_data.contest_name }}</span></p>
                 <p><strong>주최:</strong> <span id="contest_master">{{ contest_data.contest_master }}</span></p>
-                <p><strong>신청 기간:</strong> <span id="application_start">{{ contest_data.application_start }}</span>
-                    <strong>~</strong> <span id="application_end">{{ contest_data.application_end }}</span></p>
+                <p><strong>신청 기간:</strong> <span id="application_start">{{ contest_data.application_start }}</span> <strong>~</strong> <span id="application_end">{{ contest_data.application_end }}</span></p>           
                 <p><strong>참여 인원:</strong> <span id="max_participants">{{ contest_data.max_participate}}명</span></p>
-                <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span>
-                    <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
-                <p><strong>공모전 웹사이트:</strong> <a href="{{ contest_data.organization_website }}" target="_blank"
-                        class="contest_website">이동하기</a></p>
+                <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
+                <p><strong>공모전 웹사이트:</strong> <a href="{{ contest_data.organization_website }}" target="_blank" class="contest_website">이동하기</a></p>
             </div>
-        </div>
-        <form onsubmit="create_team(event)">
-            <div class="button-group">
-                <input type="text" id="teamNameInput" placeholder="팀 이름을 입력하세요"
-                    style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;" />
-                <div>
+
+            <form onsubmit="create_team(event)">  
+                <div class="button-group">
+                    <input 
+                        type="text" 
+                        id="teamNameInput" 
+                        placeholder="팀 이름(주제:)을 적어주세요." 
+                        style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;"
+                    />
                     <input type="submit" value="팀 생성하기" class="btn">
                 </div>
+            </form>
+            <div class="team-list">
+                <h3>팀 목록</h3>
+                <ul id="teamList">
+                    {% for team in teams %}
+                        <li>
+                            {{ team.team_name }} 
+                            <button class="applyButton">지원하기</button>
+                        </li>
+                    {% else %}
+                        <li>등록된 팀이 없습니다.</li>
+                    {% endfor %}
+                </ul>
             </div>
-        </form>
-        <button class="chatButton" onclick="goToQuestionPage()">
-            <img src="/static/pictures/chat_image.png" alt="Chat Icon">
-        </button>
-    </div>
+        </div>
+    <button class="chatButton" onclick="goToQuestionPage()">
+        <img src="/static/pictures/chat_image.png" alt="Chat Icon">
+    </button>
+
     <script>
         function goBack() {
             window.history.back();
         }
         document.getElementById("backButton").onclick = goBack;
-
+        
         function toggleHeartIcon() {
             const heartIcon = document.getElementById("heartIcon");
             const isFilled = heartIcon.classList.contains("fa-solid");
-            const keyID = document.body.getAttribute('data-user-id');
-            const urlParts = window.location.pathname.split('/');
-            const contestID = urlParts[urlParts.length - 1];
-            const data = {
-                'key_id': keyID,
-                'contest_id': contestID
-            };
 
-            fetch('/api/favorite', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    alert('관심 공모전으로 추가되었습니다.');
-                })
-                .catch(error => {
-                    alert(`추가 실패: ${error}`);
-                });
-                
             if (isFilled) {
                 heartIcon.classList.remove("fa-solid", "fa-heart");
                 heartIcon.classList.add("fa-regular", "fa-heart");
@@ -241,14 +280,14 @@
                 heartIcon.classList.add("fa-solid", "fa-heart");
                 localStorage.setItem("heartButtonState", "active");
             }
-
         }
 
         function goToQuestionPage() {
             const urlParts = window.location.pathname.split('/');
             const contestId = urlParts[urlParts.length - 1];
-            window.location.href = `/gpt?contest_id=${contestId}`;
+            window.location.href = `/gpt?contest_id=${contestId}`; 
         }
+        
 
         function create_team(event) {
             event.preventDefault();
@@ -257,7 +296,7 @@
             const contest_id = "{{ contest_data.contest_id }}";
 
             if (team_name.trim() === "") {
-                alert("팀 이름을 적어주세요.");
+                alert("팀 이름(주제:)을 적어주세요.(ex.A팀(주제:xxx))");
                 return;
             }
 
@@ -273,24 +312,24 @@
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('서버 응답이 실패했습니다.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    alert('팀이 성공적으로 생성되었습니다!');
-                    window.location.reload();
-                })
-                .catch(error => {
-                    console.error("팀 생성 오류:", error);
-                    alert('로그인 후 이용해주세요.');
-                    window.location.href = '/login';
-                });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('서버 응답이 실패했습니다.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('팀이 성공적으로 생성되었습니다!');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("팀 생성 오류:", error);
+                alert('로그인 후 이용해주세요.');
+                window.location.href = '/login';
+            });
         }
 
-        window.onload = function () {
+        window.onload = function() {
             const heartButtonState = localStorage.getItem("heartButtonState");
             const heartIcon = document.getElementById("heartIcon");
 
@@ -304,5 +343,4 @@
         };
     </script>
 </body>
-
 </html>

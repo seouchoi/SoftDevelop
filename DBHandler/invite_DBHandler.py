@@ -21,7 +21,7 @@ class invite_DBHandler:
         return self.invite_collection.count_documents({}) + 1
 
     #invite collection에 알림을 삽입하는 코드 
-    def insert_invite(self, sender_id, receiver_id, message, contest_id):
+    def insert_invite(self, sender_id, team_id, receiver_id, message, contest_id):
         invite_id = invite_DBHandler.generate_key_id(self)
         contest_id = int(contest_id)
         sender_id = int(sender_id)
@@ -30,6 +30,7 @@ class invite_DBHandler:
         invite_data = {
             'invite_id': invite_id,
             'sender_id': sender_id,
+            'team_id': team_id,
             'receiver_id': receiver_id,
             'message': message,
             'contest_id': contest_id,
