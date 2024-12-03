@@ -513,7 +513,7 @@ contests = [
         "contest_start": datetime(2024, 10, 10),
         "contest_end": datetime(2024, 10, 11),
         "category_id": 8,  # 로봇공학 자동화
-        "contest_master":"",
+        "contest_master":"서울특별시",
         "organization_website": "https://www.seoul.go.kr/news/news_notice.do#view/415895",
         "image_path": "poster/contest2.png"
     },
@@ -525,7 +525,7 @@ contests = [
         "contest_start": datetime(2024, 7, 25),
         "contest_end": datetime(2024, 9, 23),
         "category_id": 8,  # 로봇공학 자동화
-        "contest_master":"",
+        "contest_master":"과학기술정보통신부, 한국전파진흥협회",
         "organization_website": "https://www.msit.go.kr/bbs/view.do?sCode=user&mId=129&mPid=224&pageIndex=&bbsSeqNo=100&nttSeqNo=3179039&searchOpt=ALL&searchTxt=",
         "image_path": "poster/contest3.png"
     },
@@ -537,7 +537,7 @@ contests = [
         "contest_start": datetime(2024, 8, 19),
         "contest_end": datetime(2024, 9, 6),
         "category_id": 8,  #로봇공학 자동화 
-        "contest_master":"",
+        "contest_master":"고용노동부, 한국기술교육대학교 직업능력심사평가원",
         "organization_website": "http://k-digitalhackathon.kr/",
         "image_path": "poster/contest5.png"
     },
@@ -549,7 +549,7 @@ contests = [
         "contest_start":datetime(2025,1,5),
         "contest_end":datetime(2025,1,17),
         "category_id": 8,
-        "contest_master":"",
+        "contest_master":"블레이버스, 두핸즈",
         "organization_website":"https://www.blaybus.com/activities/407/landing",
         "image_path":"poster/contest9.png"
     },
@@ -561,7 +561,7 @@ contests = [
         "contest_start":datetime(2024,12,27),
         "contest_end":datetime(2024,12,28),
         "category_id":8,
-        "contest_master":"",
+        "contest_master":"연세대학교, 글로벌 청년 임팩트 해커톤",
         "organization_website":"https://wfuna.or.kr/program_global_impact_hackathon_2024",
         "image_path":"poster/contest14.png"
     },
@@ -573,19 +573,19 @@ contests = [
         "contest_start":datetime(2024,11,17),
         "contest_end":datetime(2024,11,30),
         "category_id":8,
-        "contest_master":"",
+        "contest_master":"(주)헬로소프트",
         "organization_website":"https://cafe.naver.com/cospaces/",
         "image_path":"poster/contest15.png"
     },
     {
-        "contest_name":"컴투스 글로벌 게임개발 공모전 ‘컴:온 2024’",
+        "contest_name":"컴투스 글로벌 게임개발 공모전 ‘컴:온 2024",
         "max_participate":10,
         "application_start":datetime(2024,11,19),
         "application_end":datetime(2024,12,30),
         "contest_start":datetime(2024,11,19),
         "contest_end":datetime(2024,12,30),
         "category_id":8,
-        "contest_master":"",
+        "contest_master":"컴투스, 게임문화재단",
         "organization_website":"https://www.com2us.com/gamecontest",
         "image_path":"poster/contest18.png"
     },
@@ -597,7 +597,7 @@ contests = [
         "contest_start":datetime(2024,10,14),
         "contest_end":datetime(2025,1,22),
         "category_id":8,
-        "contest_master":"",
+        "contest_master":"한국석유공사",
         "organization_website":"https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=243&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12",
         "image_path":"poster/contest19.png"
     },#----------8.IT/AI
