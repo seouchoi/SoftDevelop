@@ -9,7 +9,37 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 버튼 컨테이너를 오른쪽 상단에 고정 */
+        .button-container {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 버튼 스타일 */
+        .button-container button {
+            background-color: rgb(164, 199, 255); /* 버튼 배경색 */
+            color: rgb(0, 0, 0); /* 텍스트 색상 */
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: rgb(61, 135, 255); /* 마우스 오버 시 배경색 */
         }
 
         h1 {
@@ -18,7 +48,7 @@
         }
 
         #chat-container {
-            max-width: 900px;
+            max-width: 700px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -27,7 +57,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            height: 600px; /* 고정된 높이 설정 */
+            height: 60vh; /* 화면 높이의 80% 사용 */
+            width: 100%; /* 화면 너비를 최대한 사용 */
+            max-width: 1000px; /* 최대 폭 설정 */
             overflow-y: auto; /* 스크롤 가능 */
         }
 
@@ -106,7 +138,7 @@
             outline: none;
             resize: none;
             height: 40px;
-            max-width: 500px; /* 입력 칸 너비 제한 */
+            width: 800px; /* 원하는 고정된 너비 */
         }
 
         .btn {
@@ -182,7 +214,15 @@
         <textarea id="prompt" placeholder="질문을 입력하세요..." required></textarea>
         <button type="submit" class="btn">보내기</button>
     </form>
-
+    <div class="button-container">
+        <form action="/profil">
+            <button type="submit">내정보</button>
+        </form>
+        <form action="/api/logout">
+            <button type="submit">로그아웃</button>
+        </form>
+    </div>
+    
     <script>
         const chatContainer = document.getElementById("chat-container");
         const contestID = "{{ contest_id }}"
