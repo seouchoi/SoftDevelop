@@ -433,6 +433,79 @@ contests = [
     }, #---------6. 건축
     
     {
+        "contest_name": "2024 항공우주 논문상 공모전",
+        "max_participate": 1,
+        "application_start": datetime(2024,8,12),
+        "application_end": datetime(2024,9,30),
+        "contest_start": datetime(2024,8,12),
+        "contest_end": datetime(2024,9,30),
+        "category_id": 7, #항공우주
+        "contest_master":"한국항공우주산업",
+        "organization_website": "https://www.koreaaero.com/KO/Sustainability/AerospaceJournalPrizeInfo.aspx",
+        "image_path": "poster/contest4.png"
+    },
+    {
+        "contest_name": "나사스페이스앱스챌린지(NASA Space Apps Challenge) 판교 해커톤",
+        "max_participate": 4,
+        "application_start": datetime(2024,7,18),
+        "application_end": datetime(2024,9,30),
+        "contest_start": datetime(2024,10,5),
+        "contest_end": datetime(2024,10,6),
+        "category_id": 7, #항공우주
+        "contest_master":"NASA Space Apps with NASA Earth Sciences Division, 나사스페이스앱스판교",
+        "organization_website": "https://www.spaceappschallenge.org/nasa-space-apps-2024/2024-local-events/pangyo/",
+        "image_path": "poster/contest45.jpg"
+    },
+    {
+        "contest_name": "항공우주기술 기반 예비창업자 지원 사업 「2024 STAR-Exploration」",
+        "max_participate": 4,
+        "application_start": datetime(2024,3,20),
+        "application_end": datetime(2024,4,12),
+        "contest_start": datetime(2024,3,30),
+        "contest_end": datetime(2024,4,12),
+        "category_id": 7, #항공우주
+        "contest_master":"조슈아파트너스(주)",
+        "organization_website": "https://docs.google.com/forms/d/1bDwb9rBq0qG6hTQXoe8iH7mw4fTkVlsg1E8CjGpDB8g/viewform?pli=1&pli=1&edit_requested=true",
+        "image_path": "poster/contest46.jpg"
+    },
+    {
+        "contest_name": "2024 청소년 항공우주 메타버스 미술대전",
+        "max_participate": 1,
+        "application_start": datetime(2024,4,11),
+        "application_end": datetime(2024,7,16),
+        "contest_start": datetime(2024,4,11),
+        "contest_end": datetime(2024,7,16),
+        "category_id": 7, #항공우주
+        "contest_master":"한국항공우주소년단",
+        "organization_website": "http://www.yfk.or.kr/bbs/?so_table=news&mode=VIEW&num=6075&category=&findType=&findWord=&sort1=&sort2=&page=1",
+        "image_path": "poster/contest47.jpg"
+    },
+    {
+        "contest_name": "2024 YSC창작공감 랩 드론 경진대회",
+        "max_participate": 2,
+        "application_start": datetime(2024,10,17),
+        "application_end": datetime(2024,11,6),
+        "contest_start": datetime(2024,10,17),
+        "contest_end": datetime(2024,11,6),
+        "category_id": 7, #항공우주
+        "contest_master":"용인예술과학대학교 산학협력단",
+        "organization_website": "https://www.ysc.ac.kr/kor/CMS/Board/Board.do?mCode=MN355&mode=view&mgr_seq=363&board_seq=158947",
+        "image_path": "poster/contest48.jpg"
+    },
+    {
+        "contest_name": "2024 과학치안 드론 아이디어 공모전",
+        "max_participate": 1,
+        "application_start": datetime(2024,3,1),
+        "application_end": datetime(2024,5,31),
+        "contest_start": datetime(2024,3,1),
+        "contest_end": datetime(2024,5,31),
+        "category_id": 7, #항공우주
+        "contest_master":"(주)아세따",
+        "organization_website": "https://policelab.kr/#/",
+        "image_path": "poster/contest49.jpg"
+    },#-----------------7. 항공/우주
+
+    {
         "contest_name": "2024년 서울 지능형 사물인터넷(AIoT) 해커톤 대회",
         "max_participate": 4,
         "application_start": datetime(2024,7, 19),
@@ -469,14 +542,75 @@ contests = [
         "image_path": "poster/contest5.png"
     },
     {
-        "contest_name": "석유 화학 올림피아드",
+        "contest_name":"Blaybus 실전 앱 개발 경진대회",
+        "max_participate":7,
+        "application_start":datetime(2024,12,2),
+        "application_end":datetime(2024,12,29),
+        "contest_start":datetime(2025,1,5),
+        "contest_end":datetime(2025,1,17),
+        "category_id": 8,
+        "contest_master":"",
+        "organization_website":"https://www.blaybus.com/activities/407/landing",
+        "image_path":"poster/contest9.png"
+    },
+    {
+        "contest_name":"글로벌 청년 임팩트 해커톤",
+        "max_participate":1,
+        "application_start":datetime(2024,11,18),
+        "application_end":datetime(2024,12,8),
+        "contest_start":datetime(2024,12,27),
+        "contest_end":datetime(2024,12,28),
+        "category_id":8,
+        "contest_master":"",
+        "organization_website":"https://wfuna.or.kr/program_global_impact_hackathon_2024",
+        "image_path":"poster/contest14.png"
+    },
+    {
+        "contest_name":"헬로소프트 코스페이시스 작품 공모전",
+        "max_participate":1,
+        "application_start":datetime(2024,11,17),
+        "application_end":datetime(2024,11,30),
+        "contest_start":datetime(2024,11,17),
+        "contest_end":datetime(2024,11,30),
+        "category_id":8,
+        "contest_master":"",
+        "organization_website":"https://cafe.naver.com/cospaces/",
+        "image_path":"poster/contest15.png"
+    },
+    {
+        "contest_name":"컴투스 글로벌 게임개발 공모전 ‘컴:온 2024’",
+        "max_participate":10,
+        "application_start":datetime(2024,11,19),
+        "application_end":datetime(2024,12,30),
+        "contest_start":datetime(2024,11,19),
+        "contest_end":datetime(2024,12,30),
+        "category_id":8,
+        "contest_master":"",
+        "organization_website":"https://www.com2us.com/gamecontest",
+        "image_path":"poster/contest18.png"
+    },
+    {
+        "contest_name":"2024~2025년 한국석유공사 데이터 분석 공모전",
+        "max_participate":4,
+        "application_start":datetime(2024,10,14),
+        "application_end":datetime(2025,1,22),
+        "contest_start":datetime(2024,10,14),
+        "contest_end":datetime(2025,1,22),
+        "category_id":8,
+        "contest_master":"",
+        "organization_website":"https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=243&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12",
+        "image_path":"poster/contest19.png"
+    },#----------8.로봇공학/자동화 더 추가---------------
+
+    {
+        "contest_name": "LG 석유 화학 올림피아드",
         "max_participate": 1,
         "application_start": datetime(2024, 7, 1),
         "application_end": datetime(2024, 7, 6),
         "contest_start": datetime(2024, 7, 12),
         "contest_end": datetime(2024, 8, 12),
         "category_id": 9,  # 화학공학
-        "contest_master":"",
+        "contest_master":"LG화학, 한국화학공학회",
         "organization_website": "https://www.lgchem.com/main/index",
         "image_path": "poster/contest6.png"
     },
@@ -493,69 +627,67 @@ contests = [
         "image_path": "poster/contest8.png"
     },
     {
-        "contest_name":"Blaybus 실전 앱 개발 경진대회",
-        "max_participate":7,
-        "application_start":datetime(2024,12,2),
-        "application_end":datetime(2024,12,29),
-        "contest_start":datetime(2025,1,5),
-        "contest_end":datetime(2025,1,17),
-        "category_id": 8,
-        "contest_master":"",
-        "organization_website":"https://www.blaybus.com/activities/407/landing",
-        "image_path":"poster/contest9.png"
+        "contest_name": "2024 화학창의콘텐츠 공모전_케미의 친구를 만들어주세요",
+        "max_participate": 4,
+        "application_start": datetime(2024,10,4),
+        "application_end": datetime(2024,11,4),
+        "contest_start": datetime(2024,10,4),
+        "contest_end": datetime(2024,11,4),
+        "category_id": 9,  # 화학공학
+        "contest_master":"한국화학연구원",
+        "organization_website": "https://chemistrycontest.kr/",
+        "image_path": "poster/contest50.jpg"
     },
+    {
+        "contest_name": "2024년 대한화학회 화학포스터 그리기 및 화학시화 대회",
+        "max_participate": 4,
+        "application_start": datetime(2024,6,3),
+        "application_end": datetime(2024,6,28),
+        "contest_start": datetime(2024,6,3),
+        "contest_end": datetime(2024,7,26),
+        "category_id": 9,  # 화학공학
+        "contest_master":"대한화학회",
+        "organization_website": "https://new.kcsnet.or.kr/contest",
+        "image_path": "poster/contest51.jpg"
+    },
+    {
+        "contest_name": "우리가 꿈꾸는 미래를 위한 화학⋅바이오⋅환경 기술 아이디어 경진대회",
+        "max_participate": 2,
+        "application_start": datetime(2024,10,30),
+        "application_end": datetime(2024,11,30),
+        "contest_start": datetime(2024,10,30),
+        "contest_end": datetime(2024,11,30),
+        "category_id": 9,  # 화학공학
+        "contest_master":"안전성평가연구소",
+        "organization_website": "https://www.allforyoung.com/posts/38624",
+        "image_path": "poster/contest52.jpg"
+    },
+    {
+        "contest_name": "제12기 화학물질 불법유통 온라인 감시단 모집",
+        "max_participate": 1,
+        "application_start": datetime(2023,11,1),
+        "application_end": datetime(2023,11,12),
+        "contest_start": datetime(2024,1,1),
+        "contest_end": datetime(2024,12,31),
+        "category_id": 9,  # 화학공학
+        "contest_master":"환경부 화학물질안전원",
+        "organization_website": "https://nics.me.go.kr/boardView.do?boardMasterId=14&boardId=150074&menuId=80",
+        "image_path": "poster/contest53.jpg"
+    },#--------------9. 화학공학
 
     {
-        "contest_name":"글로벌 청년 임팩트 해커톤",
-        "max_participate":1,
-        "application_start":datetime(2024,11,18),
-        "application_end":datetime(2024,12,8),
-        "contest_start":datetime(2024,12,27),
-        "contest_end":datetime(2024,12,28),
-        "category_id":10,
-        "contest_master":"",
-        "organization_website":"https://wfuna.or.kr/program_global_impact_hackathon_2024",
-        "image_path":"poster/contest14.png"
-    },
-
-    {
-        "contest_name":"헬로소프트 코스페이시스 작품 공모전",
-        "max_participate":1,
-        "application_start":datetime(2024,11,17),
-        "application_end":datetime(2024,11,30),
-        "contest_start":datetime(2024,11,17),
-        "contest_end":datetime(2024,11,30),
-        "category_id":12,
-        "contest_master":"",
-        "organization_website":"https://cafe.naver.com/cospaces/",
-        "image_path":"poster/contest15.png"
-    },
-    {
-        "contest_name":"컴투스 글로벌 게임개발 공모전 ‘컴:온 2024’",
-        "max_participate":10,
-        "application_start":datetime(2024,11,19),
-        "application_end":datetime(2024,12,30),
-        "contest_start":datetime(2024,11,19),
-        "contest_end":datetime(2024,12,30),
-        "category_id":12,
-        "contest_master":"",
-        "organization_website":"https://www.com2us.com/gamecontest",
-        "image_path":"poster/contest18.png"
-    },
-    {
-        "contest_name":"2024~2025년 한국석유공사 데이터 분석 공모전",
-        "max_participate":4,
-        "application_start":datetime(2024,10,14),
-        "application_end":datetime(2025,1,22),
-        "contest_start":datetime(2024,10,14),
-        "contest_end":datetime(2025,1,22),
-        "category_id":12,
-        "contest_master":"",
-        "organization_website":"https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=243&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12",
-        "image_path":"poster/contest19.png"
+        "contest_name": "제12기 화학물질 불법유통 온라인 감시단 모집",
+        "max_participate": 1,
+        "application_start": datetime(2023,11,1),
+        "application_end": datetime(2023,11,12),
+        "contest_start": datetime(2024,1,1),
+        "contest_end": datetime(2024,12,31),
+        "category_id": 10,  # 화학공학
+        "contest_master":"환경부 화학물질안전원",
+        "organization_website": "https://nics.me.go.kr/boardView.do?boardMasterId=14&boardId=150074&menuId=80",
+        "image_path": "poster/contest53.jpg"
     }
-
-    ]
+]
 
 
 # 공모전 정보 삽입
