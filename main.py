@@ -8,7 +8,9 @@ from Function.logout import logout_bp
 from Function.build_team import build_team_bp
 from Function.contest_detail import contest_detail_bp
 from Function.category import category_bp
-from Function.invite import invite_bp 
+from Function.invite import invite_bp
+from Function.favorite import favorite_bp
+from Function.invite_detail import invite_detail_bp 
 import os
 
 app = Flask(__name__,static_folder='front/static', template_folder='front/templates')
@@ -24,6 +26,8 @@ app.register_blueprint(profil_bp)
 app.register_blueprint(homepage_bp)
 app.register_blueprint(category_bp)
 app.register_blueprint(invite_bp)
-    
+app.register_blueprint(favorite_bp)
+app.register_blueprint(invite_detail_bp)
+
 if __name__ == "__main__":
     app.run(debug=True)

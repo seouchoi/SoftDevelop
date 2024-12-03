@@ -302,13 +302,18 @@
 
         <aside class="notification">
             <h3>알림</h3>
-            <p>"user"가 "공모전"에서 초대 요청을 보냈습니다.
-                <button onclick="location.href='invite_detail.html'">자세히 보기</button>
-            </p>
-            <hr> 
-            <p>"user"가 "공모전"에서 초대 요청을 보냈습니다.
-                <button onclick="location.href='invite_detail.html'">자세히 보기</button>
-            <hr>
+            {% if invite_data %}
+                {% for data in invite_data %}
+                    {% if data.read == false %}
+                    <p>
+                        {{data.message}}
+                    </p>
+                    <a href="{{ url_for('invite_detail.show_detail', invite_id=data.invite_id) }}" class="details-button">
+                        자세히 보기
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </aside>
     </div>
 

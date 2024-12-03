@@ -21,6 +21,7 @@ class invite_DBHandler:
     def insert_invite(self, sender_id, receiver_id, message, contest_id):
         invite_id = invite_DBHandler.generate_key_id(self)
         contest_id = int(contest_id)
+        sender_id = int(sender_id)
         contest_name = contest_db_handler.get_contest_name(contest_id)
         # 초대 데이터 생성
         invite_data = {
@@ -92,4 +93,13 @@ class invite_DBHandler:
             # 읽지 않은 메시지가 없으면 다른 값을 반환
             return None  # 또는 원하는 다른 값
 
+    def get_invite_data(self, invite_id):
+        """
+        invite_id로 전체 초대 알림 정보를 가져오는 코드.
+        """
+        invites_cursor = self.invite_collection.find(
+            {'invite_id': invite_id},
+            {'_id': 0}
+        ).sort('timestamp', -1)
+        return list(invites_cursor)
     
