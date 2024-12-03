@@ -600,7 +600,7 @@ contests = [
         "contest_master":"",
         "organization_website":"https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=243&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12",
         "image_path":"poster/contest19.png"
-    },#----------8.로봇공학/자동화 더 추가---------------
+    },#----------8.IT/AI
 
     {
         "contest_name": "LG 석유 화학 올림피아드",
@@ -676,17 +676,77 @@ contests = [
     },#--------------9. 화학공학
 
     {
-        "contest_name": "제12기 화학물질 불법유통 온라인 감시단 모집",
+        "contest_name": "국립대구과학관 2024 과학영상콘텐츠 공모전",
         "max_participate": 1,
-        "application_start": datetime(2023,11,1),
-        "application_end": datetime(2023,11,12),
-        "contest_start": datetime(2024,1,1),
+        "application_start": datetime(2024,5,13),
+        "application_end": datetime(2024,7,31),
+        "contest_start": datetime(2024,7,1),
+        "contest_end": datetime(2024,7,31),
+        "category_id": 10,  
+        "contest_master":"국립대구과학관, 국립대구과학관",
+        "organization_website": "https://www.dnsm.or.kr/board103/bbsDetailView.do?data_id=4438&bbs_id=103&pageIndex=1&recordCountPerPage=10",
+        "image_path": "poster/contest54.jpg"
+    },
+    {
+        "contest_name": "2024년 해양환경측정망 자료 활용 논문 공모전",
+        "max_participate": 1,
+        "application_start": datetime(2024,4,1),
+        "application_end": datetime(2024,5,31),
+        "contest_start": datetime(2024,7,1),
+        "contest_end": datetime(2024,8,30),
+        "category_id": 10,  
+        "contest_master":"해양수산부",
+        "organization_website": "https://kosmee.or.kr/board/announcement/article/110561",
+        "image_path": "poster/contest55.jpg"
+    },
+    {
+        "contest_name": "2024 제31회 한라환경대상 공모전",
+        "max_participate": 4,
+        "application_start": datetime(2024,4,15),
+        "application_end": datetime(2024,5,17),
+        "contest_start": datetime(2024,4,15),
+        "contest_end": datetime(2024,5,17),
+        "category_id": 10,  
+        "contest_master":"제주특별자치도, 한라일보사",
+        "organization_website": "https://www.ihalla.com/article.php?aid=1713085200756143073",
+        "image_path": "poster/contest56.jpg"
+    },
+    {
+        "contest_name": "2024년 연구실 안전 콘텐츠 및 우수사례 공모전",
+        "max_participate": 1,
+        "application_start": datetime(2024,4,22),
+        "application_end": datetime(2024,7,22),
+        "contest_start": datetime(2024,4,22),
+        "contest_end": datetime(2024,7,22),
+        "category_id": 10, 
+        "contest_master":"과학기술정보통신부, 한국생명공학연구원 국가연구안전관리본부",
+        "organization_website": "https://labs.go.kr/brdartcl/boardarticleView.do?brd_id=BDIDX_XO25aGt4j5e6pz1Af94m67&menu_nix=1Ml3W4pu&cont_idx=562",
+        "image_path": "poster/contest57.jpg"
+    },
+    {
+        "contest_name": "2024 크레존 서포터즈 모집",
+        "max_participate": 1,
+        "application_start": datetime(2024,6,19),
+        "application_end": datetime(2024,6,30),
+        "contest_start": datetime(2024,7,1),
         "contest_end": datetime(2024,12,31),
-        "category_id": 10,  # 화학공학
-        "contest_master":"환경부 화학물질안전원",
-        "organization_website": "https://nics.me.go.kr/boardView.do?boardMasterId=14&boardId=150074&menuId=80",
-        "image_path": "poster/contest53.jpg"
-    }
+        "category_id": 10, 
+        "contest_master":"한국과학창의재단",
+        "organization_website": "https://forms.gle/U5rRFifLXnu22VdQA",
+        "image_path": "poster/contest58.jpg"
+    },
+    {
+        "contest_name": "2024 대학생 생물분류 연구논문 공모전",
+        "max_participate": 3,
+        "application_start": datetime(2024,4,5),
+        "application_end": datetime(2024,5,8),
+        "contest_start": datetime(2024,4,5),
+        "contest_end": datetime(2024,5,8),
+        "category_id": 10,  
+        "contest_master":"국립생물자원관",
+        "organization_website": "https://mng.spectory.net/nibr/nibrubccontest/2024/1",
+        "image_path": "poster/contest59.jpg"
+    }#--------------10. 자연과학
 ]
 
 
