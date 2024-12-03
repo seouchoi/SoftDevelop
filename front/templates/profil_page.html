@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .profile-container {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: absolute;
+            top: 20px;
+        }
+        .profile-container h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .profile-container p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #555;
+        }
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        .award-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .award-group textarea, .award-group select {
+            font-size: 14px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            box-sizing: border-box;
+        }
+        .award-group textarea {
+            flex: 2;
+            resize: none;
+        }
+        .award-group select {
+            flex: 1;
+        }
+        .award-group button {
+            font-size: 14px;
+            padding: 8px 12px;
+            background-color: rgb(164, 199, 255);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .award-group button:hover {
+            background-color: rgb(61, 135, 255);
+        }
+        .add-btn {
+            font-size: 14px;
+            padding: 8px 12px;
+            background-color: rgb(164, 199, 255);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .add-btn:hover {
+            background-color: rgb(61, 135, 255);
+        }
+        .logout-btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(164, 199, 255);
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .logout-btn:hover {
+            background-color: rgb(61, 135, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>{{ user.member_name }}님의 프로필</h1>
+        <p><strong>이메일:</strong> {{ user.member_email }}</p>
+        <p><strong>전화번호:</strong> {{ user.member_phone_number }}</p>
+        <p><strong>관심분야:</strong> {{ user.category }}</p>
+
+        <div id="award-section">
+            <div class="form-group">
+                <label>수상이력 추가:</label>
+                <div class="award-group">
+                    <textarea name="award" rows="1" placeholder="수상 내용을 입력하세요"></textarea>
+                    <select name="award-result">
+                        <option value="1등">1등</option>
+                        <option value="2등">2등</option>
+                        <option value="3등">3등</option>
+                        <option value="수상없음">수상없음</option>
+                    </select>
+                    <button onclick="submitAward(this)">확인</button>
+                </div>
+            </div>
+        </div>
+        <button class="add-btn" onclick="addAward()">+ 추가</button>
+
+        <a href="{{ url_for('logout.logout') }}" class="logout-btn">로그아웃</a>
+    </div>
+
+    <script>
+        // 공통 데이터 전송 함수
+        function sendData(apiUrl, data) {
+            return fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        const errorMessage = err.message || '오류가 발생했습니다.';
+                        throw new Error(errorMessage);
+                    });
+                }
+                return response.json(); // 성공적으로 응답 데이터를 반환
+            })
+            .catch(error => {
+                console.error('데이터 전송 실패:', error);
+                throw error; // 호출한 함수에서 이 에러를 처리
+            });
+        }
+        
+        // 수상이력 제출 함수
+        function submitAward(button) {
+            const awardGroup = button.parentElement;
+            const awardText = awardGroup.querySelector('textarea').value.trim();
+            const awardResult = awardGroup.querySelector('select').value;
+        
+            // 수상 내용이 비어있는지 확인
+            if (!awardText) {
+                alert('수상 내용을 입력하세요.');
+                return;
+            }
+        
+            // 서버로 전송할 데이터
+            const award_data = {
+                user_id: "{{ user.id }}", // 서버에서 로그인 시 할당된 사용자 ID
+                award: awardText,
+                result: awardResult
+            };
+        
+            // 데이터를 서버로 전송
+            sendData('/profil', award_data)
+                .then(() => {
+                    alert('수상이력이 저장되었습니다.');
+                })
+                .catch(error => {
+                    alert(error.message);
+                    console.error('Error:', error);
+                });
+        }
+        
+        // 새로운 수상이력 입력 필드 추가 함수
+        function addAward() {
+            const awardSection = document.getElementById('award-section');
+            const newAwardGroup = document.createElement('div');
+            newAwardGroup.classList.add('award-group');
+        
+            const textarea = document.createElement('textarea');
+            textarea.name = "award";
+            textarea.rows = 1;
+            textarea.placeholder = "수상 내용을 입력하세요";
+        
+            const select = document.createElement('select');
+            select.name = "award-result";
+            select.innerHTML = `
+                <option value="1등">1등</option>
+                <option value="2등">2등</option>
+                <option value="3등">3등</option>
+                <option value="수상없음">수상없음</option>
+            `;
+        
+            const button = document.createElement('button');
+            button.textContent = "확인";
+            button.onclick = function () {
+                submitAward(button);
+            };
+        
+            newAwardGroup.appendChild(textarea);
+            newAwardGroup.appendChild(select);
+            newAwardGroup.appendChild(button);
+            awardSection.appendChild(newAwardGroup);
+        }
+        </script>
+        
+</body>
+</html>

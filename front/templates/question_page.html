@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 질문하기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto; /* 스크롤 가능 */
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .user {
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .user .bubble {
+            background-color: #daf5cb; /* 사용자 말풍선 색상 */
+            margin-left: auto;
+        }
+
+        .ai .bubble {
+            background-color: #e0e7ff; /* AI 말풍선 색상 */
+            margin-right: auto;
+        }
+
+        .bubble {
+            display: flex;
+            max-width: 90%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bubble p {
+            margin: 0;
+        }
+        
+        .member-info {
+            display: inline-block; /* 같은 줄에 배치 */
+            flex-wrap: wrap; /* 화면 크기에 따라 줄바꿈 허용 */
+            align-items: center; /* 버튼 정렬 */
+            gap: 20px; /* 요소 간 간격 */
+            margin-top:-7px;
+        }
+
+        .member-info span {
+            display: inline-block; /* 한 줄에 표시 */
+            margin-left: 20px; /* 오른쪽 간격 */
+        }
+
+        .button-group {
+            display: inline-block; /* 버튼도 같은 줄에 */
+            margin-left: 15px; /* 버튼 그룹 앞 간격 */
+        }
+
+        .highlight {
+            font-weight: bold; /* 강조 표현 */
+            color: #0056b3; /* 강조 색상 */
+        }
+
+        #question-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            max-width: 600px; /* 최대 너비를 줄여서 중앙 정렬 */
+            margin: 20px auto 0; /* 중앙 정렬 */
+        }
+
+        textarea {
+            flex: 1;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            outline: none;
+            resize: none;
+            height: 40px;
+            max-width: 500px; /* 입력 칸 너비 제한 */
+        }
+
+        .btn {
+            width: 100px;
+            height: 40px;
+            font-size: 14px;
+            border: none;
+            border-radius: 10px;
+            background-color: #002fff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            background-color: #6cb1ff;
+        }
+
+        .btn-small {
+            
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn-small:active {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body data-user-id="{{ session['key_id'] }}">
+    <h1>AI 질문하기</h1>
+    <div id="chat-container"></div>
+    <form id="question-form">
+        <textarea id="prompt" placeholder="질문을 입력하세요..." required></textarea>
+        <button type="submit" class="btn">보내기</button>
+    </form>
+
+    <script>
+        const chatContainer = document.getElementById("chat-container");
+        const contestID = "{{ contest_id }}"
+        
+        document.getElementById("question-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // 기본 제출 동작 방지
+
+            const prompt = document.getElementById("prompt").value;
+            addMessage("user", prompt); // 사용자 메시지 추가
+
+            // 서버로 질문을 POST 요청으로 보내기
+            fetch("/api/gpt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ prompt: prompt,
+                                       contest_id: contestID
+                 }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    addMessage("ai", "결과가 없습니다.");
+                } else {
+                    data.forEach(member => {
+                            const message = `
+                            <div class="member-info">
+                                <span class="highlight">이름:</span>${member.name}
+                                <span class="highlight">지역:</span>${member.region}
+                                <span class="highlight">분야:</span>${member.category}
+                                <span class="highlight">업무:</span>${member.task}
+                                <div class="button-group">
+                                    <button class="btn-small" data-member='${JSON.stringify(member)}' onclick="handleInvite(this)">초대하기</button>
+                                    <button class="btn-small" onclick="handleDetails('${member}')">자세히 보기</button>
+                                </div>
+                            </div>
+                        `;
+                        addMessage("ai", message);
+                    });
+                }
+            })
+            .catch(error => {
+                addMessage("ai", `오류 발생: ${error}`);
+            });
+            document.getElementById("question-form").reset(); //입력 필드 초기화
+        });
+
+        function addMessage(sender, content) {
+            const messageWrapper = document.createElement("div");
+            messageWrapper.classList.add("chat-message", sender);
+
+            const bubble = document.createElement("div");
+            bubble.classList.add("bubble");
+            bubble.innerHTML = `<p>${content}</p>`;
+
+            messageWrapper.appendChild(bubble);
+            chatContainer.appendChild(messageWrapper);
+
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function handleInvite(buttonElement) {
+            const contestID = "{{ contest_id }}"
+            const senderID = document.body.getAttribute('data-user-id');  // HTML 데이터 속성에서 가져오기
+            const memberData = buttonElement.getAttribute('data-member'); // 버튼의 data-member 속성 읽기
+            const member = JSON.parse(memberData); // JSON 문자열을 객체로 변환
+            
+            const receiverName = member.name;  // member 객체에서 이름 가져오기
+            const receiverID = member.key_id;  // member 객체에서 user_id 가져오기
+            const message = `안녕하세요, ${receiverName}님! 저희 팀에 초대합니다.`;  // 초대 메시지 내용
+
+            const data = {
+                'contest_id': contestID,
+                'sender_id': senderID,
+                'receiver_id': receiverID,
+                'message': message
+            }
+
+            console.log("보내는 데이터:", data);
+
+            fetch("/api/invite", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`${receiverName}님을 초대했습니다!`);
+            })
+            .catch(error => {
+                alert(`초대 실패: ${error}`);
+            });
+        }
+    </script>
+</body>
+</html>

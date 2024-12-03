@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkerBell</title>
+    <style>
+        /* 전체 레이아웃 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(233, 233, 233);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        .page-container{
+            width: 90%;
+            max-width: 1700px;
+            height: 90vh;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            width: 95%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-buttons button {
+            background-color: rgb(164, 199, 255); /* 버튼 배경색 */
+            color: rgb(0, 0, 0); /* 버튼 텍스트 색상 */
+            border: none; /* 기본 테두리 제거 */
+            padding: 10px 20px; /* 버튼 내부 여백 */
+            font-size: 16px; /* 텍스트 크기 */
+            font-weight: bold; /* 텍스트 굵기 */
+            border-radius: 25px; /* 둥근 정도 */
+            cursor: pointer; /* 마우스 오버 시 포인터 */
+            transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+        }
+
+        .header-buttons button:hover {
+            background-color: rgb(61, 135, 255); /* 마우스 오버 시 버튼 배경색 */
+        }
+
+        /* 로고 및 사이트명 */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            margin: 30px;
+            gap: 20px; /* 로고와 텍스트 사이 간격 */
+        }
+
+        .logo-container .logo img {
+            width: 120px; /* 로고 이미지 크기 */
+            height: auto; /* 비율 유지 */
+        }
+
+        .site-name-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column; /* 사이트명과 랜덤 문구를 세로로 정렬 */
+            justify-content: center;
+        }
+
+        .site-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .random-quote {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0 0 0;
+        }
+
+        /* 카테고리 버튼 */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .category-button {
+            background-color: #ffffff;
+            color: #000;
+            border: 1px solid #ccc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .category-button:hover {
+            background-color: rgb(164, 199, 255);
+            transform: scale(1.05);
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start; /* 상단 정렬 */
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%; /* 전체 폭 사용 */
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .image-container {
+            flex: 3;
+            display: flex;
+            flex-wrap: wrap; /* 여러 줄 배치 */
+            gap: 20px;
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            padding: 10px 0;
+            margin: 0;
+        }
+
+        .image-container a img {
+            width: 250px; /* 이미지 크기 */
+            height: auto;
+            cursor: pointer;
+        }
+
+        .image-container a img:hover {
+            transform: scale(1.05);
+        }
+
+        .notification {
+            flex: 1;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 알림 섹션 버튼 */
+        .notification button {
+            background-color: rgb(164, 199, 255); /* 버튼 배경색 */
+            color: rgb(0, 0, 0); /* 버튼 텍스트 색상 */
+            border: none; /* 기본 테두리 제거 */
+            padding: 10px 20px; /* 버튼 내부 여백 */
+            font-size: 16px; /* 텍스트 크기 */
+            font-weight: bold; /* 텍스트 굵기 */
+            border-radius: 25px; /* 버튼의 둥근 정도 (높은 값으로 동글동글하게) */
+            cursor: pointer; /* 마우스 오버 시 포인터 */
+            transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+        }
+
+        .notification button:hover {
+            background-color: rgb(61, 135, 255); /* 마우스 오버 시 버튼 배경색 */
+        }
+
+
+        .notification h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .notification p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+    <header>
+        <div></div>
+        <div class="header-buttons">
+            <form action="/signup">
+                <button type="submit">회원가입</button>
+            </form>
+            <form action="/login">
+                <button type="submit">로그인</button>
+            </form>
+            <form action="/profil">
+                <button type="submit">내정보</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="logo-container">
+        <div class="logo">
+            <img src="static/pictures/logo.png" alt="사이트 로고">
+        </div>
+        <div class="site-name-container">
+            <div class="site-name">LinkerBell</div>
+            <div class="random-quote" id="random-quote"></div>
+        </div>
+    </div>
+
+    <section class="section">
+        <h3>추천 공모 분야</h3>
+        <div class="button-container">
+            
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="기계/제조">
+                <button type="submit" class="category-button" >기계/제조</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="전기/전자">
+                <button type="submit" class="category-button" >전기/전자</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="재료/나노">
+                <button type="submit" class="category-button" >재료/나노</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="생명과학/생명공학">
+                <button type="submit" class="category-button" >생명과학/생명공학</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="에너지/환경">
+                <button type="submit" class="category-button" >에너지/환경</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="건축/토목">
+                <button type="submit" class="category-button" >건축/토목</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="항공/우주">
+                <button type="submit" class="category-button" >항공/우주</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="IT / AI">
+                <button type="submit" class="category-button" >IT / AI</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="화학공학">
+                <button type="submit" class="category-button" >화학공학</button> 
+            </form>
+            <form action="/category" method="POST">
+                <input type="hidden" name="category_name" value="자연과학">
+                <button type="submit" class="category-button" >자연과학</button> 
+            </form>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="image-container">
+            {% for contest in contest_data %}
+                <div class="contest-item">
+                    <a href="/category/{{ contest.contest_id }}">
+                        <img src="static/pictures/{{contest.image_path}}" alt="Contest Poster">
+                    </a>
+                </div>
+            {% endfor %}
+        </section>
+
+        <aside class="notification">
+            <h3>알림</h3>
+            <p> 로그인 후 이용할 수 있습니다. </p>
+            <button onclick="location.href='/login'">로그인</button>
+            
+
+        </aside>
+    </div>
+
+    <footer>© 2024 LinkerBell. All rights reserved.</footer>
+    </div>
+
+    <script>
+
+        const sentences = {
+            1: "삶이 있는 한 희망은 있다 -키케로",
+            2: "산다는것 그것은 치열한 전투이다. -로망로랑",
+            3: "하루에 3시간을 걸으면 7년 후에 지구를 한바퀴 돌 수 있다. -사무엘존슨"
+        };
+
+        // 랜덤으로 문장 선택
+        function getRandomSentence() {
+            const keys = Object.keys(sentences); // 문장의 키를 배열로 가져옴
+            const randomKey = keys[Math.floor(Math.random() * keys.length)]; // 랜덤 키 선택
+            return sentences[randomKey]; // 선택된 키의 문장 반환
+        }
+
+        // 랜덤 문구를 HTML에 출력
+        document.getElementById("random-quote").textContent = getRandomSentence();
+    </script>
+</body>
+</html>

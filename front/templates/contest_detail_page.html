@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Info</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome 추가 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(233, 233, 233);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: rgb(164, 199, 255);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            flex-grow: 1;
+            margin: 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .poster img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .info {
+            font-size: 18px;
+            line-height: 1.8;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        .info strong {
+            color: rgb(61, 135, 255);
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .logo-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn {
+            width: 200px;
+            height: 40px;
+            font-size: 16px;
+            border: 0;
+            border-radius: 20px;
+            outline: none;
+            background-color: rgb(164, 199, 255);
+            color: white;
+            cursor: pointer;
+        }
+        .btn:active {
+            background-color: rgb(61, 135, 255);
+        }
+        .chatButton {
+            position: fixed;
+            bottom: 70px;
+            right: 70px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .chatButton img {
+            width: 170px;
+            height: auto;
+            display: block;
+        }
+
+        .chatButton:active img {
+            transform: scale(0.95);
+        }
+        
+        .logoWithText {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fixedLogo {
+            width: 100px;
+            height: auto;
+            vertical-align: middle;
+        }
+        
+        .logoText {
+            font-size: 35px;
+            font-weight: bold;
+            color: #3D87FF;
+        }
+
+        .contest_website {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button id="backButton" style="background-color: transparent; border: none; cursor: pointer; font-size: 16px; color: white;">← 돌아가기</button>
+            <h1>공모전 정보</h1>
+            <button id="heartButton" style="background-color: transparent; border: none; color: white; cursor: pointer; font-size: 16px;" onclick="toggleHeartIcon()">
+                <i id="heartIcon" class="fa-regular fa-heart fa-2x"></i>
+            </button>
+        </div>
+        <div class="logoWithText">
+            <a href="/" class="logo-link">
+                <div class="logo-container">
+                    <img src="/static/pictures/logo.png" alt="Logo" class="fixedLogo">
+                    <span class="logoText">LinkerBell</span>
+                </div>
+            </a>
+        </div>
+        <div class="content">
+            <div class="poster">
+                <img src="/static/pictures/{{contest_data.image_path}}" alt="공모전 포스터">
+            </div>
+            <div class="info">
+                <p><strong>공모전 이름:</strong> <span id="contest_name">{{ contest_data.contest_name }}</span></p>
+                <p><strong>주최:</strong> <span id="contest_master">{{ contest_data.contest_master }}</span></p>
+                <p><strong>신청 기간:</strong> <span id="application_start">{{ contest_data.application_start }}</span> <strong>~</strong> <span id="application_end">{{ contest_data.application_end }}</span></p>           
+                <p><strong>참여 인원:</strong> <span id="max_participants">{{ contest_data.max_participate}}명</span></p>
+                <p><strong>공모전 일시:</strong> <span id="contest_start">{{ contest_data.contest_start }}</span> <strong>~</strong> <span id="contest_end">{{ contest_data.contest_end }}</span></p>
+                <p><strong>공모전 웹사이트:</strong> <a href="{{ contest_data.organization_website }}" target="_blank" class="contest_website">이동하기</a></p>
+            </div>
+        </div>
+        <form onsubmit="create_team(event)">  
+        <div class="button-group">
+            <input 
+                type="text" 
+                id="teamNameInput" 
+                placeholder="팀 이름을 입력하세요" 
+                style="width: 300px; height: 40px; font-size: 16px; border: 1px solid rgb(200, 200, 200); border-radius: 20px; padding: 0 15px; margin-bottom: 15px;"
+            />
+            <div>
+                <input type="submit" value="팀 생성하기" class="btn">
+            </div>
+        </div>
+        </form>
+        <button class="chatButton" onclick="goToQuestionPage()">
+            <img src="/static/pictures/chat_image.png" alt="Chat Icon">
+        </button>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        document.getElementById("backButton").onclick = goBack;
+        
+        function toggleHeartIcon() {
+            const heartIcon = document.getElementById("heartIcon");
+            const isFilled = heartIcon.classList.contains("fa-solid");
+
+            if (isFilled) {
+                heartIcon.classList.remove("fa-solid", "fa-heart");
+                heartIcon.classList.add("fa-regular", "fa-heart");
+                localStorage.setItem("heartButtonState", "inactive");
+            } else {
+                heartIcon.classList.remove("fa-regular", "fa-heart");
+                heartIcon.classList.add("fa-solid", "fa-heart");
+                localStorage.setItem("heartButtonState", "active");
+            }
+        }
+
+        function goToQuestionPage() {
+            const urlParts = window.location.pathname.split('/');
+            const contestId = urlParts[urlParts.length - 1];
+            window.location.href = `/gpt?contest_id=${contestId}`; 
+        }
+
+        function create_team(event) {
+            event.preventDefault();
+
+            const team_name = document.getElementById("teamNameInput").value;
+            const contest_id = "{{ contest_data.contest_id }}";
+
+            if (team_name.trim() === "") {
+                alert("팀 이름을 적어주세요.");
+                return;
+            }
+
+            const data = {
+                team_name: team_name,
+                contest_id: contest_id
+            };
+
+            fetch('/api/build_team', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('서버 응답이 실패했습니다.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('팀이 성공적으로 생성되었습니다!');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("팀 생성 오류:", error);
+                alert('로그인 후 이용해주세요.');
+                window.location.href = '/login';
+            });
+        }
+
+        window.onload = function() {
+            const heartButtonState = localStorage.getItem("heartButtonState");
+            const heartIcon = document.getElementById("heartIcon");
+
+            if (heartButtonState === "active") {
+                heartIcon.classList.remove("fa-regular", "fa-heart");
+                heartIcon.classList.add("fa-solid", "fa-heart");
+            } else {
+                heartIcon.classList.remove("fa-solid", "fa-heart");
+                heartIcon.classList.add("fa-regular", "fa-heart");
+            }
+        };
+    </script>
+</body>
+</html>
