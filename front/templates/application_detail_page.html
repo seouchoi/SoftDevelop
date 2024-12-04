@@ -280,7 +280,13 @@
 
         function reject() {
             alert("요청을 거절하였습니다.");
-            window.history.back();
+            const previousURL = document.referrer; // 이전 페이지의 URL
+            if (previousURL) {
+                window.location.href = previousURL; // 새로고침 포함
+            } else {
+                // 실패 시 오류 처리
+                alert("요청 처리 실패");
+            }
         }
     </script>
 </body>
