@@ -27,7 +27,7 @@ class Awards_DBHandler:
         사용자의 수상 경력 점수를 계산합니다.
         """
         # 수상 순위에 따른 점수 매핑
-        rank_points = {1: 5, 2: 4, 3: 3, 4: 2, 5: 1}
+        rank_points = {1: 5, 2: 4, 3: 3, 0: 0} #0은 수상없음, 수상은 3등까지있음
         
         # 사용자의 수상 기록 가져오기
         awards = self.collection.find({'user_id': user_id})

@@ -322,7 +322,26 @@
             function goToQuestionPage() {
                 const urlParts = window.location.pathname.split('/');
                 const contestId = urlParts[urlParts.length - 1];
-                window.location.href = `/gpt?contest_id=${contestId}`;
+
+                // 서버로 팀 확인 요청
+                fetch(`/gpt?contest_id=${contestId}`, {
+                    method: "GET",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // 팀이 있는 경우 질문 페이지로 이동
+                            window.location.href = `/gpt?contest_id=${contestId}`;
+                        } else {
+                            // 팀이 없는 경우 경고 메시지 표시
+                            return response.json().then(data => {
+                                alert(data.message); // 서버에서 받은 메시지 표시
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("오류 발생:", error);
+                        alert("오류가 발생했습니다. 다시 시도해주세요.");
+                    });
             }
 
             function application(team_id) {

@@ -127,8 +127,8 @@
         </div>
 
 
-        <h1>{{ user.member_name }}님의 프로필</h1>
-        <p><strong>이메일:</strong> {{ user.member_email }}</p>
+        <h1>{{ user.name }}님의 프로필</h1>
+        <p><strong>이메일:</strong> {{ user.email }}</p>
         <p><strong>전화번호:</strong> {{ user.member_phone_number }}</p>
         <p><strong>지역:</strong> {{user.region }}</p>
         <p><strong>관심분야:</strong> {{ user.category }}</p>
@@ -139,10 +139,10 @@
                 <div class="award-group">
                     <textarea name="award" rows="1" placeholder="수상 내용을 입력하세요"></textarea>
                     <select name="award-result">
-                        <option value="1등">1등</option>
-                        <option value="2등">2등</option>
-                        <option value="3등">3등</option>
-                        <option value="수상없음">수상없음</option>
+                        <option value="1">1등</option>
+                        <option value="2">2등</option>
+                        <option value="3">3등</option>
+                        <option value="0">수상없음</option>
                     </select>
                     <button onclick="submitAward(this)">확인</button>
                 </div>
@@ -190,14 +190,14 @@
         
             // 서버로 전송할 데이터
             const award_data = {
-                user_id: "{{ user.id }}", // 서버에서 로그인 시 할당된 사용자 ID
+                user_id: "{{ user.key_id }}", // 서버에서 로그인 시 할당된 사용자 ID
                 award: awardText,
                 result: awardResult
             };
         
             // 데이터를 서버로 전송 
             // 여기 부분 수정해서 보내기 
-            sendData('/profil', award_data)
+            sendData('/api/add_career', award_data)
                 .then(() => {
                     alert('수상이력이 저장되었습니다.');
                 })

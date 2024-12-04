@@ -7,7 +7,7 @@ member_db_handler = member_DBHandler()
 
 profil_bp = Blueprint('profil', __name__)
 
-@profil_bp.route('/profil')
+@profil_bp.route('/profil', methods = ["POST", "GET"])
 @login_required
 def profil():
     key_id = session.get('key_id')  # 세션에서 key_id 가져오기
