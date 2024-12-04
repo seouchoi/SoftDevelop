@@ -117,7 +117,11 @@ class Team_DBHandler:
             except Exception as e:
                 print(f"팀 정보 조회 실패: {e}")
                 return None
-            
+    
+    def get_team_info_by_contest_id(self, contest_id):
+        team = self.team_collection.find({'contest_id': contest_id})
+        return list(team)
+    
     def get_team_info_by_key_id_and_contest_id(self, team_leader_id, contest_id):
                 # team_id로 팀 정보 조회
                 team = self.team_collection.find_one(

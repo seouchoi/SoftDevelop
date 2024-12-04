@@ -324,12 +324,22 @@
             {% if invite_data %}
                 {% for data in invite_data %}
                     {% if data.read == false %}
-                    <p>
-                        {{data.message}}
-                    </p>
-                    <a href="{{ url_for('invite_detail.show_detail', invite_id=data.invite_id) }}" class="details-button">
-                        자세히 보기
-                    </a>
+                        {% if data.invite_type == "leader_to_member" %}
+                        <p>
+                            {{data.message}}
+                        </p>
+                        <a href="{{ url_for('invite_detail.show_detail', invite_id=data.invite_id) }}" class="details-button">
+                            자세히 보기
+                        </a>
+                        {% endif %}
+                        {% if data.invite_type == "user_to_team" %}
+                        <p>
+                            {{data.message}}
+                        </p>
+                        <a href="{{ url_for('application_detail.show_detail', invite_id=data.invite_id) }}" class="details-button">
+                            자세히 보기
+                        </a>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             {% endif %}

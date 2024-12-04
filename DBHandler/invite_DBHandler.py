@@ -136,6 +136,7 @@ class invite_DBHandler:
             invite_data = {
                 'invite_id': invite_id,
                 'sender_id': user_id,
+                'team_id': team_id,
                 'receiver_id': team_leader_id,
                 'message': application_message,
                 'contest_id': contest_id,

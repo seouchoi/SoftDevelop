@@ -11,6 +11,9 @@ from Function.category import category_bp
 from Function.invite import invite_bp
 from Function.favorite import favorite_bp
 from Function.invite_detail import invite_detail_bp 
+from Function.accept_deny import accept_deny_bp
+from Function.member_application import member_application_bp
+from Function.application_detail import application_detail_bp
 import os
 
 app = Flask(__name__,static_folder='front/static', template_folder='front/templates')
@@ -28,6 +31,10 @@ app.register_blueprint(category_bp)
 app.register_blueprint(invite_bp)
 app.register_blueprint(favorite_bp)
 app.register_blueprint(invite_detail_bp)
+app.register_blueprint(accept_deny_bp)
+app.register_blueprint(member_application_bp)
+app.register_blueprint(application_detail_bp)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
