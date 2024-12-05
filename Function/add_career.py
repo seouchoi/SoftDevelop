@@ -5,7 +5,7 @@ add_career_bp = Blueprint("add_career", __name__)
 
 award_db_handler = Awards_DBHandler()
 
-@add_career_bp.route("/api/add_career", methods = ["POSt", "GET"])
+@add_career_bp.route("/api/add_career", methods = ["POST", "GET"])
 def add_career():
     award_data = request.get_json()
     user_id = int(award_data['user_id'])
