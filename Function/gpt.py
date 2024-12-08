@@ -6,7 +6,7 @@ from utils.login_required import login_required
 from DBHandler.team_DBHandler import Team_DBHandler
 
 # OpenAI API 키 설정 (필요한 경우)
-#openai.api_key
+#openai.api_key    // 실행 전 key를 꼭 받아서 실행할 것 없으면, chat bot 실행 안됨.
 
 INSTRUCTIONS = [
     "1. Extract the competition topic and required number of participants from the provided message.",
